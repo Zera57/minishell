@@ -3,14 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hapryl <hapryl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/07 21:59:52 by larlena           #+#    #+#             */
-/*   Updated: 2021/04/04 17:54:53 by larlena          ###   ########.fr       */
+/*   Updated: 2021/04/06 15:28:14 by hapryl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
+int	ft_strcmp(const char *str1, const char *str2)
+{
+	unsigned char	*buf1;
+	unsigned char	*buf2;
+	size_t			i;
+
+	i = 0;
+	buf1 = (unsigned char *)str1;
+	buf2 = (unsigned char *)str2;
+	while (buf1[i] && buf2[i])
+	{
+		if (buf1[i] - buf2[i] != 0)
+			return (buf1[i] - buf2[i]);
+		i++;
+	}
+	if ((buf1[i] == '\0' || buf2[i] == '\0'))
+		return (buf1[i] - buf2[i]);
+	return (0);
+}
 
 int	ft_strncmp(const char *str1, const char *str2, size_t n)
 {

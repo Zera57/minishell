@@ -6,7 +6,7 @@
 /*   By: hapryl <hapryl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 18:13:49 by hapryl            #+#    #+#             */
-/*   Updated: 2021/04/06 11:12:31 by hapryl           ###   ########.fr       */
+/*   Updated: 2021/04/06 15:29:48 by hapryl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,27 +20,21 @@
 #include <string.h>
 #include <stdio.h>
 #include "../Libft/libft.h"
-#include "termcap.h"
+#include "utils.h"
 
 extern int result;
 
-typedef struct s_dictionary
-{
-	char				*key;
-	char				*value;
-	struct s_dictionary	*next;
-}				t_dictionary;
-
 typedef struct s_all
 {
-	char		str[2056];
-	char		buff[10];
-	int			i;
-	char		**env;
-	t_dllist	*history;
+	char			str[2056];
+	char			buff[10];
+	int				i;
+	t_dictionary	*env;
+	t_dllist		*history;
 
 }				t_all;
 
 int			ft_analize_string(t_all *all);
+void		ft_set_env(t_all *all, char **env);
 
 #endif

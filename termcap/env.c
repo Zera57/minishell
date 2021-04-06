@@ -1,34 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   termcap.h                                          :+:      :+:    :+:   */
+/*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hapryl <hapryl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/05 18:13:58 by hapryl            #+#    #+#             */
-/*   Updated: 2021/04/06 11:34:40 by hapryl           ###   ########.fr       */
+/*   Created: 2021/04/06 15:02:48 by hapryl            #+#    #+#             */
+/*   Updated: 2021/04/06 15:40:09 by hapryl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TERMCAP_H
-# define TERMCAP_H
+#include "../includes/minishell.h"
 
-#include "minishell.h"
-
-typedef struct s_dllist
+void	ft_set_env(t_all *all, char **env)
 {
-	char			*str;
-	struct s_dllist	*previous;
-	struct s_dllist	*next;
-}				t_dllist;
+	char	**temp;
+	int		i;
 
-
-
-
-t_dllist	*ft_dllstnew(char *str);
-void		ft_dllstadd_front(t_dllist *lst, char *str);
-void		ft_dllstadd_back(t_dllist *lst, char *str);
-t_dllist	*ft_dllstbegining(t_dllist *lst);
-
-
-#endif
+	i = 0;
+	while(env[i])
+	{
+		temp = ft_split(env[i], '=');
+		if (!all->env)
+			all->env = ft_dicnew(temp[0], temp[1]);
+		else
+			ft_dicadd_back(all->env, ft_dicnew(temp[0], temp[1]));
+		free(temp);
+		i++;
+	}
+}

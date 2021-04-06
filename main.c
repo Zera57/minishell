@@ -6,7 +6,7 @@
 /*   By: hapryl <hapryl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 11:59:49 by hapryl            #+#    #+#             */
-/*   Updated: 2021/04/06 12:00:11 by hapryl           ###   ########.fr       */
+/*   Updated: 2021/04/06 15:41:45 by hapryl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,11 @@ int main(int argc, char **argv, char **env)
 	
 	all.history = ft_dllstnew(ft_strdup(""));
 	all.i = 0;
-	all.env = env;
+	ft_set_env(&all, env);
+	
+	// testing env and dictionaries
+	t_dictionary *temp = ft_dic_get_value(all.env, "PWD");
+	printf("%s\n", temp->value);
 
 	tcgetattr(0, &term);
 	term.c_lflag &= ~(ECHO);
