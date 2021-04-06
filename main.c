@@ -6,7 +6,7 @@
 /*   By: hapryl <hapryl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 11:59:49 by hapryl            #+#    #+#             */
-/*   Updated: 2021/04/06 15:41:45 by hapryl           ###   ########.fr       */
+/*   Updated: 2021/04/06 20:43:26 by hapryl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,21 @@ int main(int argc, char **argv, char **env)
 	all.i = 0;
 	ft_set_env(&all, env);
 	
-	// testing env and dictionaries
-	t_dictionary *temp = ft_dic_get_value(all.env, "PWD");
-	printf("%s\n", temp->value);
+	// TESTING
+	// CD
+	ft_cd(&all, "~/Desktop");
+	char *temp = getwd(NULL);
+	printf("%s\n", temp);
 
+	// PWD
+	ft_pwd(&all);
+	
+	// ENV
+	ft_env(&all);
+
+	// ECHO
+	ft_echo(&all, "Test echo\n");
+	
 	tcgetattr(0, &term);
 	term.c_lflag &= ~(ECHO);
 	term.c_lflag &= ~(ICANON);

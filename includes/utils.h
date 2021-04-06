@@ -6,14 +6,14 @@
 /*   By: hapryl <hapryl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 18:13:58 by hapryl            #+#    #+#             */
-/*   Updated: 2021/04/06 15:35:34 by hapryl           ###   ########.fr       */
+/*   Updated: 2021/04/06 18:13:01 by hapryl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TERMCAP_H
 # define TERMCAP_H
 
-#include "minishell.h"
+# include "minishell.h"
 
 typedef struct s_dllist
 {
@@ -38,7 +38,5 @@ t_dictionary	*ft_dicnew(char *key, char *value);
 void			ft_dicadd_front(t_dictionary **lst, t_dictionary *new);
 void			ft_dicadd_back(t_dictionary *lst, t_dictionary *new);
 t_dictionary	*ft_dic_get_value(t_dictionary *lst, char *key);
-
-
 
 #endif
