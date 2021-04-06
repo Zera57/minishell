@@ -1,24 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
+/*   termcap.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hapryl <hapryl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/08 19:52:39 by larlena           #+#    #+#             */
-/*   Updated: 2021/04/05 15:40:13 by hapryl           ###   ########.fr       */
+/*   Created: 2021/04/05 18:13:58 by hapryl            #+#    #+#             */
+/*   Updated: 2021/04/06 11:34:40 by hapryl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef TERMCAP_H
+# define TERMCAP_H
 
-int		ft_putchar(int c)
-{
-	write(1, &c, 1);
-	return (0);
-}
+#include "minishell.h"
 
-void	ft_putchar_fd(char c, int fd)
+typedef struct s_dllist
 {
-	write(fd, &c, 1);
-}
+	char			*str;
+	struct s_dllist	*previous;
+	struct s_dllist	*next;
+}				t_dllist;
+
+
+
+
+t_dllist	*ft_dllstnew(char *str);
+void		ft_dllstadd_front(t_dllist *lst, char *str);
+void		ft_dllstadd_back(t_dllist *lst, char *str);
+t_dllist	*ft_dllstbegining(t_dllist *lst);
+
+
+#endif
