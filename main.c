@@ -6,7 +6,7 @@
 /*   By: hapryl <hapryl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 11:59:49 by hapryl            #+#    #+#             */
-/*   Updated: 2021/04/06 20:43:26 by hapryl           ###   ########.fr       */
+/*   Updated: 2021/04/07 12:47:23 by hapryl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ int main(int argc, char **argv, char **env)
 	
 	all.history = ft_dllstnew(ft_strdup(""));
 	all.i = 0;
+	all.envc = env;
 	ft_set_env(&all, env);
 	
 	// TESTING
@@ -55,7 +56,10 @@ int main(int argc, char **argv, char **env)
 	ft_env(&all);
 
 	// ECHO
-	ft_echo(&all, "Test echo\n");
+	ft_echo(&all, "\nTest echo\n\n");
+
+	// EXPORT
+	ft_export(&all);
 	
 	tcgetattr(0, &term);
 	term.c_lflag &= ~(ECHO);
