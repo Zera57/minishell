@@ -6,7 +6,7 @@
 /*   By: hapryl <hapryl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 11:59:49 by hapryl            #+#    #+#             */
-/*   Updated: 2021/04/07 12:47:23 by hapryl           ###   ########.fr       */
+/*   Updated: 2021/04/08 17:46:38 by hapryl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,33 +40,46 @@ int main(int argc, char **argv, char **env)
 	
 	all.history = ft_dllstnew(ft_strdup(""));
 	all.i = 0;
-	all.envc = env;
+	all.envc = NULL;
 	ft_set_env(&all, env);
-	
-	// TESTING
-	// CD
-	ft_cd(&all, "~/Desktop");
-	char *temp = getwd(NULL);
-	printf("%s\n", temp);
+	// signal(SIGINT, );
+	all.arg = ft_split("zat=123", '|');
 
-	// PWD
-	ft_pwd(&all);
+	// TESTING
+	// // CD
+	// ft_cd(&all, "~/Desktop");
+	// char *temp = getwd(NULL);
+	// printf("%s\n", temp);
+
+	// // PWD
+	// ft_pwd(&all);
+
+	// EXPORT ADD
+	ft_export_add(&all);
 	
 	// ENV
 	ft_env(&all);
+	// // UNSET
+	// ft_unset(&all);
+	// ft_env(&all);
 
-	// ECHO
-	ft_echo(&all, "\nTest echo\n\n");
+	// // ECHO
+	// ft_echo(&all);
+	printf("\n\n");
 
 	// EXPORT
 	ft_export(&all);
 	
+	// // EXIT
+	// ft_exit(&all);
+
 	tcgetattr(0, &term);
 	term.c_lflag &= ~(ECHO);
 	term.c_lflag &= ~(ICANON);
 	tcsetattr(0, TCSANOW, &term);
 	tgetent(0, term_name);
 
+	write(1, "(っ＾▿＾)۶🍸🌟🍺٩(˘◡˘ ): ", ft_strlen("(っ＾▿＾)۶🍸🌟🍺٩(˘◡˘ ): "));
 	while (strcmp(all.buff, "\4"))
 	{
 		ft_analize_string(&all);

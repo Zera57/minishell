@@ -6,7 +6,7 @@
 /*   By: hapryl <hapryl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/06 14:51:02 by hapryl            #+#    #+#             */
-/*   Updated: 2021/04/06 15:33:20 by hapryl           ###   ########.fr       */
+/*   Updated: 2021/04/08 13:41:40 by hapryl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,17 @@ t_dictionary	*ft_dicnew(char *key, char *value)
 	return (lst);
 }
 
-void			ft_dicadd_front(t_dictionary **lst, t_dictionary *new)
+int				ft_dic_lenght(t_dictionary *lst)
 {
-	new->next = *lst;
-	*lst = new;
+	int i;
+
+	i = 0;
+	while (lst)
+	{
+		i++;
+		lst = lst->next;
+	}
+	return (i);
 }
 
 void			ft_dicadd_back(t_dictionary *lst, t_dictionary *new)
@@ -41,13 +48,38 @@ t_dictionary	*ft_dic_get_value(t_dictionary *lst, char *key)
 {
 	if (!lst)
 		return (NULL);
-	while (lst->next)
+	while (lst)
 	{
 		if (!ft_strcmp(lst->key, key))
 			return (lst);
 		lst = lst->next;
 	}
-	if (!ft_strcmp(lst->key, key))
-		return (lst);
 	return (NULL);
+}
+
+t_dictionary	*ft_dic_delete(t_dictionary *start, char *key)
+{
+	t_dictionary	*lst;
+	t_dictionary	*old;
+
+	old = NULL;
+	lst = start;
+	while (lst)
+	{
+		if (!ft_strcmp(lst->key, key))
+		{
+			free(lst->key);
+			if (lst->value)
+				free(lst->value);
+			if (lst == start)
+				start = lst->next;
+			else
+				old->next = lst->next;
+			free(lst);
+			return (start);
+		}
+		old = lst;
+		lst = lst->next;
+	}
+	return (start);
 }

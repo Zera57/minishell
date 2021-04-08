@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hapryl <hapryl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/08 14:15:36 by larlena           #+#    #+#             */
-/*   Updated: 2021/04/04 17:53:21 by larlena          ###   ########.fr       */
+/*   Updated: 2021/04/07 17:19:28 by hapryl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,19 @@
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
-	char	*dst;
-	size_t	len1;
-	size_t	len2;
+	char	*result;
+	char	*tmp;
 
-	if (s1 == NULL || s2 == NULL)
+	if (!s1 || !s2)
 		return (NULL);
-	len1 = ft_strlen(s1);
-	len2 = ft_strlen(s2);
-	dst = ft_calloc(sizeof(char), len1 + len2 + 1);
-	if (dst == NULL)
-		return (NULL);
-	ft_strlcpy(dst, s1, len1 + 1);
-	ft_strlcat(dst, s2, len1 + len2 + 1);
-	return (dst);
+	if (!(result = (char*)malloc(sizeof(char) *
+					(ft_strlen(s1) + ft_strlen(s2)) + 1)))
+		return (result);
+	tmp = result;
+	while (*s1)
+		*tmp++ = *s1++;
+	while (*s2)
+		*tmp++ = *s2++;
+	*tmp = '\0';
+	return (result);
 }
