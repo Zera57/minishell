@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hapryl <hapryl@student.42.fr>              +#+  +:+       +#+        */
+/*   By: zera <zera@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 11:59:49 by hapryl            #+#    #+#             */
-/*   Updated: 2021/04/08 17:46:38 by hapryl           ###   ########.fr       */
+/*   Updated: 2021/04/08 18:52:55 by zera             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void ls(char **env)
 			printf("error\n");
 	}
 	else {
-		waitpid(pid, 0, 0);
+		// waitpid(pid, 0, 0);
 		printf("end");
 	}
 }
@@ -40,6 +40,7 @@ int main(int argc, char **argv, char **env)
 	
 	all.history = ft_dllstnew(ft_strdup(""));
 	all.i = 0;
+	all.env = NULL;
 	all.envc = NULL;
 	ft_set_env(&all, env);
 	// signal(SIGINT, );
