@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hapryl <hapryl@student.42.fr>              +#+  +:+       +#+        */
+/*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 18:13:49 by hapryl            #+#    #+#             */
 /*   Updated: 2021/04/08 16:51:18 by hapryl           ###   ########.fr       */
@@ -33,7 +33,7 @@ typedef struct s_all
 	char			**arg;
 	t_dictionary	*env;
 	t_dllist		*history;
-
+//	t_parser		*parser;
 }				t_all;
 # include "commands.h"
 
