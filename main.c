@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hapryl <hapryl@student.42.fr>              +#+  +:+       +#+        */
+/*   By: zera <zera@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 11:59:49 by hapryl            #+#    #+#             */
-/*   Updated: 2021/04/06 15:41:45 by hapryl           ###   ########.fr       */
+/*   Updated: 2021/04/08 18:52:55 by zera             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void ls(char **env)
 			printf("error\n");
 	}
 	else {
-		waitpid(pid, 0, 0);
+		// waitpid(pid, 0, 0);
 		printf("end");
 	}
 }
@@ -40,11 +40,39 @@ int main(int argc, char **argv, char **env)
 	
 	all.history = ft_dllstnew(ft_strdup(""));
 	all.i = 0;
+	all.env = NULL;
+	all.envc = NULL;
 	ft_set_env(&all, env);
+	// signal(SIGINT, );
+	all.arg = ft_split("zat=123", '|');
+
+	// TESTING
+	// // CD
+	// ft_cd(&all, "~/Desktop");
+	// char *temp = getwd(NULL);
+	// printf("%s\n", temp);
+
+	// // PWD
+	// ft_pwd(&all);
+
+	// EXPORT ADD
+	ft_export_add(&all);
 	
-	// testing env and dictionaries
-	t_dictionary *temp = ft_dic_get_value(all.env, "PWD");
-	printf("%s\n", temp->value);
+	// ENV
+	ft_env(&all);
+	// // UNSET
+	// ft_unset(&all);
+	// ft_env(&all);
+
+	// // ECHO
+	// ft_echo(&all);
+	printf("\n\n");
+
+	// EXPORT
+	ft_export(&all);
+	
+	// // EXIT
+	// ft_exit(&all);
 
 	tcgetattr(0, &term);
 	term.c_lflag &= ~(ECHO);
@@ -52,6 +80,7 @@ int main(int argc, char **argv, char **env)
 	tcsetattr(0, TCSANOW, &term);
 	tgetent(0, term_name);
 
+	write(1, "(っ＾▿＾)۶🍸🌟🍺٩(˘◡˘ ): ", ft_strlen("(っ＾▿＾)۶🍸🌟🍺٩(˘◡˘ ): "));
 	while (strcmp(all.buff, "\4"))
 	{
 		ft_analize_string(&all);

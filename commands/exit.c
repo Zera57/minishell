@@ -1,32 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hapryl <hapryl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/08 14:15:36 by larlena           #+#    #+#             */
-/*   Updated: 2021/04/07 17:19:28 by hapryl           ###   ########.fr       */
+/*   Created: 2021/04/08 14:23:10 by hapryl            #+#    #+#             */
+/*   Updated: 2021/04/08 16:26:33 by hapryl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../includes/minishell.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+void	ft_exit(t_all *all)
 {
-	char	*result;
-	char	*tmp;
+	int	i;
 
-	if (!s1 || !s2)
-		return (NULL);
-	if (!(result = (char*)malloc(sizeof(char) *
-					(ft_strlen(s1) + ft_strlen(s2)) + 1)))
-		return (result);
-	tmp = result;
-	while (*s1)
-		*tmp++ = *s1++;
-	while (*s2)
-		*tmp++ = *s2++;
-	*tmp = '\0';
-	return (result);
+	ft_putendl_fd("exit", 1);
+	i = 0;
+	while (all->arg[0][i])
+		if (!ft_isdigit(all->arg[0][i++]))
+		{
+			ft_putendl_fd("numeric argument required", 1);
+			exit(errno);
+		}
+	i = 0;
+	while (all->arg[i])
+		i++;
+	if (i > 1)
+	{
+		ft_putendl_fd("too many arguments", 1);
+		return ;
+	}
+	exit(errno);
 }

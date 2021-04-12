@@ -6,7 +6,7 @@
 /*   By: hapryl <hapryl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/09 17:01:45 by larlena           #+#    #+#             */
-/*   Updated: 2021/04/06 15:28:36 by hapryl           ###   ########.fr       */
+/*   Updated: 2021/04/08 17:33:59 by hapryl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ char				*ft_strjoin(char const *s1, char const *s2);
 char				*ft_strtrim(char const *s1, char const *set);
 char				**ft_split(char const *s, char c);
 char				**ft_array_free(char **dst, size_t j);
+void				*ft_free(char **s);
 char				*ft_itoa(int n);
 char				*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 int					ft_putchar(int c);

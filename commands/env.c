@@ -1,32 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hapryl <hapryl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/08 14:15:36 by larlena           #+#    #+#             */
-/*   Updated: 2021/04/07 17:19:28 by hapryl           ###   ########.fr       */
+/*   Created: 2021/04/06 20:08:55 by hapryl            #+#    #+#             */
+/*   Updated: 2021/04/08 17:16:39 by hapryl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../includes/minishell.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+void	ft_env(t_all *all)
 {
-	char	*result;
-	char	*tmp;
+	t_dictionary	*dic;
 
-	if (!s1 || !s2)
-		return (NULL);
-	if (!(result = (char*)malloc(sizeof(char) *
-					(ft_strlen(s1) + ft_strlen(s2)) + 1)))
-		return (result);
-	tmp = result;
-	while (*s1)
-		*tmp++ = *s1++;
-	while (*s2)
-		*tmp++ = *s2++;
-	*tmp = '\0';
-	return (result);
+	dic = all->env;
+	while (dic)
+	{
+		if (dic->value != NULL)
+		{
+			ft_putstr_fd(dic->key, 1);
+			ft_putchar_fd('=', 1);
+			ft_putendl_fd(dic->value, 1);
+		}
+		dic = dic->next;
+	}
 }

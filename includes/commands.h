@@ -1,32 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   commands.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hapryl <hapryl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/08 14:15:36 by larlena           #+#    #+#             */
-/*   Updated: 2021/04/07 17:19:28 by hapryl           ###   ########.fr       */
+/*   Created: 2021/04/06 16:57:11 by hapryl            #+#    #+#             */
+/*   Updated: 2021/04/08 16:07:22 by hapryl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef COMMANDS_H
+# define COMMANDS_H
 
-char	*ft_strjoin(char const *s1, char const *s2)
-{
-	char	*result;
-	char	*tmp;
+# include "minishell.h"
 
-	if (!s1 || !s2)
-		return (NULL);
-	if (!(result = (char*)malloc(sizeof(char) *
-					(ft_strlen(s1) + ft_strlen(s2)) + 1)))
-		return (result);
-	tmp = result;
-	while (*s1)
-		*tmp++ = *s1++;
-	while (*s2)
-		*tmp++ = *s2++;
-	*tmp = '\0';
-	return (result);
-}
+void	ft_cd(t_all *all, char *path);
+void	ft_pwd(t_all *all);
+void	ft_env(t_all *all);
+void	ft_echo(t_all *all);
+void	ft_export(t_all *all);
+void	ft_export_add(t_all *all);
+void	ft_unset(t_all *all);
+void	ft_exit(t_all *all);
+
+#endif
