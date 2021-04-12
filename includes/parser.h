@@ -6,15 +6,17 @@
 /*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/06 17:01:48 by larlena           #+#    #+#             */
-/*   Updated: 2021/04/12 20:00:28 by larlena          ###   ########.fr       */
+/*   Updated: 2021/04/12 20:13:14 by larlena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSER_H
 # define PARSER_H
 
-# include <fcntl.h>
 # include "minishell.h"
+# include <fcntl.h>
+
+
 
 int     ft_redirect(t_all *all);
 int     ft_redirect_reverse(t_all *all);
