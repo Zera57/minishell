@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hapryl <hapryl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 18:13:49 by hapryl            #+#    #+#             */
-/*   Updated: 2021/04/12 13:55:47 by larlena          ###   ########.fr       */
+/*   Updated: 2021/04/12 19:23:16 by hapryl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,14 @@
 # include <stdio.h>
 # include "../Libft/libft.h"
 # include "utils.h"
+typedef struct s_parser
+{
+	char	**arg;
+	int		i;
+	int		j;
+	int		fd_r;
+	int		fd_w;
+}				t_parser;
 typedef struct s_all
 {
 	char			str[2056];
@@ -30,11 +38,11 @@ typedef struct s_all
 	int				i;
 	char			**envc;
 	char			*flags;
-	char			**arg;
 	t_dictionary	*env;
 	t_dllist		*history;
-//	t_parser		*parser;
+	t_parser		parser;
 }				t_all;
+# include "parser.h"
 # include "commands.h"
 
 extern int result;
