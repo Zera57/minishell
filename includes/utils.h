@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hapryl <hapryl@student.42.fr>              +#+  +:+       +#+        */
+/*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 18:13:58 by hapryl            #+#    #+#             */
-/*   Updated: 2021/04/08 12:45:46 by hapryl           ###   ########.fr       */
+/*   Updated: 2021/04/12 20:03:17 by larlena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,6 @@
 # define TERMCAP_H
 
 # include "minishell.h"
-
-typedef struct s_dllist
-{
-	char			*str;
-	struct s_dllist	*previous;
-	struct s_dllist	*next;
-}				t_dllist;
-
-typedef struct s_dictionary
-{
-	char				*key;
-	char				*value;
-	struct s_dictionary	*next;
-}				t_dictionary;
 
 t_dllist		*ft_dllstnew(char *str);
 void			ft_dllstadd_front(t_dllist *lst, char *str);
