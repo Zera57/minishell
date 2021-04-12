@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hapryl <hapryl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 20:01:53 by larlena           #+#    #+#             */
-/*   Updated: 2021/04/12 20:06:03 by larlena          ###   ########.fr       */
+/*   Updated: 2021/04/12 20:24:52 by hapryl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ typedef struct s_all
 	char				*flags;
 	t_dictionary		*env;
 	t_dllist			*history;
-	t_parser			*parser;
+	t_parser			parser;
 }						t_all;
 
 #endif
