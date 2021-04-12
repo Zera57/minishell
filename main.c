@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zera <zera@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: hapryl <hapryl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 11:59:49 by hapryl            #+#    #+#             */
-/*   Updated: 2021/04/08 18:52:55 by zera             ###   ########.fr       */
+/*   Updated: 2021/04/12 15:16:21 by hapryl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int main(int argc, char **argv, char **env)
 	all.envc = NULL;
 	ft_set_env(&all, env);
 	// signal(SIGINT, );
-	all.arg = ft_split("zat=123", '|');
+	all.parser.arg = ft_split("zat=123", '|');
 
 	// TESTING
 	// // CD

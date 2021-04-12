@@ -1,20 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_redirect.c                                      :+:      :+:    :+:   */
+/*   ft_parsing_ss.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hapryl <hapryl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 13:49:01 by larlena           #+#    #+#             */
-/*   Updated: 2021/04/12 13:55:02 by larlena          ###   ########.fr       */
+/*   Updated: 2021/04/12 19:23:48 by hapryl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/parser.h"
 
-void	ft_redirect(t_all *all, const char *str1, const char *str2)
+int		ft_semicolon(t_all *all)
 {
-	int		fd;
+	// ft_parse_string();
+	// ft_exec_command();
+}
 
-	fd = 
+
+int		ft_pipe(t_all *all)
+{
+	
 }
