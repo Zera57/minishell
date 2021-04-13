@@ -33,8 +33,8 @@ int			ft_analize_string(t_all *all);
 void		ft_set_env(t_all *all, char **env);
 char		**ft_get_env(t_all *all);
 int			ft_type(t_all *all);
+int			ft_error(char *command, char *text, char *arg);
 int			ft_parser(t_all *all, t_parser *parser, const char *str);
-
 
 
 #endif

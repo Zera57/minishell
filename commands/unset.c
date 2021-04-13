@@ -6,7 +6,7 @@
 /*   By: hapryl <hapryl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 12:25:05 by hapryl            #+#    #+#             */
-/*   Updated: 2021/04/12 15:14:21 by hapryl           ###   ########.fr       */
+/*   Updated: 2021/04/13 13:52:40 by hapryl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,10 @@ void	ft_unset(t_all *all)
 	i = 0;
 	while (all->parser.arg[i])
 	{
-		all->env = ft_dic_delete(all->env, all->parser.arg[i]);
+		if (validate_name(all->parser.arg[i]))
+			ft_error("minishell unset:", "not a valid identifier:", all->parser.arg[i]);
+		else
+			all->env = ft_dic_delete(all->env, all->parser.arg[i]);
 		i++;
 	}
-	ft_array_free(all->parser.arg, i);
 }
