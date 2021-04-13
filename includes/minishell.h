@@ -6,7 +6,7 @@
 /*   By: hapryl <hapryl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 18:13:49 by hapryl            #+#    #+#             */
-/*   Updated: 2021/04/12 20:21:53 by hapryl           ###   ########.fr       */
+/*   Updated: 2021/04/13 12:40:47 by hapryl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ int			ft_analize_string(t_all *all);
 void		ft_set_env(t_all *all, char **env);
 char		**ft_get_env(t_all *all);
 int			ft_type(t_all *all);
+int			ft_error(char *command, char *text, char *arg);
 
 
 #endif

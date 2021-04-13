@@ -6,7 +6,7 @@
 /*   By: hapryl <hapryl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/06 19:58:03 by hapryl            #+#    #+#             */
-/*   Updated: 2021/04/07 13:21:11 by hapryl           ###   ########.fr       */
+/*   Updated: 2021/04/13 14:49:29 by hapryl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,5 @@
 
 void	ft_pwd(t_all *all)
 {
-	printf("%s\n", ft_dic_get_value(all->env, "PWD")->value);
+	ft_putendl_fd(ft_dic_get_value(all->env, "PWD")->value, 1);
 }
