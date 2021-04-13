@@ -6,7 +6,7 @@
 /*   By: hapryl <hapryl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/06 20:14:26 by hapryl            #+#    #+#             */
-/*   Updated: 2021/04/08 16:08:24 by hapryl           ###   ########.fr       */
+/*   Updated: 2021/04/12 15:14:21 by hapryl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ void	ft_echo(t_all *all)
 	int	i;
 
 	i = 0;
-	while (all->arg[i])
+	while (all->parser.arg[i])
 	{
-		ft_putendl_fd(all->arg[i], 1);
+		ft_putendl_fd(all->parser.arg[i], 1);
 		i++;
 	}
 }
