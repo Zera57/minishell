@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hapryl <hapryl@student.42.fr>              +#+  +:+       +#+        */
+/*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 11:42:09 by hapryl            #+#    #+#             */
-/*   Updated: 2021/04/12 15:14:21 by hapryl           ###   ########.fr       */
+/*   Updated: 2021/04/13 14:08:43 by larlena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	validate_name(char *str)
 
 	i = 0;
 	if (!ft_isalpha(str[0]) && str[0] != '_')
-		return (ft_error("not a valid identifier"));
+		return (0);
 	while (str[i])
 	{
 		if (!ft_isalnum(str[i]) && str[i] != '_')

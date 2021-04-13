@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hapryl <hapryl@student.42.fr>              +#+  +:+       +#+        */
+/*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 18:13:49 by hapryl            #+#    #+#             */
-/*   Updated: 2021/04/12 20:21:53 by hapryl           ###   ########.fr       */
+/*   Updated: 2021/04/13 14:06:03 by larlena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,15 @@
 # include "utils.h"
 # include "parser.h"
 # include "commands.h"
+
 extern int result;
 
 int			ft_analize_string(t_all *all);
 void		ft_set_env(t_all *all, char **env);
 char		**ft_get_env(t_all *all);
 int			ft_type(t_all *all);
+int			ft_parser(t_all *all, t_parser *parser, const char *str);
+
 
 
 #endif
