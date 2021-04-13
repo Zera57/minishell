@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   termcap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hapryl <hapryl@student.42.fr>              +#+  +:+       +#+        */
+/*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 16:55:52 by hapryl            #+#    #+#             */
-/*   Updated: 2021/04/08 16:58:37 by hapryl           ###   ########.fr       */
+/*   Updated: 2021/04/13 14:06:25 by larlena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ int		ft_enter(t_all *all)
 	ft_dllstadd_front(all->history, ft_strdup(""));
 	all->history = ft_dllstbegining(all->history);
 	all->i = 0;
+	ft_parser(all, &all->parser, all->str);
 	return (0);
 }
 

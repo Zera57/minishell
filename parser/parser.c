@@ -6,7 +6,7 @@
 /*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/06 16:44:47 by larlena           #+#    #+#             */
-/*   Updated: 2021/04/12 20:06:45 by larlena          ###   ########.fr       */
+/*   Updated: 2021/04/13 15:17:11 by larlena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,21 +16,37 @@ int		ft_parser(t_all *all, t_parser *parser, const char *str)
 {
 	size_t	ac;
 
-	i = -1;
-	ac = 0;
-	while (str[++i])
+	parser->i = -1;
+	parser->ln = 0;
+	parser->arg = calloc(sizeof(char *), 2);
+	parser->arg[0] = calloc(sizeof(char), 1);
+	while (str[++parser->i])
 	{
-		if (str[i] == '>')
-//		if (str[i] == "\"")
-//			ft_parsing_double_quotes(all, &arg[ac], str, &i);
-		if (str[i] == ' ')
+		if (str[parser->i] == ';')
+			ft_semicolon(all);
+		if (str[parser->i] == '"')
+			ft_parsing_double_quotes(all, parser, str);
+		if (str[parser->i] == ' ')
 		{
-			while (str[i] == ' ')
-				i++;
-			ac++;
-			arg = ft_rewrite_arr(&arg, ac);
+			while (str[parser->i + 1] == ' ')
+				parser->i++;
+			parser->ln++;
+			parser->arg = ft_rewrite_arr(parser->arg, parser->ln);
 		}
 		else
-			arg[ac] =ft_rewrite(&arg[ac], str[i]);
+			parser->arg[parser->ln] = ft_rewrite(parser->arg[parser->ln], str[parser->i]);
 	}
+	ft_semicolon(all);
+	ft_free(parser->arg);
+	return (0);
 }
+
+// int main(int argc, char **argv, char **env)
+// {
+//     t_all all;
+// 	ft_set_env(&all, env);
+//     ft_strlcpy(all.str, "pwd ;", 14);
+//     all.str[5] = 0;
+// 	ft_parser(&all, &all.parser, all.str);
+// 	return (0);
+// }
