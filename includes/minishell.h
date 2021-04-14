@@ -6,7 +6,7 @@
 /*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 18:13:49 by hapryl            #+#    #+#             */
-/*   Updated: 2021/04/13 14:06:03 by larlena          ###   ########.fr       */
+/*   Updated: 2021/04/14 18:30:05 by larlena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ char		**ft_get_env(t_all *all);
 int			ft_type(t_all *all);
 int			ft_error(char *command, char *text, char *arg);
 int			ft_parser(t_all *all, t_parser *parser, const char *str);
+int			ft_command_search(t_all *all);
 
 
 #endif

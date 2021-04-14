@@ -6,38 +6,43 @@
 /*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/06 16:44:47 by larlena           #+#    #+#             */
-/*   Updated: 2021/04/13 15:17:11 by larlena          ###   ########.fr       */
+/*   Updated: 2021/04/14 19:55:04 by larlena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/parser.h"
 
-int		ft_parser(t_all *all, t_parser *parser, const char *str)
+static void	ft_initialization_struct_parser(t_all *all, t_list **parser)
 {
-	size_t	ac;
+	all->j = -1;
+	all->ln = 0;
+	ft_create_new_list_parser(parser);
+}
 
-	parser->i = -1;
-	parser->ln = 0;
-	parser->arg = calloc(sizeof(char *), 2);
-	parser->arg[0] = calloc(sizeof(char), 1);
-	while (str[++parser->i])
+int			ft_parser(t_all *all, t_list **parser, const char *str)
+{
+	ft_initialization_struct_parser(all, parser);
+	while (str[++all->j])
 	{
-		if (str[parser->i] == ';')
+		if (str[all->j] == ';')
 			ft_semicolon(all);
-		if (str[parser->i] == '"')
-			ft_parsing_double_quotes(all, parser, str);
-		if (str[parser->i] == ' ')
-		{
-			while (str[parser->i + 1] == ' ')
-				parser->i++;
-			parser->ln++;
-			parser->arg = ft_rewrite_arr(parser->arg, parser->ln);
-		}
+		if (str[all->j] == '|')
+			ft_pipe(all, parser);
+		if (str[all->j] == '>')
+			;
+		if (str[all->j] == '"')
+			ft_parsing_double_quotes(all, *parser, str);
+		if (str[all->j] == '\'')
+			ft_parsing_single_quotes(all, *parser, str);
+		if (str[all->j] == ' ')
+			ft_parsing_space(all, *parser, str);
 		else
-			parser->arg[parser->ln] = ft_rewrite(parser->arg[parser->ln], str[parser->i]);
+			((t_parser *)(*parser)->content)->arg[all->ln] =
+			ft_rewrite(((t_parser *)(*parser)->content)->arg[all->ln], str[all->j]);
 	}
+	ft_command_search(all);
 	ft_semicolon(all);
-	ft_free(parser->arg);
+//	ft_free(((t_parser *)(*parser)->content)->arg);
 	return (0);
 }
 

@@ -1,20 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_parsing_ss.c                                    :+:      :+:    :+:   */
+/*   pipe.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/12 13:49:01 by larlena           #+#    #+#             */
-/*   Updated: 2021/04/14 19:50:06 by larlena          ###   ########.fr       */
+/*   Created: 2021/04/14 19:27:39 by larlena           #+#    #+#             */
+/*   Updated: 2021/04/14 19:55:11 by larlena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/parser.h"
 
-int		ft_semicolon(t_all *all)
+int		ft_pipe(t_all *all, t_list **parser)
 {
-	if (!ft_strncmp(all->parser.arg[0], "pwd", 3))
-		ft_pwd(all);
+	ft_create_new_list_parser(parser);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 20:01:53 by larlena           #+#    #+#             */
-/*   Updated: 2021/04/13 13:32:53 by larlena          ###   ########.fr       */
+/*   Updated: 2021/04/14 18:56:15 by larlena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,6 @@ typedef struct s_dictionary
 typedef struct s_parser
 {
 	char				**arg;
-	int					ln;
-	int					i;
 	int					fd_r;
 	int					fd_w;
 }						t_parser;
@@ -41,11 +39,13 @@ typedef struct s_all
 	char				str[2056];
 	char				buff[100];
 	int					i;
+	int					j;
+	int					ln;
 	char				**envc;
 	char				*flags;
 	t_dictionary		*env;
 	t_dllist			*history;
-	t_parser			parser;
+	t_list				*parser;
 }						t_all;
 
 #endif
