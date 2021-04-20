@@ -6,27 +6,27 @@
 /*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 17:41:33 by hapryl            #+#    #+#             */
-/*   Updated: 2021/04/13 15:20:33 by larlena          ###   ########.fr       */
+/*   Updated: 2021/04/14 20:32:00 by larlena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-char	*get_next_word(t_all *all)
+char	*get_next_word(t_all *all, t_parser *parser)
 {
 	int		i;
 	int		j;
 	char	*str;
 
-	all->parser.i++;
+	all->j++;
 	while (all->str[i] == ' ' && all->str[i] != 0)
-		all->parser.i++;
-	i = all->parser.i;
-	while (all->str[all->parser.i] != ';' && all->str[all->parser.i] != '|'
-		&& all->str[all->parser.i] != '>' && all->str[all->parser.i] != '<'
-		&& all->str[all->parser.i] != ' ' && all->str[all->parser.i] != 0)
-		all->parser.i++;
-	if (all->parser.i == i)
+		all->j++;
+	i = all->j;
+	while (all->str[all->j] != ';' && all->str[all->j] != '|'
+		&& all->str[all->j] != '>' && all->str[all->j] != '<'
+		&& all->str[all->j] != ' ' && all->str[all->j] != 0)
+		all->j++;
+	if (all->j == i)
 	{
 		//error
 		printf("error\n");
@@ -36,13 +36,13 @@ char	*get_next_word(t_all *all)
 	return (str);
 }
 
-int		ft_redirect(t_all *all)
+int		ft_redirect(t_all *all, t_parser *parser)
 {
 	char	*path;
 
-	path = get_next_word(all);
-	all->parser.fd_w = open(path, O_RDWR | O_CREAT | O_TRUNC);
-	if (all->parser.fd_w < 0)
+	path = get_next_word(all, parser);
+	parser->fd_w = open(path, O_RDWR | O_CREAT | O_TRUNC);
+	if (parser->fd_w < 0)
 	{
 		printf("Error");
 		return (1);
@@ -50,14 +50,14 @@ int		ft_redirect(t_all *all)
 	return (0);
 }
 
-int		ft_double_redirect(t_all *all)
+int		ft_double_redirect(t_all *all, t_parser *parser)
 {
 	char	*path;
 
-	all->parser.i++;
-	path = get_next_word(all);
-	all->parser.fd_w = open(path, O_RDWR | O_CREAT | O_TRUNC);
-	if (all->parser.fd_w < 0)
+	all->j++;
+	path = get_next_word(all, parser);
+	parser->fd_w = open(path, O_RDWR | O_CREAT | O_TRUNC);
+	if (parser->fd_w < 0)
 	{
 		printf("Error");
 		return (1);
@@ -65,13 +65,13 @@ int		ft_double_redirect(t_all *all)
 	return (0);
 }
 
-int		ft_reverse_redirect(t_all *all)
+int		ft_reverse_redirect(t_all *all, t_parser *parser)
 {
 	char	*path;
 
-	path = get_next_word(all);
-	all->parser.fd_r = open(path, O_RDWR | O_CREAT | O_TRUNC);
-	if (all->parser.fd_r < 0)
+	path = get_next_word(all, parser);
+	parser->fd_r = open(path, O_RDWR | O_CREAT | O_TRUNC);
+	if (parser->fd_r < 0)
 	{
 		printf("Error");
 		return (1);
@@ -79,13 +79,13 @@ int		ft_reverse_redirect(t_all *all)
 	return (0);
 }
 
-int		ft_redirects(t_all *all)
+int		ft_redirects(t_all *all, t_parser *parser)
 {
-	if (all->str[all->parser.i] == '>' && all->str[all->parser.i + 1] == '>')
-		ft_double_redirect(all);
-	else if (all->str[all->parser.i] == '>')
-		ft_redirect(all);
-	else if (all->str[all->parser.i] == '<')
-		ft_reverse_redirect(all);
+	if (all->str[all->j] == '>' && all->str[all->j + 1] == '>')
+		ft_double_redirect(all, parser);
+	else if (all->str[all->j] == '>')
+		ft_redirect(all, parser);
+	else if (all->str[all->j] == '<')
+		ft_reverse_redirect(all, parser);
 	return (0);
 }

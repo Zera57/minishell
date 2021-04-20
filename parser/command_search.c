@@ -6,29 +6,28 @@
 /*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 17:30:02 by larlena           #+#    #+#             */
-/*   Updated: 2021/04/14 19:56:38 by larlena          ###   ########.fr       */
+/*   Updated: 2021/04/20 15:40:24 by larlena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-static int	ft_search_oun_commands(t_all *all)
+static int	ft_search_oun_commands(t_all *all, t_list *parser)
 {
-	size_t	i;
-	size_t	len;
-	char	str[8][8] = {"echo", "cd", "pwd", "export",
-						"unset", "env", "exit"};
-
-	i = -1;
-	len = ft_strlen(all->parser.arg[0]);
-	while(str[++i])
-	{
-		if (ft_strncmp(all->parser.arg[0], str[i], len))
-		{
-			
-			return (0);
-		}
-	}
+	// if (!ft_strcmp(((t_parser *)parser->content)->arg[0], "export"))
+	// 	ft_export(all);
+	// else if (!ft_strcmp(((t_parser *)parser->content)->arg[0], "unset"))
+	// 	ft_unset(all);
+	// else if (!ft_strcmp(((t_parser *)parser->content)->arg[0], "exit"))
+	// 	ft_exit(all);
+	// else if (!ft_strcmp(((t_parser *)parser->content)->arg[0], "echo"))
+	// 	ft_echo(all);
+	// else if (!ft_strcmp(((t_parser *)parser->content)->arg[0], "pwd"))
+	// 	ft_pwd(all);
+	// else if (!ft_strcmp(((t_parser *)parser->content)->arg[0], "env"))
+	// 	ft_env(all);
+	// else if (!ft_strcmp(((t_parser *)parser->content)->arg[0], "cd"))
+	// 	ft_cd(all);
 	return (-1);
 }
 
@@ -46,22 +45,23 @@ static char	**ft_get_path(t_all *all)
 	return (dst);
 }
 
-static int	ft_executin_command(t_all *all ,char *path, char *filename)
+static int	ft_executin_command(t_all *all, t_list *parser, char *path, char *filename)
 {
 	int		fd;
 	char	*tmp;
 
-	tmp = ft_strjoin(path, filename);
+	tmp = ft_strjoin(path, "/");
+	tmp = ft_strjoin(tmp, filename);
 	fd = open(tmp, O_RDONLY);
 	if (fd == -1)
 		return (-1);
 	close(fd);
-	execve(tmp, all->parser.arg, ft_get_env(all));
+	execve(tmp, ((t_parser *)parser->content)->arg, ft_get_env(all));
 	free(tmp);
 	return (0);
 }
 
-static int	ft_search_sys_commands(t_all *all)
+static int	ft_search_sys_commands(t_all *all, t_list *parser)
 {
 	char	**str;
 	size_t	i;
@@ -72,18 +72,18 @@ static int	ft_search_sys_commands(t_all *all)
 		return (-1);
 	while (str[++i])
 	{
-		if (!ft_executin_command(all, str[i], all->parser.arg[0]))
+		if (!ft_executin_command(all, parser, str[i], ((t_parser *)parser->content)->arg[0]))
 			return (0);
 	}
 	ft_free(str);
 	return (1);
 }
 
-int			ft_command_search(t_all *all)
+int			ft_command_search(t_all *all, t_list *parser)
 {
-	if (!ft_search_oun_commands(all))
+	if (!ft_search_oun_commands(all, parser))
 		return (0);
-	else if (!ft_search_sys_commands(all))
+	else if (!ft_search_sys_commands(all, parser))
 		return (0);
 	else
 		return (-1);

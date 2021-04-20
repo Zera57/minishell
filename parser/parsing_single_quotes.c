@@ -6,11 +6,11 @@
 /*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 16:26:50 by larlena           #+#    #+#             */
-/*   Updated: 2021/04/14 19:41:12 by larlena          ###   ########.fr       */
+/*   Updated: 2021/04/20 11:21:06 by larlena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/parser.h"
+#include "../includes/minishell.h"
 
 void	ft_parsing_single_quotes(t_all *all, t_list *parser, const char *str)
 {

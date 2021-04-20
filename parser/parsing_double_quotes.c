@@ -6,11 +6,11 @@
 /*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 13:18:46 by larlena           #+#    #+#             */
-/*   Updated: 2021/04/14 19:46:44 by larlena          ###   ########.fr       */
+/*   Updated: 2021/04/20 11:21:06 by larlena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/parser.h"
+#include "../includes/minishell.h"
 
 static char	*ft_get_value_name(const char *str)
 {
