@@ -6,7 +6,7 @@
 /*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/20 11:19:03 by larlena           #+#    #+#             */
-/*   Updated: 2021/04/20 18:39:33 by larlena          ###   ########.fr       */
+/*   Updated: 2021/04/20 19:09:05 by larlena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,8 @@ void	ft_command_execution(t_all *all)
 	max = (size_t)ft_lstsize(all->parser);
 	while (++i < max)
 	{
-//		pid[i] = fork();
-//		if (pid[i] == 0)
-//		{
 		buff = my_lstlast(all->parser, buff);
 		ft_command_search(all, buff);
-//		}
 	}
 	ft_clear_parser(all->parser);
 }

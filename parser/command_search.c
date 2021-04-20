@@ -6,7 +6,7 @@
 /*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 17:30:02 by larlena           #+#    #+#             */
-/*   Updated: 2021/04/20 18:39:09 by larlena          ###   ########.fr       */
+/*   Updated: 2021/04/20 19:15:55 by larlena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static int	ft_executin_command(t_all *all, t_list *parser, char *path, char *fil
 	char	*tmp;
 
 	path = ft_rewrite(path, '/');
-	tmp = ft_strjoin(tmp, filename);
+	tmp = ft_strjoin(path, filename);
 	fd = open(tmp, O_RDONLY);
 	if (fd == -1)
 		return (-1);
