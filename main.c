@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hapryl <hapryl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 11:59:49 by hapryl            #+#    #+#             */
-/*   Updated: 2021/04/20 15:26:59 by larlena          ###   ########.fr       */
+/*   Updated: 2021/04/20 20:30:26 by hapryl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,34 +44,6 @@ int main(int argc, char **argv, char **env)
 	all.envc = NULL;
 	ft_set_env(&all, env);
 	// // signal(SIGINT, );
-
-	// // TESTING
-	// // // CD
-	// // ft_cd(&all, "~/Desktop");
-	// // char *temp = getwd(NULL);
-	// // printf("%s\n", temp);
-
-	// // // PWD
-	// // ft_pwd(&all);
-
-	// // EXPORT ADD
-	// ft_export_add(&all);
-	
-	// // ENV
-	// ft_env(&all);
-	// // // UNSET
-	// // ft_unset(&all);
-	// // ft_env(&all);
-
-	// // // ECHO
-	// // ft_echo(&all);
-	// printf("\n\n");
-
-	// // EXPORT
-	// ft_export(&all);
-	
-	// // // EXIT
-	// // ft_exit(&all);
 
 	tcgetattr(0, &term);
 	term.c_lflag &= ~(ECHO);

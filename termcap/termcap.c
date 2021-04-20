@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   termcap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hapryl <hapryl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 16:55:52 by hapryl            #+#    #+#             */
-/*   Updated: 2021/04/13 14:06:25 by larlena          ###   ########.fr       */
+/*   Updated: 2021/04/20 20:05:31 by hapryl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,18 +58,15 @@ int		ft_backspace(t_all *all)
 
 int		ft_enter(t_all *all)
 {
-	tputs(restore_cursor, 1, ft_putchar);
-	tputs(tigetstr("ed"), 1, ft_putchar);
-	write(1, all->str, all->i);
-	write(1, all->buff, 1);
-	write(1, "(っ＾▿＾)۶🍸🌟🍺٩(˘◡˘ ): ", ft_strlen("(っ＾▿＾)۶🍸🌟🍺٩(˘◡˘ ): "));
 	all->history = ft_dllstbegining(all->history);
 	free(all->history->str);
 	all->history->str = ft_strdup(all->str);
 	ft_dllstadd_front(all->history, ft_strdup(""));
 	all->history = ft_dllstbegining(all->history);
 	all->i = 0;
+	write(1, "\n", 1);
 	ft_parser(all, &all->parser, all->str);
+	write(1, "(っ＾▿＾)۶🍸🌟🍺٩(˘◡˘ ): ", ft_strlen("(っ＾▿＾)۶🍸🌟🍺٩(˘◡˘ ): "));
 	return (0);
 }
 

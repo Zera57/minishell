@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hapryl <hapryl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 14:23:10 by hapryl            #+#    #+#             */
-/*   Updated: 2021/04/20 17:04:44 by larlena          ###   ########.fr       */
+/*   Updated: 2021/04/20 20:46:16 by hapryl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ void	ft_exit(t_all *all, t_parser *parser)
 
 	ft_putendl_fd("exit", 1);
 	i = 0;
-	while (parser->arg[0][i])
-		if (!ft_isdigit(parser->arg[0][i++]))
+	while (parser->arg[1][i])
+		if (!ft_isdigit(parser->arg[1][i++]))
 		{
 			ft_error("minishell: exit:", "numeric argument required", "");
 			exit(errno);
@@ -27,7 +27,7 @@ void	ft_exit(t_all *all, t_parser *parser)
 	i = 0;
 	while (parser->arg[i])
 		i++;
-	if (i > 1)
+	if (i > 2)
 	{
 		ft_error("minishell: exit:", "too many arguments", "");
 		return ;
