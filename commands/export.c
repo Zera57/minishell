@@ -6,7 +6,7 @@
 /*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 11:42:09 by hapryl            #+#    #+#             */
-/*   Updated: 2021/04/13 12:41:12 by hapryl           ###   ########.fr       */
+/*   Updated: 2021/04/20 18:28:32 by larlena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,16 +57,16 @@ int	validate_name(char *str)
 	return (1);
 }
 
-void	ft_export_add(t_all *all)
+void	ft_export_add(t_all *all, t_parser *parser)
 {
 	int				i;
 	char			**str;
 	t_dictionary	*dic;
 
-	i = -1;
-	while (all->parser.arg[++i])
+	i = 0;
+	while (parser->arg[++i])
 	{
-		str = ft_split(all->parser.arg[i], '=');
+		str = ft_split(parser->arg[i], '=');
 		if (validate_name(str[0]))
 		{
 			dic = ft_dic_get_value(all->env, str[0]);
@@ -84,6 +84,7 @@ void	ft_export_add(t_all *all)
 		else
 			ft_free(str);
 	}
+	exit(0);
 }
 
 void	ft_export(t_all *all)
@@ -95,4 +96,5 @@ void	ft_export(t_all *all)
 	sort_by_name(all, ft_dic_lenght(all->env));
 	while (all->envc[i])
 		ft_putendl_fd(all->envc[i++], 1);
+	exit(0);
 }

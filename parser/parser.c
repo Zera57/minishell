@@ -6,7 +6,7 @@
 /*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/06 16:44:47 by larlena           #+#    #+#             */
-/*   Updated: 2021/04/20 16:18:24 by larlena          ###   ########.fr       */
+/*   Updated: 2021/04/20 18:25:13 by larlena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int			ft_parser(t_all *all, t_list **parser, const char *str)
 		else if (str[all->j] == '|')
 			ft_pipe(all, parser);
 		else if (str[all->j] == '>' || str[all->j] == '<')
-			;
+			ft_redirects(all, ((t_parser *)(*parser)->content));
 		else if (str[all->j] == '"')
 			ft_parsing_double_quotes(all, *parser, str);
 		else if (str[all->j] == '\'')
