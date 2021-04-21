@@ -6,7 +6,7 @@
 /*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/20 11:19:03 by larlena           #+#    #+#             */
-/*   Updated: 2021/04/20 19:09:05 by larlena          ###   ########.fr       */
+/*   Updated: 2021/04/21 18:36:00 by larlena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,24 @@ static t_list	*my_lstlast(t_list *lst, t_list *last)
 void	ft_command_execution(t_all *all)
 {
 	t_list	*buff;
-	pid_t	pid[ft_lstsize(all->parser)];
-	size_t	i;
 	size_t	max;
+	size_t	i;
+	pid_t	pid[ft_lstsize(all->parser)];
+	int		status;
 
 	i = -1;
 	max = (size_t)ft_lstsize(all->parser);
 	while (++i < max)
 	{
 		buff = my_lstlast(all->parser, buff);
-		ft_command_search(all, buff);
+		pid[i] = fork();
+		if (pid[i] == -1)
+			exit(0);
+		while (pid[i] == 0)
+			ft_command_search(all, buff);
 	}
+	i = -1;
+	while (++i < max)
+		waitpid(pid[i], &status, 0);
 	ft_clear_parser(all->parser);
 }

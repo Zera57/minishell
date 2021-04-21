@@ -6,7 +6,7 @@
 /*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/06 16:44:47 by larlena           #+#    #+#             */
-/*   Updated: 2021/04/20 18:25:13 by larlena          ###   ########.fr       */
+/*   Updated: 2021/04/21 19:45:38 by larlena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,12 @@ int			ft_parser(t_all *all, t_list **parser, const char *str)
 		if (str[all->j] == ';')
 			ft_semicolon(all, parser, str);
 		else if (str[all->j] == '|')
-			ft_pipe(all, parser);
+			ft_parsing_pipe(all, parser);
 		else if (str[all->j] == '>' || str[all->j] == '<')
 			ft_redirects(all, ((t_parser *)(*parser)->content));
 		else if (str[all->j] == '"')
-			ft_parsing_double_quotes(all, *parser, str);
+//			ft_parsing_double_quotes(all, *parser, str);
+			;
 		else if (str[all->j] == '\'')
 			ft_parsing_single_quotes(all, *parser, str);
 		else if (str[all->j] == ' ')
@@ -86,7 +87,7 @@ int			ft_parser(t_all *all, t_list **parser, const char *str)
 // 	peremennaia = calloc(sizeof(char *), 50);
 // 	sozdanie_env(peremennaia);
 // 	ft_set_env(&all, peremennaia);
-//     ft_strlcpy(all.str, "ls ", 122);
+//     ft_strlcpy(all.str, "echo \"$PATH", 122);
 // 	ft_parser(&all, &all.parser, all.str);
 // 	// while(1);
 // 	// while (all.parser != NULL)

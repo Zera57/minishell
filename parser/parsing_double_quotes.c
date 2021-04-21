@@ -6,7 +6,7 @@
 /*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 13:18:46 by larlena           #+#    #+#             */
-/*   Updated: 2021/04/20 11:21:06 by larlena          ###   ########.fr       */
+/*   Updated: 2021/04/21 19:12:10 by larlena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ static char	*ft_get_value_name(const char *str)
 	size_t	i;
 	char	*dst;
 
-	i = -1;
-	while (str[++i] != ' ')
-		;
+	i = 0;
+	while (str[i] != ' ' && str[i])
+		i++;
 	dst = calloc(sizeof(char), i + 1);
 	if (!dst)
 		return (NULL);
@@ -29,16 +29,17 @@ static char	*ft_get_value_name(const char *str)
 
 static void	ft_parsing_dollar(t_all *all, t_list *parser, const char *str)
 {
-	char *buf;
-	char *tmp;
+	t_dictionary	*tmp;
+	char			*buf;
 
-	if (str[all->j] == ' ' || str[all->j] == '\0')
-
+	if (str[++all->j] == '"' || !str[all->j])
+		return ;
 	buf = ft_get_value_name(&str[all->j]);
-	ft_dic_get_value(all->env, buf);
-	tmp = ft_strjoin(((t_parser *)parser->content)->arg[all->ln], buf);
+	tmp = ft_dic_get_value(all->env, buf);
+	free(buf);
+	buf = ft_strjoin(((t_parser *)parser->content)->arg[all->ln], tmp->value);
 	free(((t_parser *)parser->content)->arg[all->ln]);
-	((t_parser *)parser->content)->arg[all->ln] = tmp;
+	((t_parser *)parser->content)->arg[all->ln] = buf;
 	free(tmp);
 	free(buf);
 }
