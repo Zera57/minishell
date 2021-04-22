@@ -1,25 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   ft_malloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/07 23:37:52 by larlena           #+#    #+#             */
-/*   Updated: 2021/04/22 15:35:04 by larlena          ###   ########.fr       */
+/*   Created: 2021/04/22 15:31:29 by larlena           #+#    #+#             */
+/*   Updated: 2021/04/22 15:33:29 by larlena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include "../includes/minishell.h"
 
-void	*ft_calloc(size_t count, size_t size)
+void	*ft_malloc(size_t size)
 {
-	void	*dst;
+	void	*buf;
 
-	dst = ft_malloc(count * size);
-	if (dst == NULL)
-		return (NULL);
-	ft_bzero(dst, count * size);
-	return (dst);
+	buf = malloc(size);
+	if (buf == NULL)
+		exit (0);
+	return (buf);
 }
