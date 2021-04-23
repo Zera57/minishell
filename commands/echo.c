@@ -6,7 +6,7 @@
 /*   By: hapryl <hapryl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/06 20:14:26 by hapryl            #+#    #+#             */
-/*   Updated: 2021/04/20 20:30:38 by hapryl           ###   ########.fr       */
+/*   Updated: 2021/04/23 14:40:42 by hapryl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,9 @@ void	ft_echo_n(t_parser *parser)
 	i = 2;
 	while (parser->arg[i])
 	{
-		ft_putendl_fd(parser->arg[i], 1);
+		if (i != 2)
+			ft_putchar_fd(' ', 1);
+		ft_putstr_fd(parser->arg[i], 1);
 		i++;
 	}
 }
@@ -29,10 +31,11 @@ void	ft_echo(t_all *all, t_parser *parser)
 	int	i;
 
 	i = 1;
-	if (ft_strchr(parser->arg[1], 'n') && parser->arg[1][0] == '-')
+	all->i++;
+	if (!ft_strcmp(parser->arg[1], "-n"))
 	{
 		ft_echo_n(parser);
-		return ;
+		exit(0);
 	}
 	else
 		while (parser->arg[i])

@@ -6,7 +6,7 @@
 /*   By: hapryl <hapryl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/06 14:51:02 by hapryl            #+#    #+#             */
-/*   Updated: 2021/04/08 13:41:40 by hapryl           ###   ########.fr       */
+/*   Updated: 2021/04/23 12:16:44 by hapryl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 t_dictionary	*ft_dicnew(char *key, char *value)
 {
 	t_dictionary	*lst;
-	lst = malloc(sizeof(t_dictionary));
+	lst = ft_malloc(sizeof(t_dictionary));
 	lst->key = key;
 	lst->value = value;
 	lst->next = NULL;

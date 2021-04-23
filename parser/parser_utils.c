@@ -6,7 +6,7 @@
 /*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/06 17:28:15 by larlena           #+#    #+#             */
-/*   Updated: 2021/04/22 17:36:23 by larlena          ###   ########.fr       */
+/*   Updated: 2021/04/23 17:37:31 by larlena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	ft_clear_parser(t_list *parser)
 
 void	ft_create_new_list_parser(t_list **parser)
 {
-	ft_lstadd_front(parser, ft_lstnew(malloc(sizeof(t_parser))));
+	ft_lstadd_front(parser, ft_lstnew(ft_malloc(sizeof(t_parser))));
 	((t_parser *)(*parser)->content)->arg = ft_calloc(sizeof(char *), 2);
 	((t_parser *)(*parser)->content)->arg[0] = ft_calloc(sizeof(char), 1);
 }
