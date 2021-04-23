@@ -6,7 +6,7 @@
 /*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/06 17:28:15 by larlena           #+#    #+#             */
-/*   Updated: 2021/04/21 19:14:41 by larlena          ###   ########.fr       */
+/*   Updated: 2021/04/22 17:36:23 by larlena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,21 +37,6 @@ void	ft_initialization_struct_parser(t_all *all, t_list **parser)
 	(*parser)->next = NULL;
 }
 
-char	**ft_rewrite_arr(char **arg, size_t size)
-{
-	char	**dst;
-	size_t	i;
-
-	i = -1;
-	dst = (char **)calloc(sizeof(char *), size + 2);
-	if (!dst)
-		return (NULL);
-	while (++i < size)
-		dst[i] = arg[i];
-	free(arg);
-	return (dst);
-}
-
 char	*ft_rewrite(char *src, char c)
 {
 	char	*dst;
@@ -59,10 +44,22 @@ char	*ft_rewrite(char *src, char c)
 
 	size = ft_strlen(src);
 	dst = ft_calloc(sizeof(char), size + 2);
-	if (!dst)
-		return (NULL);
 	ft_memcpy(dst, src, size);
 	dst[size] = c;
 	free(src);
+	return (dst);
+}
+
+char	**ft_rewrite_arr(char **arg, size_t size)
+{
+	char	**dst;
+	size_t	i;
+
+	i = -1;
+	dst = (char **)calloc(sizeof(char *), size + 2);
+	dst[size] = (char *)calloc(sizeof(char), 1);
+	while (++i < size)
+		dst[i] = arg[i];
+	free(arg);
 	return (dst);
 }

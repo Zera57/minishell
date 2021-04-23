@@ -6,7 +6,7 @@
 /*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 17:30:02 by larlena           #+#    #+#             */
-/*   Updated: 2021/04/20 19:19:56 by larlena          ###   ########.fr       */
+/*   Updated: 2021/04/22 17:40:29 by larlena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,6 @@ static char	**ft_get_path(t_all *all)
 	if (!buf)
 		return (NULL);
 	dst = ft_split(buf->value, ':');
-	if (!dst)
-		return (NULL);
 	return (dst);
 }
 
