@@ -6,7 +6,7 @@
 /*   By: hapryl <hapryl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/06 15:02:48 by hapryl            #+#    #+#             */
-/*   Updated: 2021/04/23 12:16:44 by hapryl           ###   ########.fr       */
+/*   Updated: 2021/04/23 14:48:08 by hapryl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,14 +45,14 @@ char	*get_envline(char *str1, char *str2)
 	i = 0;
 	lenght = ft_strlen(str1) + ft_strlen(str2) + 2;
 	str = ft_malloc(lenght);
-	while (i < lenght && i < ft_strlen(str1))
+	while (i < lenght && i < (int)ft_strlen(str1))
 	{
 		str[i] = str1[i];
 		i++;
 	}
 	str[i++] = '=';
 	j = 0;
-	while (i < lenght && j < ft_strlen(str2))
+	while (i < lenght && j < (int)ft_strlen(str2))
 	{
 		str[i++] = str2[j++];
 	}
@@ -63,7 +63,6 @@ char	*get_envline(char *str1, char *str2)
 char	**ft_get_env(t_all *all)
 {
 	t_dictionary	*dic;
-	char			*temp;
 	int				i;
 
 	dic = all->env;
