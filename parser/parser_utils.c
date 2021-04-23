@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hapryl <hapryl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/06 17:28:15 by larlena           #+#    #+#             */
-/*   Updated: 2021/04/21 19:14:41 by larlena          ###   ########.fr       */
+/*   Updated: 2021/04/23 12:16:44 by hapryl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	ft_clear_parser(t_list *parser)
 
 void	ft_create_new_list_parser(t_list **parser)
 {
-	ft_lstadd_front(parser, ft_lstnew(malloc(sizeof(t_parser))));
+	ft_lstadd_front(parser, ft_lstnew(ft_malloc(sizeof(t_parser))));
 	((t_parser *)(*parser)->content)->arg = ft_calloc(sizeof(char *), 2);
 	((t_parser *)(*parser)->content)->arg[0] = ft_calloc(sizeof(char), 1);
 }
@@ -43,7 +43,7 @@ char	**ft_rewrite_arr(char **arg, size_t size)
 	size_t	i;
 
 	i = -1;
-	dst = (char **)calloc(sizeof(char *), size + 2);
+	dst = (char **)ft_calloc(sizeof(char *), size + 2);
 	if (!dst)
 		return (NULL);
 	while (++i < size)

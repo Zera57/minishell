@@ -6,7 +6,7 @@
 /*   By: hapryl <hapryl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 11:59:49 by hapryl            #+#    #+#             */
-/*   Updated: 2021/04/20 20:30:26 by hapryl           ###   ########.fr       */
+/*   Updated: 2021/04/23 12:16:44 by hapryl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void ls(char **env)
 {
 	pid_t pid;
 	char **test;
-	test = malloc(8 * 3);
+	test = ft_malloc(8 * 3);
 	test[0] = ft_strdup("ls");
 	test[1] = ft_strdup("-la");
 	test[2] = NULL;

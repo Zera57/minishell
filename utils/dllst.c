@@ -6,7 +6,7 @@
 /*   By: hapryl <hapryl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 18:25:00 by hapryl            #+#    #+#             */
-/*   Updated: 2021/04/06 14:58:49 by hapryl           ###   ########.fr       */
+/*   Updated: 2021/04/23 12:16:44 by hapryl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 t_dllist	*ft_dllstnew(char *str)
 {
 	t_dllist	*lst;
-	lst = malloc(sizeof(t_dllist));
+	lst = ft_malloc(sizeof(t_dllist));
 	lst->str = str;
 	lst->previous = NULL;
 	lst->next = NULL;

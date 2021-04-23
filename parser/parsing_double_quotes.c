@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_double_quotes.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hapryl <hapryl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 13:18:46 by larlena           #+#    #+#             */
-/*   Updated: 2021/04/21 19:12:10 by larlena          ###   ########.fr       */
+/*   Updated: 2021/04/23 12:17:06 by hapryl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static char	*ft_get_value_name(const char *str)
 	i = 0;
 	while (str[i] != ' ' && str[i])
 		i++;
-	dst = calloc(sizeof(char), i + 1);
+	dst = ft_calloc(sizeof(char), i + 1);
 	if (!dst)
 		return (NULL);
 	ft_memcpy(dst, str, i);
