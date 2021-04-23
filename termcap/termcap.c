@@ -6,7 +6,7 @@
 /*   By: hapryl <hapryl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 16:55:52 by hapryl            #+#    #+#             */
-/*   Updated: 2021/04/20 20:05:31 by hapryl           ###   ########.fr       */
+/*   Updated: 2021/04/23 13:21:33 by hapryl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,7 @@ int		ft_arrow_down(t_all *all)
 
 int		ft_backspace(t_all *all)
 {
-	int	lenght;
-
-	lenght = ft_strlen(all->str);
-	if (lenght != 0)
+	if (all->i > 0)
 	{
 		tputs(cursor_left, 1, ft_putchar);
 		tputs(tgetstr("dc", 0), 1, ft_putchar);
@@ -63,9 +60,13 @@ int		ft_enter(t_all *all)
 	all->history->str = ft_strdup(all->str);
 	ft_dllstadd_front(all->history, ft_strdup(""));
 	all->history = ft_dllstbegining(all->history);
-	all->i = 0;
+	all->str[all->i] = 0;
 	write(1, "\n", 1);
+	termcap_off();
 	ft_parser(all, &all->parser, all->str);
+	termcap_on();
+	all->str[0] = 0;
+	all->i = 0;
 	write(1, "(っ＾▿＾)۶🍸🌟🍺٩(˘◡˘ ): ", ft_strlen("(っ＾▿＾)۶🍸🌟🍺٩(˘◡˘ ): "));
 	return (0);
 }

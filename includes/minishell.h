@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hapryl <hapryl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 18:13:49 by hapryl            #+#    #+#             */
-/*   Updated: 2021/04/20 19:33:41 by larlena          ###   ########.fr       */
+/*   Updated: 2021/04/23 13:21:08 by hapryl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ char		**ft_get_env(t_all *all);
 int			ft_type(t_all *all);
 int			ft_error(char *command, char *text, char *arg);
 int			ft_parser(t_all *all, t_list **parser, const char *str);
-
-
+void		termcap_on();
+void		termcap_off();
 
 #endif
