@@ -6,7 +6,7 @@
 /*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 11:42:09 by hapryl            #+#    #+#             */
-/*   Updated: 2021/04/20 19:16:26 by larlena          ###   ########.fr       */
+/*   Updated: 2021/04/23 21:12:37 by larlena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,6 @@ void	ft_export_add(t_all *all, t_parser *parser)
 		else
 			ft_free(str);
 	}
-	exit(0);
 }
 
 void	ft_export(t_all *all)
@@ -96,5 +95,4 @@ void	ft_export(t_all *all)
 	sort_by_name(all, ft_dic_lenght(all->env));
 	while (all->envc[i])
 		ft_putendl_fd(all->envc[i++], 1);
-	exit(0);
 }

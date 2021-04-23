@@ -6,7 +6,7 @@
 /*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 12:25:05 by hapryl            #+#    #+#             */
-/*   Updated: 2021/04/20 19:16:26 by larlena          ###   ########.fr       */
+/*   Updated: 2021/04/23 21:12:23 by larlena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,4 @@ void	ft_unset(t_all *all, t_parser *parser)
 			all->env = ft_dic_delete(all->env, parser->arg[i]);
 		i++;
 	}
-	exit(0);
 }
