@@ -6,7 +6,7 @@
 /*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/06 17:01:48 by larlena           #+#    #+#             */
-/*   Updated: 2021/04/22 17:32:15 by larlena          ###   ########.fr       */
+/*   Updated: 2021/04/26 12:20:00 by larlena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,9 @@ void	ft_parsing_dollar(t_all *all, t_list *parser, const char *str);
 void	ft_parsing_space(t_all *all, t_list *parser, const char *str);
 int     ft_parsing_pipe(t_all *all, t_list **parser);
 void	ft_command_execution(t_all *all);
-int		ft_command_search(t_all *all, t_list *parser);
+
+int		ft_search_commands(t_all *all, t_list *parser);
+int		ft_search_fork_commands(t_all *all, t_list *parser, char *command);
+int		ft_search_builtin_commands(t_all *all, t_list *parser, char *command);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/22 17:28:42 by larlena           #+#    #+#             */
-/*   Updated: 2021/04/22 18:12:24 by larlena          ###   ########.fr       */
+/*   Updated: 2021/04/23 20:04:50 by larlena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,20 +25,36 @@ static char	*ft_get_value_name(const char *str)
 	return (dst);
 }
 
+static int	ft_check_value(t_all *all, t_list *parser, t_dictionary *tmp, char *buf)
+{
+	if (*buf == '\0')
+	{
+		((t_parser *)parser->content)->arg[all->ln] =
+			ft_rewrite(((t_parser *)parser->content)->arg[all->ln], '$');
+		free(buf);
+		return (1);
+	}
+	free(buf);
+	if (tmp == NULL)
+	{
+		while (ft_isalnum(all->str[all->j]) || all->str[all->j] == '_')
+			all->j++;
+		return (1);
+	}
+	return (0);
+}
+
 void		ft_parsing_dollar(t_all *all, t_list *parser, const char *str)
 {
 	t_dictionary	*tmp;
 	char			*buf;
 
-	if (str[++all->j] == '"' || !str[all->j])
-		return ;
+	all->j++;
 	buf = ft_get_value_name(&str[all->j]);
 	tmp = ft_dic_get_value(all->env, buf);
-	free(buf);
-	if (tmp == NULL)
+	if (ft_check_value(all, parser, tmp, buf))
 		return ;
 	buf = ft_strjoin(((t_parser *)parser->content)->arg[all->ln], tmp->value);
 	free(((t_parser *)parser->content)->arg[all->ln]);
 	((t_parser *)parser->content)->arg[all->ln] = buf;
-	free(tmp);
 }

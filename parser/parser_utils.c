@@ -6,7 +6,7 @@
 /*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/06 17:28:15 by larlena           #+#    #+#             */
-/*   Updated: 2021/04/23 17:37:31 by larlena          ###   ########.fr       */
+/*   Updated: 2021/04/26 15:03:39 by larlena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,15 @@
 
 void	ft_clear_parser(t_list *parser)
 {
+	t_list	*tmp;
+
 	while (parser)
 	{
+		tmp = parser->next;
 		ft_free(((t_parser *)parser->content)->arg);
 		free(parser->content);
 		free(parser);
-		parser = parser->next;
+		parser = tmp;
 	}
 }
 
