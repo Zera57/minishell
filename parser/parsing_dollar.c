@@ -6,7 +6,7 @@
 /*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/22 17:28:42 by larlena           #+#    #+#             */
-/*   Updated: 2021/04/23 20:04:50 by larlena          ###   ########.fr       */
+/*   Updated: 2021/04/26 16:10:27 by larlena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,10 @@ static int	ft_check_value(t_all *all, t_list *parser, t_dictionary *tmp, char *b
 		return (1);
 	}
 	free(buf);
+	while (ft_isalnum(all->str[all->j]) || all->str[all->j] == '_')
+		all->j++;
 	if (tmp == NULL)
 	{
-		while (ft_isalnum(all->str[all->j]) || all->str[all->j] == '_')
-			all->j++;
 		return (1);
 	}
 	return (0);
