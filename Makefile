@@ -3,16 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: hapryl <hapryl@student.42.fr>              +#+  +:+       +#+         #
+#    By: larlena <larlena@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/23 14:27:23 by hapryl            #+#    #+#              #
-#    Updated: 2021/04/23 15:28:23 by hapryl           ###   ########.fr        #
+#    Updated: 2021/04/26 11:43:22 by larlena          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -O2
+CFLAGS = -g -Wall -Wextra -Werror -O2
 INCLUDES = -I./includes/*.h -I$(LFT_DIR)
 FOLDER_SRCS = ./
 FUNC =		commands/cd \
@@ -30,6 +30,7 @@ FUNC =		commands/cd \
 			parser/parser \
 			parser/parsing_double_quotes \
 			parser/parsing_redirects \
+			parser/parsing_dollar \
 			parser/parsing_single_quotes \
 			parser/parsing_space \
 			parser/pipe \
