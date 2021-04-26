@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hapryl <hapryl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/06 16:50:23 by hapryl            #+#    #+#             */
-/*   Updated: 2021/04/23 21:12:50 by larlena          ###   ########.fr       */
+/*   Updated: 2021/04/26 17:28:09 by hapryl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,22 @@
 
 void	ft_cd(t_all *all, t_parser *parser)
 {
+	char	pwd[1024];
 	char	*apath;
 
 	if (parser->arg[1][0] == '~')
 		apath = ft_strjoin(ft_dic_get_value(all->env, "HOME")->value, &parser->arg[1][1]);
 	else
-		apath = parser->arg[1];
-	free(ft_dic_get_value(all->env, "OLDPWD")->value);
-	ft_dic_get_value(all->env, "OLDPWD")->value
-	= ft_dic_get_value(all->env, "PWD")->value;
-	ft_dic_get_value(all->env, "PWD")->value = apath;
+		apath = ft_strdup(parser->arg[1]);
 	if (chdir(apath) != 0)
 		ft_error("minishell: cd:", "No such file or directory", parser->arg[1]);
 	else
-		printf("Changed directory %s\n", apath);
+	{
+		getcwd(pwd, 1024);
+		free(ft_dic_get_value(all->env, "OLDPWD")->value);
+		ft_dic_get_value(all->env, "OLDPWD")->value
+		= ft_dic_get_value(all->env, "PWD")->value;
+		ft_dic_get_value(all->env, "PWD")->value = ft_strdup(pwd);
+	}
+	free(apath);
 }
