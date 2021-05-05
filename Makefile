@@ -6,7 +6,7 @@
 #    By: larlena <larlena@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/23 14:27:23 by hapryl            #+#    #+#              #
-#    Updated: 2021/04/26 11:43:22 by larlena          ###   ########.fr        #
+#    Updated: 2021/04/26 16:33:34 by larlena          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -67,7 +67,7 @@ clean:
 	@rm -f $(OBJ)
 
 fclean: clean
-	@$(MAKE) clean -C $(LX_DIR) --silent
+	@$(MAKE) clean -C $(LFT_DIR) --silent
 	@$(MAKE) fclean -C $(LFT_DIR) --silent
 	@rm -f $(NAME)
 	@rm -f screenshot.bmp

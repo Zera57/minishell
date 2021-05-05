@@ -6,7 +6,7 @@
 /*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/06 17:28:15 by larlena           #+#    #+#             */
-/*   Updated: 2021/04/26 15:03:39 by larlena          ###   ########.fr       */
+/*   Updated: 2021/04/26 17:34:18 by larlena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,17 +40,17 @@ void	ft_initialization_struct_parser(t_all *all, t_list **parser)
 	(*parser)->next = NULL;
 }
 
-char	*ft_rewrite(char *src, char c)
+void	ft_rewrite(char **src, char c)
 {
 	char	*dst;
 	size_t	size;
 
-	size = ft_strlen(src);
+	size = ft_strlen(*src);
 	dst = ft_calloc(sizeof(char), size + 2);
-	ft_memcpy(dst, src, size);
+	ft_memcpy(dst, *src, size);
 	dst[size] = c;
-	free(src);
-	return (dst);
+	free(*src);
+	*src = dst;
 }
 
 char	**ft_rewrite_arr(char **arg, size_t size)

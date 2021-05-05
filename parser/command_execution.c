@@ -6,13 +6,13 @@
 /*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/20 11:19:03 by larlena           #+#    #+#             */
-/*   Updated: 2021/04/26 15:38:46 by larlena          ###   ########.fr       */
+/*   Updated: 2021/05/05 16:17:30 by larlena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-static pid_t	ft_protected_fork(void)
+static pid_t	protected_fork(void)
 {
 	pid_t	buf;
 
@@ -29,44 +29,49 @@ static t_list	*my_lstlast(t_list *lst, t_list *last)
 	return (lst);
 }
 
-void	ft_command_execution(t_all *all)
+void 	ft_one_command_execution(t_all *all, pid_t *pid)
 {
-	t_list	*buff;
-	size_t	max;
-	size_t	i;
-	pid_t	pid[ft_lstsize(all->parser)];
-	int		status;
-
-	i = -1;
-	max = (size_t)ft_lstsize(all->parser);
-	if (max == 1)
+	if (ft_search_builtin_commands(all, all->parser, ((t_parser *)all->parser->content)->arg[0]))
 	{
-		if (!ft_search_builtin_commands(all, all->parser, ((t_parser *)all->parser->content)->arg[0]))
-		{
-			ft_clear_parser(all->parser);
-			return ;	
-		}
-		pid[0] = ft_protected_fork();
-		if (pid[0] == 0)
+		*pid = ft_protected_fork();
+		if (*pid == 0)
 		{
 			ft_search_fork_commands(all, all->parser, ((t_parser *)all->parser->content)->arg[0]);
 			exit (0);
 		}
 		else
-			waitpid(pid[0], &status, 0);
+			waitpid(*pid, &err, 0);
 	}
-	else
+}
+
+void	ft_multi_command_exectuion(t_all *all, pid_t *pid, size_t max)
+{
+	size_t	i;
+	t_list	*buff;
+
+	i = -1;
+	ft_minishell_pipe(all->parser);
+	while (++i < max)
 	{
-		while (++i < max)
-		{
-			buff = my_lstlast(all->parser, buff);
-			pid[i] = ft_protected_fork();
-			while (pid[i] == 0)
-				ft_search_commands(all, buff);
-		}
-		i = -1;
-		while (++i < max)
-			waitpid(pid[i], &status, 0);
+		buff = my_lstlast(all->parser, buff);
+		pid[i] = protected_fork();
+		while (pid[i] == 0)
+			ft_search_commands(all, buff);
 	}
+	i = -1;
+	while (++i < max)
+		waitpid(pid[i], &err, 0);
+}
+
+void	ft_command_execution(t_all *all)
+{
+	size_t	max;
+	pid_t	pid[ft_lstsize(all->parser)];
+
+	max = (size_t)ft_lstsize(all->parser);
+	if (max == 1)
+		ft_one_command_execution(all, pid);
+	else
+		ft_multi_command_exectuion(all, pid, max);
 	ft_clear_parser(all->parser);
 }

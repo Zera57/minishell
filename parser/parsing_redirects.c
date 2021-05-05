@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_redirects.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hapryl <hapryl@student.42.fr>              +#+  +:+       +#+        */
+/*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 17:41:33 by hapryl            #+#    #+#             */
-/*   Updated: 2021/04/23 14:43:49 by hapryl           ###   ########.fr       */
+/*   Updated: 2021/04/26 17:21:07 by larlena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ char	*get_next_word(t_all *all)
 	return (str);
 }
 
-int		ft_redirect(t_all *all, t_parser *parser)
+int	ft_redirect(t_all *all, t_parser *parser)
 {
 	char	*path;
 
@@ -49,7 +49,7 @@ int		ft_redirect(t_all *all, t_parser *parser)
 	return (0);
 }
 
-int		ft_double_redirect(t_all *all, t_parser *parser)
+int	ft_double_redirect(t_all *all, t_parser *parser)
 {
 	char	*path;
 
@@ -64,7 +64,7 @@ int		ft_double_redirect(t_all *all, t_parser *parser)
 	return (0);
 }
 
-int		ft_reverse_redirect(t_all *all, t_parser *parser)
+int	ft_reverse_redirect(t_all *all, t_parser *parser)
 {
 	char	*path;
 
@@ -78,7 +78,7 @@ int		ft_reverse_redirect(t_all *all, t_parser *parser)
 	return (0);
 }
 
-int		ft_redirects(t_all *all, t_parser *parser)
+int	ft_redirects(t_all *all, t_parser *parser)
 {
 	if (all->str[all->j] == '>' && all->str[all->j + 1] == '>')
 		ft_double_redirect(all, parser);
