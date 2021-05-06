@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: larlena <larlena@student.42.fr>            +#+  +:+       +#+         #
+#    By: hapryl <hapryl@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/23 14:27:23 by hapryl            #+#    #+#              #
-#    Updated: 2021/04/26 16:33:34 by larlena          ###   ########.fr        #
+#    Updated: 2021/05/06 13:53:43 by hapryl           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,7 +43,7 @@ FUNC =		commands/cd \
 SRC = $(addprefix $(FOLDER_SRCS), $(FUNC))
 OBJ = $(SRC:=.o)
 LXFLAGS = -ltermcap
-LFT_DIR = ./libft/
+LFT_DIR = ./Libft/
 LFTFLAGS = -L$(LFT_DIR) -lft
 
 .PHONY: all clean fclean re norme lft
