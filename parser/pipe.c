@@ -6,27 +6,18 @@
 /*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/14 19:27:39 by larlena           #+#    #+#             */
-/*   Updated: 2021/05/05 15:53:27 by larlena          ###   ########.fr       */
+/*   Updated: 2021/05/05 17:32:32 by larlena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-static void	protected_pipe(int pipefd[2])
+int	ft_struct_pipe(t_list *parser)
 {
-	if(pipe(pipefd))
-		exit (0);
-}
-
-int	ft_minishell_pipe(t_list *parser)
-{
-	protected_pipe(((t_parser *)parser->content)->pipefd);
-	dup2(((t_parser *)parser->content)->pipefd[FD_W], FD_W);
-	dup2(((t_parser *)parser->content)->pipefd[FD_R], FD_R);
-	while (parser->next)
+	while (parser)
 	{
-		protected_pipe(((t_parser *)parser->next->content)->pipefd);
-		dup2(((t_parser *)parser->next->content)->pipefd[FD_R], ((t_parser *)parser->content)->pipefd[FD_R]);
+		if (pipe(((t_parser *)parser->content)->pipefd))
+			return (-1);
 		parser = parser->next;
 	}
 	return (0);

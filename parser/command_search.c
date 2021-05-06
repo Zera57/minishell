@@ -6,7 +6,7 @@
 /*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 17:30:02 by larlena           #+#    #+#             */
-/*   Updated: 2021/04/26 17:29:50 by larlena          ###   ########.fr       */
+/*   Updated: 2021/05/05 19:23:59 by larlena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,8 +90,26 @@ int	ft_search_fork_commands(t_all *all, t_list *parser, char *command)
 	exit(0);
 }
 
+void	ft_fd_replacement(t_all *all, t_list *begin, t_list *parser)
+{
+	if (begin == parser)
+	{
+		dup2(((t_parser *)parser->content)->pipefd[FD_W], FD_W);
+		dup2(((t_parser *)parser->next->content)->pipefd[FD_R], ((t_parser *)parser->content)->pipefd[FD_R]);
+	}
+	else if (parser->next)
+	{
+
+	}
+	else
+	{
+		dup2(FD_W, all->dupfdw);
+	}
+}
+
 int	ft_search_commands(t_all *all, t_list *parser)
 {
+	ft_fd_replacement(all, all->parser, parser);
 	if (!ft_search_builtin_commands(all, parser,
 			((t_parser *)parser->content)->arg[0]))
 		exit(0);
