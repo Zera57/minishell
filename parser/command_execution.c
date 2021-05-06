@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   command_execution.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hapryl <hapryl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/20 11:19:03 by larlena           #+#    #+#             */
-/*   Updated: 2021/05/05 16:17:30 by larlena          ###   ########.fr       */
+/*   Updated: 2021/05/06 13:09:25 by hapryl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void 	ft_one_command_execution(t_all *all, pid_t *pid)
 {
 	if (ft_search_builtin_commands(all, all->parser, ((t_parser *)all->parser->content)->arg[0]))
 	{
-		*pid = ft_protected_fork();
+		*pid = protected_fork();
 		if (*pid == 0)
 		{
 			ft_search_fork_commands(all, all->parser, ((t_parser *)all->parser->content)->arg[0]);
