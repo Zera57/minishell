@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hapryl <hapryl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/06 19:58:03 by hapryl            #+#    #+#             */
-/*   Updated: 2021/04/23 21:12:27 by larlena          ###   ########.fr       */
+/*   Updated: 2021/05/07 13:37:50 by hapryl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,10 @@
 
 void	ft_pwd(t_all *all)
 {
-	ft_putendl_fd(ft_dic_get_value(all->env, "PWD")->value, 1);
+	char	pwd[1024];
+
+	if (all)
+		;
+	getcwd(pwd, 1024);
+	ft_putendl_fd(pwd, 1);
 }
