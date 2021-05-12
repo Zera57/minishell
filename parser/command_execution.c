@@ -6,7 +6,7 @@
 /*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/20 11:19:03 by larlena           #+#    #+#             */
-/*   Updated: 2021/05/06 15:18:51 by larlena          ###   ########.fr       */
+/*   Updated: 2021/05/12 13:02:37 by larlena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,14 @@ static pid_t	protected_fork(void)
 
 void 	ft_one_command_execution(t_all *all, pid_t *pid)
 {
-	if (ft_search_builtin_commands(all, all->parser, ((t_parser *)all->parser->content)->arg[0]))
+	if (ft_search_builtin_commands(all, all->parser,
+			((t_parser *)all->parser->content)->arg[0]))
 	{
 		*pid = protected_fork();
 		if (*pid == 0)
 		{
-			ft_search_fork_commands(all, all->parser, ((t_parser *)all->parser->content)->arg[0]);
+			ft_search_fork_commands(all, all->parser,
+				((t_parser *)all->parser->content)->arg[0]);
 			exit (0);
 		}
 		else
@@ -44,15 +46,13 @@ void	ft_multi_command_exectuion(t_all *all, pid_t *pid)
 
 	i = -1;
 	buf = all->parser;
-	all->dupfdr = dup(FD_R);
-	all->dupfdw = dup(FD_W);
 	ft_struct_pipe(all->parser);
-	while (buf)
+	while (buf)               
 	{
 		pid[++i] = protected_fork();
-
 		if (pid[i] == 0)
 			ft_search_commands(all, buf);
+		close(((t_parser *)buf->content)->pipefd[FD_W]);
 		buf = buf->next;
 	}
 	i = -1;
@@ -60,18 +60,21 @@ void	ft_multi_command_exectuion(t_all *all, pid_t *pid)
 	while (buf)
 	{
 		waitpid(pid[++i], &err, 0);
+		close(((t_parser *)buf->content)->pipefd[FD_R]);
 		buf = buf->next;
 	}
 }
 
 void	ft_command_execution(t_all *all)
 {
-	pid_t	pid[ft_lstsize(all->parser)];
+	pid_t	*pid;
 
+	pid = ft_calloc(sizeof(pid_t), ft_lstsize(all->parser) + 1);
 	if (ft_lstsize(all->parser) == 1)
 		ft_one_command_execution(all, pid);
 	else
 		ft_multi_command_exectuion(all, pid);
 	ft_clear_parser(all->parser);
+	free(pid);
 	all->parser = NULL;
 }

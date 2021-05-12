@@ -6,7 +6,7 @@
 /*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/06 16:44:47 by larlena           #+#    #+#             */
-/*   Updated: 2021/05/05 18:14:32 by larlena          ###   ########.fr       */
+/*   Updated: 2021/05/12 12:42:23 by larlena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	ft_parser(t_all *all, t_list **parser, const char *str)
 		if (str[all->j] == ';')
 			ft_semicolon(all, parser, str);
 		else if (str[all->j] == '|')
-			ft_parsing_pipe(all, parser);
+			ft_parsing_pipe(all, parser, str);
 		else if (str[all->j] == '>' || str[all->j] == '<')
 			ft_redirects(all, (t_parser *)ft_lstlast(*parser)->content);
 		else if (str[all->j] == '"')

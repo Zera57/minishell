@@ -6,7 +6,7 @@
 /*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 11:59:49 by hapryl            #+#    #+#             */
-/*   Updated: 2021/05/05 18:24:35 by larlena          ###   ########.fr       */
+/*   Updated: 2021/05/12 12:59:40 by larlena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ int main(int argc, char **argv, char **env)
 // 	peremennaia = calloc(sizeof(char *), 50);
 // 	sozdanie_env(peremennaia);
 // 	ft_set_env(&all, peremennaia);
-//     ft_strlcpy(all.str, "pwd | grep s", 122);
+//     ft_strlcpy(all.str, "minishell", 122);
 // 	ft_parser(&all, &all.parser, all.str);
 
 // 	ft_strlcpy(all.str, "", 122);

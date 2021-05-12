@@ -6,7 +6,7 @@
 /*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 17:30:02 by larlena           #+#    #+#             */
-/*   Updated: 2021/05/05 19:23:59 by larlena          ###   ########.fr       */
+/*   Updated: 2021/05/12 13:29:53 by larlena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,41 @@ int	ft_search_builtin_commands(t_all *all, t_list *parser, char *command)
 	return (0);
 }
 
+void		ft_add_slash(char **src)
+{
+	size_t	i;
+
+	i = 0;
+	while (src[i])
+	{
+		ft_rewrite(&src[i], '/');
+		i++;
+	}
+}
+
+size_t		ft_arrlen(char **str)
+{
+	size_t	i;
+
+	i = 0;
+	while(str[i])
+		i++;
+	return (i);
+}
+
+char	**ft_add_present_dir(char **dst)
+{
+	size_t	arrsize;
+	char	tmp[1024];
+
+	arrsize = ft_arrlen(dst);
+	getcwd(tmp, 1024);
+	dst = ft_rewrite_arr(dst, arrsize + 1);
+	dst[arrsize] = ft_strdup(tmp);
+	dst[arrsize + 1] = ft_strdup("");
+	return (dst);
+}
+
 static char	**ft_get_path(t_all *all)
 {
 	t_dictionary	*buf;
@@ -50,6 +85,8 @@ static char	**ft_get_path(t_all *all)
 	if (!buf)
 		return (NULL);
 	dst = ft_split(buf->value, ':');
+	ft_add_slash(dst);
+	dst = ft_add_present_dir(dst);
 	return (dst);
 }
 
@@ -59,14 +96,12 @@ static int	ft_executin_command(t_all *all, t_list *parser,
 	int		fd;
 	char	*tmp;
 
-	ft_rewrite(&path, '/');
 	tmp = ft_strjoin(path, command);
 	fd = open(tmp, O_RDONLY);
 	if (fd == -1)
 		return (-1);
 	close(fd);
 	execve(tmp, ((t_parser *)parser->content)->arg, ft_get_env(all));
-	free(path);
 	free(tmp);
 	return (0);
 }
@@ -82,34 +117,43 @@ int	ft_search_fork_commands(t_all *all, t_list *parser, char *command)
 		exit(0);
 	while (path[++i])
 	{
-		ft_rewrite(&path[i], '/');
 		if (!ft_executin_command(all, parser, path[i], command))
 			exit(0);
+		free(path[i]);
 	}
 	free(path);
 	exit(0);
 }
 
-void	ft_fd_replacement(t_all *all, t_list *begin, t_list *parser)
+void	ft_fd_replacement(t_list *begin, t_list *previous, t_list *present)
 {
-	if (begin == parser)
+	if (begin == present)
 	{
-		dup2(((t_parser *)parser->content)->pipefd[FD_W], FD_W);
-		dup2(((t_parser *)parser->next->content)->pipefd[FD_R], ((t_parser *)parser->content)->pipefd[FD_R]);
+		dup2(((t_parser *)present->content)->pipefd[FD_W], FD_W);
 	}
-	else if (parser->next)
+	else if (present->next != NULL)
 	{
-
+		dup2(((t_parser *)previous->content)->pipefd[FD_R], FD_R);
+		dup2(((t_parser *)present->content)->pipefd[FD_W], FD_W);
 	}
 	else
 	{
-		dup2(FD_W, all->dupfdw);
+		dup2(((t_parser *)previous->content)->pipefd[FD_R], FD_R);
 	}
+}
+
+t_list	*ft_search_previous(t_list *begin, t_list *present)
+{
+	if (begin == present)
+		return (begin);
+	while (begin->next != present)
+		begin = begin->next;
+	return (begin);
 }
 
 int	ft_search_commands(t_all *all, t_list *parser)
 {
-	ft_fd_replacement(all, all->parser, parser);
+	ft_fd_replacement(all->parser,  ft_search_previous(all->parser, parser), parser);
 	if (!ft_search_builtin_commands(all, parser,
 			((t_parser *)parser->content)->arg[0]))
 		exit(0);

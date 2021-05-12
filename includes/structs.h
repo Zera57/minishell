@@ -6,7 +6,7 @@
 /*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 20:01:53 by larlena           #+#    #+#             */
-/*   Updated: 2021/05/05 19:14:15 by larlena          ###   ########.fr       */
+/*   Updated: 2021/05/12 12:41:36 by larlena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,6 @@ typedef struct s_all
 	t_dictionary		*env;
 	t_dllist			*history;
 	t_list				*parser;
-	int					dupfdr;
-	int					dupfdw;
 }						t_all;
 
 #endif
