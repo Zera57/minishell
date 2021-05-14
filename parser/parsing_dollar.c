@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_dollar.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hapryl <hapryl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/22 17:28:42 by larlena           #+#    #+#             */
-/*   Updated: 2021/05/06 15:22:46 by larlena          ###   ########.fr       */
+/*   Updated: 2021/05/14 13:36:46 by hapryl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ static char	*ft_dollar_errno(t_all *all, char *buf)
 	char	*result;
 	char	*err;
 
+	printf("%d\n", errno);
 	err = ft_itoa(errno);
 	result = ft_strjoin(err, &buf[1]);
 	free(err);

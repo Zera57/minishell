@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hapryl <hapryl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/06 20:14:26 by hapryl            #+#    #+#             */
-/*   Updated: 2021/04/26 10:52:37 by larlena          ###   ########.fr       */
+/*   Updated: 2021/05/14 13:40:40 by hapryl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,7 @@ void	ft_echo(t_all *all, t_parser *parser)
 	i = 1;
 	all->i++;
 	if (parser->arg[1] && !ft_strcmp(parser->arg[1], "-n"))
-	{
 		ft_echo_n(parser);
-		exit(0);
-	}
 	else
 		while (parser->arg[i])
 		{
