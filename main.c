@@ -3,14 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hapryl <hapryl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 11:59:49 by hapryl            #+#    #+#             */
-/*   Updated: 2021/05/12 12:59:40 by larlena          ###   ########.fr       */
+/*   Updated: 2021/05/14 16:56:40 by hapryl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/minishell.h"
+
+void	f(int a)
+{
+	a++;
+	write(1, "\n(っ＾▿＾)۶🍸🌟🍺٩(˘◡˘ ): ", ft_strlen("\n(っ＾▿＾)۶🍸🌟🍺٩(˘◡˘ ): "));
+	
+}
 
 int main(int argc, char **argv, char **env)
 {
@@ -20,6 +27,7 @@ int main(int argc, char **argv, char **env)
 	{
 		ft_error("", "", "");
 	}
+	signal(SIGINT, &f);
 	argc = (int)argv[1][1];
 	all.history = ft_dllstnew(ft_strdup(""));
 	all.i = 0;

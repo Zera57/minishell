@@ -6,7 +6,7 @@
 /*   By: hapryl <hapryl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/22 17:28:42 by larlena           #+#    #+#             */
-/*   Updated: 2021/05/14 13:36:46 by hapryl           ###   ########.fr       */
+/*   Updated: 2021/05/14 17:08:00 by hapryl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,15 +45,17 @@ static int	ft_check_value(t_all *all, t_list *parser,
 	return (0);
 }
 
-static char	*ft_dollar_errno(t_all *all, char *buf)
+static char	*ft_dollar_err(t_all *all, char *buf)
 {
 	char	*result;
-	char	*err;
+	char	*errc;
 
-	printf("%d\n", errno);
-	err = ft_itoa(errno);
-	result = ft_strjoin(err, &buf[1]);
-	free(err);
+	// ft_putstr_fd( "error: ", 1);
+	// ft_putnbr_fd(err, 1);
+	// ft_putstr_fd("\n", 1);
+	errc = ft_itoa(err);
+	result = ft_strjoin(errc, &buf[1]);
+	free(errc);
 	free(buf);
 	all->j += ft_strlen(result);
 	return (result);
@@ -68,7 +70,7 @@ void	ft_parsing_dollar(t_all *all, t_list *parser, const char *str)
 	all->j++;
 	buf = ft_get_value_name(&str[all->j]);
 	if (buf[0] == '?')
-		result = ft_dollar_errno(all, buf);
+		result = ft_dollar_err(all, buf);
 	else
 	{
 		tmp = ft_dic_get_value(all->env, buf);
