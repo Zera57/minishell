@@ -6,7 +6,7 @@
 /*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/20 11:19:03 by larlena           #+#    #+#             */
-/*   Updated: 2021/05/12 13:02:37 by larlena          ###   ########.fr       */
+/*   Updated: 2021/05/15 15:53:21 by larlena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,15 @@ void 	ft_one_command_execution(t_all *all, pid_t *pid)
 		{
 			ft_search_fork_commands(all, all->parser,
 				((t_parser *)all->parser->content)->arg[0]);
-			exit (0);
+			exit (127);
 		}
 		else
+		{
 			waitpid(*pid, &err, 0);
+			err = WEXITSTATUS(err);
+			if (err == 127)
+				ft_error("ASSZATshell", (((t_parser *)all->parser->content)->arg[0]), "command not found");
+		}
 	}
 }
 
@@ -61,6 +66,9 @@ void	ft_multi_command_exectuion(t_all *all, pid_t *pid)
 	{
 		waitpid(pid[++i], &err, 0);
 		close(((t_parser *)buf->content)->pipefd[FD_R]);
+		err = WEXITSTATUS(err);
+		if (err == 127)
+			ft_error("ASSZATshell", ((t_parser *)buf->content)->arg[0], "command not found");
 		buf = buf->next;
 	}
 }

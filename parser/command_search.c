@@ -6,7 +6,7 @@
 /*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 17:30:02 by larlena           #+#    #+#             */
-/*   Updated: 2021/05/12 13:29:53 by larlena          ###   ########.fr       */
+/*   Updated: 2021/05/15 15:50:12 by larlena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ static int	ft_executin_command(t_all *all, t_list *parser,
 	return (0);
 }
 
-int	ft_search_fork_commands(t_all *all, t_list *parser, char *command)
+void	ft_search_fork_commands(t_all *all, t_list *parser, char *command)
 {
 	char	**path;
 	size_t	i;
@@ -122,7 +122,6 @@ int	ft_search_fork_commands(t_all *all, t_list *parser, char *command)
 		free(path[i]);
 	}
 	free(path);
-	exit(0);
 }
 
 void	ft_fd_replacement(t_list *begin, t_list *previous, t_list *present)
@@ -156,8 +155,9 @@ int	ft_search_commands(t_all *all, t_list *parser)
 	ft_fd_replacement(all->parser,  ft_search_previous(all->parser, parser), parser);
 	if (!ft_search_builtin_commands(all, parser,
 			((t_parser *)parser->content)->arg[0]))
-		exit(0);
+		exit(err);
 	ft_search_fork_commands(all, parser,
 		((t_parser *)parser->content)->arg[0]);
+	exit(127);
 	return (0);
 }
