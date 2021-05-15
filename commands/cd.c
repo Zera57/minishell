@@ -6,7 +6,7 @@
 /*   By: hapryl <hapryl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/06 16:50:23 by hapryl            #+#    #+#             */
-/*   Updated: 2021/04/26 17:28:09 by hapryl           ###   ########.fr       */
+/*   Updated: 2021/05/15 17:48:46 by hapryl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,10 @@ void	ft_cd(t_all *all, t_parser *parser)
 	else
 		apath = ft_strdup(parser->arg[1]);
 	if (chdir(apath) != 0)
+	{
 		ft_error("minishell: cd:", "No such file or directory", parser->arg[1]);
+		err = 1;
+	}
 	else
 	{
 		getcwd(pwd, 1024);

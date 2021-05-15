@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   termcap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hapryl <hapryl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 16:55:52 by hapryl            #+#    #+#             */
-/*   Updated: 2021/04/26 14:53:15 by larlena          ###   ########.fr       */
+/*   Updated: 2021/05/15 16:14:48 by hapryl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int		ft_enter(t_all *all)
 	termcap_off();
 	ft_parser(all, &all->parser, all->str);
 	termcap_on();
-	ft_bzero(all->str, all->i);
+	ft_bzero(all->str, 2056);
 	all->i = 0;
 	write(1, "(っ＾▿＾)۶🍸🌟🍺٩(˘◡˘ ): ", ft_strlen("(っ＾▿＾)۶🍸🌟🍺٩(˘◡˘ ): "));
 	return (0);

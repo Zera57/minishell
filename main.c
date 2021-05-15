@@ -6,7 +6,7 @@
 /*   By: hapryl <hapryl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 11:59:49 by hapryl            #+#    #+#             */
-/*   Updated: 2021/05/14 16:56:40 by hapryl           ###   ########.fr       */
+/*   Updated: 2021/05/15 17:36:09 by hapryl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,11 @@ void	f(int a)
 {
 	a++;
 	write(1, "\n(っ＾▿＾)۶🍸🌟🍺٩(˘◡˘ ): ", ft_strlen("\n(っ＾▿＾)۶🍸🌟🍺٩(˘◡˘ ): "));
-	
+}
+
+void	f2(int a)
+{
+	a++;
 }
 
 int main(int argc, char **argv, char **env)
@@ -28,6 +32,7 @@ int main(int argc, char **argv, char **env)
 		ft_error("", "", "");
 	}
 	signal(SIGINT, &f);
+	signal(SIGQUIT, &f2);
 	argc = (int)argv[1][1];
 	all.history = ft_dllstnew(ft_strdup(""));
 	all.i = 0;
@@ -38,9 +43,7 @@ int main(int argc, char **argv, char **env)
 	termcap_on();
 	write(1, "(っ＾▿＾)۶🍸🌟🍺٩(˘◡˘ ): ", ft_strlen("(っ＾▿＾)۶🍸🌟🍺٩(˘◡˘ ): "));
 	while (strcmp(all.buff, "\4"))
-	{
 		ft_analize_string(&all);
-	}
 	return (0);
 }
 
