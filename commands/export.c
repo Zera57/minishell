@@ -6,7 +6,7 @@
 /*   By: hapryl <hapryl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 11:42:09 by hapryl            #+#    #+#             */
-/*   Updated: 2021/05/17 13:47:25 by hapryl           ###   ########.fr       */
+/*   Updated: 2021/05/17 17:17:59 by hapryl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,7 @@ void	ft_export(t_all *all)
 	int		i;
 
 	i = 0;
+	all->err = 0;
 	ft_get_env(all);
 	sort_by_name(all, ft_dic_lenght(all->env));
 	while (all->envc[i])

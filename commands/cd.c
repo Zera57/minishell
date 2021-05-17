@@ -6,7 +6,7 @@
 /*   By: hapryl <hapryl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/06 16:50:23 by hapryl            #+#    #+#             */
-/*   Updated: 2021/05/17 13:46:37 by hapryl           ###   ########.fr       */
+/*   Updated: 2021/05/17 17:17:19 by hapryl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void	ft_cd(t_all *all, t_parser *parser)
 		ft_dic_get_value(all->env, "OLDPWD")->value
 		= ft_dic_get_value(all->env, "PWD")->value;
 		ft_dic_get_value(all->env, "PWD")->value = ft_strdup(pwd);
+		all->err = 0;
 	}
 	free(apath);
 }

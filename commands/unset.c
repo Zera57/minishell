@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hapryl <hapryl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 12:25:05 by hapryl            #+#    #+#             */
-/*   Updated: 2021/05/17 14:11:58 by larlena          ###   ########.fr       */
+/*   Updated: 2021/05/17 17:18:47 by hapryl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	ft_unset(t_all *all, t_parser *parser)
 	int	i;
 
 	i = 1;
+	all->err = 0;
 	while (parser->arg[i])
 	{
 		if (!validate_name(parser->arg[i]))
