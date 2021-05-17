@@ -6,7 +6,7 @@
 /*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 17:41:33 by hapryl            #+#    #+#             */
-/*   Updated: 2021/04/26 17:21:07 by larlena          ###   ########.fr       */
+/*   Updated: 2021/05/17 12:18:20 by larlena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ int	ft_redirect(t_all *all, t_parser *parser)
 	char	*path;
 
 	path = get_next_word(all);
-	parser->fd_w = open(path, O_RDWR | O_CREAT | O_TRUNC);
-	if (parser->fd_w < 0)
+	parser->redfd[FD_W] = open(path, O_RDWR | O_CREAT | O_TRUNC, 0777);
+	if (parser->redfd[FD_W] < 0)
 	{
 		printf("Error");
 		return (1);
@@ -55,8 +55,8 @@ int	ft_double_redirect(t_all *all, t_parser *parser)
 
 	all->j++;
 	path = get_next_word(all);
-	parser->fd_w = open(path, O_RDWR | O_CREAT | O_TRUNC);
-	if (parser->fd_w < 0)
+	parser->redfd[FD_W] = open(path, O_RDWR | O_CREAT | O_TRUNC, 0777);
+	if (parser->redfd[FD_W] < 0)
 	{
 		printf("Error");
 		return (1);
@@ -69,8 +69,8 @@ int	ft_reverse_redirect(t_all *all, t_parser *parser)
 	char	*path;
 
 	path = get_next_word(all);
-	parser->fd_r = open(path, O_RDWR | O_CREAT | O_TRUNC);
-	if (parser->fd_r < 0)
+	parser->redfd[FD_R] = open(path, O_RDWR | O_CREAT | O_TRUNC, 0777);
+	if (parser->redfd[FD_R] < 0)
 	{
 		printf("Error");
 		return (1);
@@ -80,6 +80,7 @@ int	ft_reverse_redirect(t_all *all, t_parser *parser)
 
 int	ft_redirects(t_all *all, t_parser *parser)
 {
+	ft_check_to_syntax_error(&all->str[all->j], &all->syntax_error);
 	if (all->str[all->j] == '>' && all->str[all->j + 1] == '>')
 		ft_double_redirect(all, parser);
 	else if (all->str[all->j] == '>')

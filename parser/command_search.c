@@ -6,7 +6,7 @@
 /*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 17:30:02 by larlena           #+#    #+#             */
-/*   Updated: 2021/05/15 15:50:12 by larlena          ###   ########.fr       */
+/*   Updated: 2021/05/17 12:57:03 by larlena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,35 +58,50 @@ size_t		ft_arrlen(char **str)
 	size_t	i;
 
 	i = 0;
-	while(str[i])
+	while (str[i])
 		i++;
 	return (i);
 }
 
-char	**ft_add_present_dir(char **dst)
+char	**ft_add_emty_line(char **src)
 {
+	char	**dst;
 	size_t	arrsize;
-	char	tmp[1024];
 
-	arrsize = ft_arrlen(dst);
-	getcwd(tmp, 1024);
-	dst = ft_rewrite_arr(dst, arrsize + 1);
-	dst[arrsize] = ft_strdup(tmp);
-	dst[arrsize + 1] = ft_strdup("");
+	arrsize = ft_arrlen(src);
+	dst = ft_rewrite_arr(src, arrsize);
+	dst[arrsize] = ft_strdup("");
 	return (dst);
 }
 
-static char	**ft_get_path(t_all *all)
+char	**ft_add_present_dir(void)
+{
+	char	**dst;
+	char	tmp[1024];
+
+	getcwd(tmp, 1024);
+	dst = ft_calloc(sizeof(char *), 2);
+	*dst = ft_strdup(tmp);
+	ft_add_slash(dst);
+	return (dst);
+}
+
+static char	**ft_get_path(t_all *all, char *command)
 {
 	t_dictionary	*buf;
 	char			**dst;
 
-	buf = ft_dic_get_value(all->env, "PATH");
-	if (!buf)
-		return (NULL);
-	dst = ft_split(buf->value, ':');
-	ft_add_slash(dst);
-	dst = ft_add_present_dir(dst);
+	if (!ft_strncmp("./", command, 2) || !ft_strncmp("../", command, 3))
+		dst = ft_add_present_dir();
+	else
+	{
+		buf = ft_dic_get_value(all->env, "PATH");
+		if (!buf)
+			return (NULL);
+		dst = ft_split(buf->value, ':');
+		ft_add_slash(dst);
+		dst = ft_add_emty_line(dst);
+	}
 	return (dst);
 }
 
@@ -112,7 +127,7 @@ void	ft_search_fork_commands(t_all *all, t_list *parser, char *command)
 	size_t	i;
 
 	i = -1;
-	path = ft_get_path(all);
+	path = ft_get_path(all, command);
 	if (!path)
 		exit(0);
 	while (path[++i])
@@ -128,16 +143,32 @@ void	ft_fd_replacement(t_list *begin, t_list *previous, t_list *present)
 {
 	if (begin == present)
 	{
-		dup2(((t_parser *)present->content)->pipefd[FD_W], FD_W);
+		if (((t_parser *)present->content)->redfd[FD_R])
+			dup2(((t_parser *)present->content)->redfd[FD_R], FD_R);
+		if (((t_parser *)present->content)->redfd[FD_W])
+			dup2(((t_parser *)present->content)->redfd[FD_W], FD_W);
+		else
+			dup2(((t_parser *)present->content)->pipefd[FD_W], FD_W);
 	}
 	else if (present->next != NULL)
 	{
-		dup2(((t_parser *)previous->content)->pipefd[FD_R], FD_R);
-		dup2(((t_parser *)present->content)->pipefd[FD_W], FD_W);
+		if (((t_parser *)present->content)->redfd[FD_R])
+			dup2(((t_parser *)present->content)->redfd[FD_R], FD_R);
+		else
+			dup2(((t_parser *)previous->content)->pipefd[FD_R], FD_R);
+		if (((t_parser *)present->content)->redfd[FD_W])
+			dup2(((t_parser *)present->content)->redfd[FD_W], FD_W);
+		else
+			dup2(((t_parser *)present->content)->pipefd[FD_W], FD_W);
 	}
 	else
 	{
-		dup2(((t_parser *)previous->content)->pipefd[FD_R], FD_R);
+		if (((t_parser *)present->content)->redfd[FD_W])
+			dup2(((t_parser *)present->content)->redfd[FD_W], FD_W);
+		if (((t_parser *)present->content)->redfd[FD_R])
+			dup2(((t_parser *)present->content)->redfd[FD_R], FD_R);
+		else
+			dup2(((t_parser *)previous->content)->pipefd[FD_R], FD_R);
 	}
 }
 

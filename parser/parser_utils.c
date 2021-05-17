@@ -6,7 +6,7 @@
 /*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/06 17:28:15 by larlena           #+#    #+#             */
-/*   Updated: 2021/05/06 18:33:00 by larlena          ###   ########.fr       */
+/*   Updated: 2021/05/17 12:30:21 by larlena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,10 @@ void	ft_clear_parser(t_list *parser)
 	while (parser)
 	{
 		tmp = parser->next;
+		if (((t_parser *)parser->content)->redfd[FD_R])
+			close(((t_parser *)parser->content)->redfd[FD_R]);
+		if (((t_parser *)parser->content)->redfd[FD_W])
+			close(((t_parser *)parser->content)->redfd[FD_W]);
 		ft_free(((t_parser *)parser->content)->arg);
 		free(parser->content);
 		free(parser);
@@ -31,11 +35,14 @@ void	ft_create_new_list_parser(t_list **parser)
 	ft_lstadd_back(parser, ft_lstnew(ft_malloc(sizeof(t_parser))));
 	((t_parser *)ft_lstlast(*parser)->content)->arg = ft_calloc(sizeof(char *), 2);
 	((t_parser *)ft_lstlast(*parser)->content)->arg[0] = ft_calloc(sizeof(char), 1);
+	((t_parser *)ft_lstlast(*parser)->content)->redfd[FD_R] = 0;
+	((t_parser *)ft_lstlast(*parser)->content)->redfd[FD_W] = 0;
 }
 
 void	ft_initialization_struct_parser(t_all *all, t_list **parser)
 {
 	all->ln = 0;
+	all->syntax_error = 0;
 	ft_create_new_list_parser(parser);
 	(*parser)->next = NULL;
 }
@@ -76,4 +83,14 @@ void	ft_skip_space(const char *str, int *i)
 int	ft_isspecial_symbols(char c)
 {
 	return (c == '|' || c == '<' || c == '>' || c == ';');
+}
+
+void	ft_check_to_syntax_error(const char *str, int *syntax_error)
+{
+	int		i;
+	
+	i = 0;
+	ft_skip_space(str, &i);
+	if (ft_isspecial_symbols(str[i + 1]))
+		*syntax_error += 1;
 }

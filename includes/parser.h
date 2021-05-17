@@ -6,7 +6,7 @@
 /*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/06 17:01:48 by larlena           #+#    #+#             */
-/*   Updated: 2021/05/15 15:51:57 by larlena          ###   ########.fr       */
+/*   Updated: 2021/05/15 18:05:09 by larlena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,5 +46,7 @@ int		ft_search_builtin_commands(t_all *all, t_list *parser, char *command);
 
 int		ft_struct_pipe(t_list *parser);
 t_list	*ft_search_previous(t_list *begin, t_list *present);
+
+void	ft_check_to_syntax_error(const char *str, int *syntax_error);
 
 #endif
