@@ -6,7 +6,7 @@
 /*   By: hapryl <hapryl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 17:41:33 by hapryl            #+#    #+#             */
-/*   Updated: 2021/05/17 16:54:38 by hapryl           ###   ########.fr       */
+/*   Updated: 2021/05/17 17:06:48 by hapryl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ char	*get_next_word(t_all *all)
 		all->j++;
 	if (all->j == i)
 	{
-		//error
-		printf("error\n");
+		ft_error("minishel", "parse error near `\n'", "");
+		all->err = 258;
 	}
 	str = ft_malloc(all->j - i + 1);
 	ft_strlcpy(str, &all->str[i], all->j - i + 1);
