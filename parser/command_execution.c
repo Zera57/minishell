@@ -6,7 +6,7 @@
 /*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/20 11:19:03 by larlena           #+#    #+#             */
-/*   Updated: 2021/05/17 14:12:09 by larlena          ###   ########.fr       */
+/*   Updated: 2021/05/17 14:33:22 by larlena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,14 @@ static pid_t	protected_fork(void)
 	return (buf);
 }
 
+void	ft_fd_red_replacement(t_parser *parser)
+{
+	if (parser->redfd[FD_W])
+		dup2(parser->redfd[FD_W], FD_W);
+	if (parser->redfd[FD_R])
+		dup2(parser->redfd[FD_R], FD_R);
+}
+
 void 	ft_one_command_execution(t_all *all, pid_t *pid)
 {
 	int		fd_w;
@@ -29,6 +37,7 @@ void 	ft_one_command_execution(t_all *all, pid_t *pid)
 	
 	fd_w = dup(FD_W);
 	fd_r = dup(FD_R);
+	ft_fd_red_replacement(all->parser->content);
 	if (ft_search_builtin_commands(all, all->parser,
 			((t_parser *)all->parser->content)->arg[0]))
 	{
@@ -47,6 +56,10 @@ void 	ft_one_command_execution(t_all *all, pid_t *pid)
 				ft_error("ASSZATshell", (((t_parser *)all->parser->content)->arg[0]), "command not found");
 		}
 	}
+	dup2(fd_w, FD_W);
+	dup2(fd_r, FD_R);
+	close(fd_w);
+	close(fd_r);
 }
 
 void	ft_multi_command_exectuion(t_all *all, pid_t *pid)
@@ -91,7 +104,7 @@ void	ft_command_execution(t_all *all)
 			ft_multi_command_exectuion(all, pid);
 	}
 	else
-		ft_error("ASSZATshall", "syntax error", "");
+		ft_error("ASSZATshell", "syntax error", "");
 	ft_clear_parser(all->parser);
 	free(pid);
 	all->parser = NULL;
