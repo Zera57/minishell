@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_redirects.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hapryl <hapryl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 17:41:33 by hapryl            #+#    #+#             */
-/*   Updated: 2021/05/17 16:34:07 by larlena          ###   ########.fr       */
+/*   Updated: 2021/05/17 16:54:38 by hapryl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ char	*get_next_word(t_all *all)
 	}
 	str = ft_malloc(all->j - i + 1);
 	ft_strlcpy(str, &all->str[i], all->j - i + 1);
+	all->j--;
 	return (str);
 }
 
