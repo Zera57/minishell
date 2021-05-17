@@ -6,7 +6,7 @@
 /*   By: hapryl <hapryl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 12:25:05 by hapryl            #+#    #+#             */
-/*   Updated: 2021/05/15 17:47:11 by hapryl           ###   ########.fr       */
+/*   Updated: 2021/05/17 13:47:36 by hapryl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	ft_unset(t_all *all, t_parser *parser)
 	{
 		if (validate_name(parser->arg[i]))
 		{
-			err = 1;
+			all->err = 1;
 			ft_error("minishell unset:", "not a valid identifier:", parser->arg[i]);
 		}
 		else

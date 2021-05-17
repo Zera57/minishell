@@ -6,7 +6,7 @@
 /*   By: hapryl <hapryl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 11:42:09 by hapryl            #+#    #+#             */
-/*   Updated: 2021/05/15 17:47:22 by hapryl           ###   ########.fr       */
+/*   Updated: 2021/05/17 13:47:25 by hapryl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,14 +48,14 @@ int	validate_name(char *str)
 	i = 0;
 	if (!ft_isalpha(str[0]) && str[0] != '_')
 	{
-		err = 1;
+		all.err = 1;
 		return (ft_error("export", "not an identifier", str));
 	}
 	while (str[i])
 	{
 		if (!ft_isalnum(str[i]) && str[i] != '_')
 		{
-			err = 1;
+			all.err = 1;
 			return (ft_error("export", "not an identifier", str));
 		}
 		i++;

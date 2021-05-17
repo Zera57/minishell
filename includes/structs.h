@@ -3,15 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hapryl <hapryl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 20:01:53 by larlena           #+#    #+#             */
-/*   Updated: 2021/05/15 17:58:10 by larlena          ###   ########.fr       */
+/*   Updated: 2021/05/17 14:06:46 by hapryl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTS_H
 # define STRUCTS_H
+
+# include "../Libft/libft.h"
 
 typedef struct s_dllist
 {
@@ -47,6 +49,7 @@ typedef struct s_all
 	t_dllist			*history;
 	t_list				*parser;
 	int					syntax_error;
+	int					err;
 }						t_all;
 
 #endif

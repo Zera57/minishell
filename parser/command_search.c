@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   command_search.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hapryl <hapryl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 17:30:02 by larlena           #+#    #+#             */
-/*   Updated: 2021/05/17 12:57:03 by larlena          ###   ########.fr       */
+/*   Updated: 2021/05/17 13:50:56 by hapryl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -186,7 +186,7 @@ int	ft_search_commands(t_all *all, t_list *parser)
 	ft_fd_replacement(all->parser,  ft_search_previous(all->parser, parser), parser);
 	if (!ft_search_builtin_commands(all, parser,
 			((t_parser *)parser->content)->arg[0]))
-		exit(err);
+		exit(all->err);
 	ft_search_fork_commands(all, parser,
 		((t_parser *)parser->content)->arg[0]);
 	exit(127);
