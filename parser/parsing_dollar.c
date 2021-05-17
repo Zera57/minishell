@@ -6,7 +6,7 @@
 /*   By: hapryl <hapryl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/22 17:28:42 by larlena           #+#    #+#             */
-/*   Updated: 2021/05/14 17:08:00 by hapryl           ###   ########.fr       */
+/*   Updated: 2021/05/17 14:03:56 by hapryl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static char	*ft_dollar_err(t_all *all, char *buf)
 	// ft_putstr_fd( "error: ", 1);
 	// ft_putnbr_fd(err, 1);
 	// ft_putstr_fd("\n", 1);
-	errc = ft_itoa(err);
+	errc = ft_itoa(all->err);
 	result = ft_strjoin(errc, &buf[1]);
 	free(errc);
 	free(buf);
