@@ -6,7 +6,7 @@
 /*   By: hapryl <hapryl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 11:59:49 by hapryl            #+#    #+#             */
-/*   Updated: 2021/05/15 17:36:09 by hapryl           ###   ########.fr       */
+/*   Updated: 2021/05/17 12:28:25 by hapryl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,13 @@ void	f2(int a)
 int main(int argc, char **argv, char **env)
 {
 	t_all			all;
+	t_dictionary	*dic;
+	char			*temp;
 	
 	if (argc != 1)
 	{
-		ft_error("", "", "");
+		ft_error("minishell", argv[1], "No such file or directory");
+		exit(127);
 	}
 	signal(SIGINT, &f);
 	signal(SIGQUIT, &f2);
@@ -39,7 +42,10 @@ int main(int argc, char **argv, char **env)
 	all.env = NULL;
 	all.envc = NULL;
 	ft_set_env(&all, env);
-	// signal(SIGINT, );
+	dic = ft_dic_get_value(all.env, "SHLVL");
+	temp = ft_itoa(ft_atoi(dic->value) + 1);
+	free(dic->value);
+	dic->value = temp;
 	termcap_on();
 	write(1, "(っ＾▿＾)۶🍸🌟🍺٩(˘◡˘ ): ", ft_strlen("(っ＾▿＾)۶🍸🌟🍺٩(˘◡˘ ): "));
 	while (strcmp(all.buff, "\4"))
