@@ -6,7 +6,7 @@
 /*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/20 11:19:03 by larlena           #+#    #+#             */
-/*   Updated: 2021/05/17 12:29:46 by larlena          ###   ########.fr       */
+/*   Updated: 2021/05/17 14:08:55 by larlena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,11 @@ static pid_t	protected_fork(void)
 
 void 	ft_one_command_execution(t_all *all, pid_t *pid)
 {
+	int		fd_w;
+	int		fd_r;
+	
+	fd_w = dup(FD_W);
+	fd_r = dup(FD_R);
 	if (ft_search_builtin_commands(all, all->parser,
 			((t_parser *)all->parser->content)->arg[0]))
 	{
