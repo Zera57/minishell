@@ -6,7 +6,7 @@
 /*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/06 17:01:48 by larlena           #+#    #+#             */
-/*   Updated: 2021/05/15 18:05:09 by larlena          ###   ########.fr       */
+/*   Updated: 2021/05/18 16:56:54 by larlena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void	ft_initialization_struct_parser(t_all *all, t_list **parser);
 
 void	ft_parsing_double_quotes(t_all *all, t_list *parser, const char *str);
 void	ft_parsing_single_quotes(t_all *all, t_list *parser, const char *str);
+int		ft_parsing_shielding(t_all *all, t_list *parser, const char *str);
 void	ft_parsing_dollar(t_all *all, t_list *parser, const char *str);
 void	ft_parsing_space(t_all *all, t_list *parser, const char *str);
 int     ft_parsing_pipe(t_all *all, t_list **parser, const char *str);
@@ -48,5 +49,6 @@ int		ft_struct_pipe(t_list *parser);
 t_list	*ft_search_previous(t_list *begin, t_list *present);
 
 void	ft_check_to_syntax_error(const char *str, int *syntax_error);
+int		ft_return_error(char *command, char *text, char *arg);
 
 #endif

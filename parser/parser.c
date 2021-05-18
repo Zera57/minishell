@@ -6,7 +6,7 @@
 /*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/06 16:44:47 by larlena           #+#    #+#             */
-/*   Updated: 2021/05/18 14:44:27 by larlena          ###   ########.fr       */
+/*   Updated: 2021/05/18 18:42:37 by larlena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ int	ft_check_to_syntax_error_semicolon(const char *str)
 	{
 		if (ft_isspecial_symbols(str[i]))
 		{
+			if (str[i] == '>' && str[i + 1] == '>')
+				i++;
 			if (flag)
 				return (ft_return_error("ASSZATshell", "syntax shell", ""));
 			flag = i;
@@ -54,6 +56,8 @@ int	ft_parsing_special_symbol(t_all *all, t_list **parser, const char *str)
 		ft_parsing_double_quotes(all, ft_lstlast(*parser), str);
 	else if (str[all->j] == '\'')
 		ft_parsing_single_quotes(all, ft_lstlast(*parser), str);
+	else if (str[all->j] == '\\')
+		ft_parsing_shielding(all, ft_lstlast(*parser), str);
 	else if (str[all->j] == ' ')
 		ft_parsing_space(all, ft_lstlast(*parser), str);
 	else if (str[all->j] == '$')
@@ -73,5 +77,7 @@ int	ft_parser(t_all *all, t_list **parser, const char *str)
 			ft_parsing_special_symbol(all, parser, str);
 		ft_command_execution(all);
 	}
+	else
+		return (1);
 	return (0);
 }

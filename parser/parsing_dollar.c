@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_dollar.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hapryl <hapryl@student.42.fr>              +#+  +:+       +#+        */
+/*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/22 17:28:42 by larlena           #+#    #+#             */
-/*   Updated: 2021/05/18 14:10:48 by hapryl           ###   ########.fr       */
+/*   Updated: 2021/05/18 18:13:38 by larlena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static char	*ft_get_value_name(const char *str)
 	char	*dst;
 
 	i = 0;
-	while (str[i] != ' ' && str[i] && !ft_isspecial_symbols(str[i]))
+	while (str[i] != ' ' && str[i] && !ft_isspecial_symbols(str[i]) && str[i] != '\\' && str[i] != '"' && str[i] != '$')
 		i++;
 	dst = calloc(sizeof(char), i + 1);
 	ft_memcpy(dst, str, i);
@@ -35,8 +35,13 @@ static int	ft_check_value(t_all *all, t_list *parser,
 		return (1);
 	}
 	free(buf);
-	while (ft_isalnum(all->str[all->j]) || all->str[all->j] == '_')
+	if (ft_isdigit(all->str[all->j]))
 		all->j++;
+	else
+	{
+		while (ft_isalnum(all->str[all->j]) || all->str[all->j] == '_')
+			all->j++;
+	}
 	if (tmp == NULL)
 	{
 		return (1);
@@ -81,5 +86,4 @@ void	ft_parsing_dollar(t_all *all, t_list *parser, const char *str)
 	all->j--;
 	free(((t_parser *)parser->content)->arg[all->ln]);
 	((t_parser *)parser->content)->arg[all->ln] = result;
-	all->j--;
 }
