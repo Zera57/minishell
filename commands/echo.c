@@ -6,27 +6,13 @@
 /*   By: hapryl <hapryl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/06 20:14:26 by hapryl            #+#    #+#             */
-/*   Updated: 2021/05/17 18:13:50 by hapryl           ###   ########.fr       */
+/*   Updated: 2021/05/18 12:08:25 by hapryl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/commands.h"
 
-void	ft_echo_n(t_parser *parser)
-{
-	int i;
-
-	i = 2;
-	while (parser->arg[i])
-	{
-		if (i != 2)
-			ft_putchar_fd(' ', 1);
-		ft_putstr_fd(parser->arg[i], 1);
-		i++;
-	}
-}
-
-static int	ft_flag(char *flag)
+static int	ft_checkflag(char *flag)
 {
 	int i;
 
@@ -40,23 +26,35 @@ static int	ft_flag(char *flag)
 	return (0);
 }
 
-void	ft_echo(t_all *all, t_parser *parser)
+static int	ft_getflag(t_parser *parser)
 {
 	int	i;
 
-	i = 1;
-	if (parser->arg[1] && !ft_flag(parser->arg[1]))
-		ft_echo_n(parser);
-	else
+	i = 0;
+	while (parser->arg[++i])
 	{
-		while (parser->arg[i])
-		{
-			if (i != 1)
-				ft_putchar_fd(' ', 1);
-			ft_putstr_fd(parser->arg[i], 1);
-			i++;
-		}
-		ft_putchar('\n');
+		if (ft_checkflag(parser->arg[i]))
+			return (--i);
 	}
+	return (0);
+}
+
+void		ft_echo(t_all *all, t_parser *parser)
+{
+	int	i;
+	int flag;
+
+	i = ft_getflag(parser);
+	flag = 0;
+	if (i == 0)
+		flag = 1;
+	while (parser->arg[++i])
+	{
+		if (i != 1)
+			ft_putchar_fd(' ', 1);
+		ft_putstr_fd(parser->arg[i], 1);
+	}
+	if (flag == 1)
+		ft_putchar('\n');
 	all->err = 0;
 }
