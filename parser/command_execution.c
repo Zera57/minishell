@@ -6,7 +6,7 @@
 /*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/20 11:19:03 by larlena           #+#    #+#             */
-/*   Updated: 2021/05/17 14:33:22 by larlena          ###   ########.fr       */
+/*   Updated: 2021/05/17 17:10:16 by larlena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,8 @@ void	ft_multi_command_exectuion(t_all *all, pid_t *pid)
 		all->err = WEXITSTATUS(all->err);
 		if (all->err == 127)
 			ft_error("ASSZATshell", ((t_parser *)buf->content)->arg[0], "command not found");
+		if (buf->next)
+			all->err = 0;
 		buf = buf->next;
 	}
 }

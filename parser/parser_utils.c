@@ -6,7 +6,7 @@
 /*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/06 17:28:15 by larlena           #+#    #+#             */
-/*   Updated: 2021/05/17 12:30:21 by larlena          ###   ########.fr       */
+/*   Updated: 2021/05/17 18:43:07 by larlena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,6 @@ void	ft_check_to_syntax_error(const char *str, int *syntax_error)
 	
 	i = 0;
 	ft_skip_space(str, &i);
-	if (ft_isspecial_symbols(str[i + 1]))
+	if (ft_isspecial_symbols(str[i + 1]) || !str[i + 1])
 		*syntax_error += 1;
 }

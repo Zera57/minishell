@@ -6,7 +6,7 @@
 /*   By: hapryl <hapryl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/22 17:28:42 by larlena           #+#    #+#             */
-/*   Updated: 2021/05/18 12:26:40 by hapryl           ###   ########.fr       */
+/*   Updated: 2021/05/18 14:10:48 by hapryl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,10 @@ static char	*ft_get_value_name(const char *str)
 	char	*dst;
 
 	i = 0;
-	while (str[i] != ' ' && str[i] != '"' && str[i])
+	while (str[i] != ' ' && str[i] && !ft_isspecial_symbols(str[i]))
 		i++;
 	dst = calloc(sizeof(char), i + 1);
 	ft_memcpy(dst, str, i);
-	dst[i] = 0;
 	return (dst);
 }
 
@@ -54,7 +53,7 @@ static char	*ft_dollar_err(t_all *all, char *buf)
 	result = ft_strjoin(errc, &buf[1]);
 	free(errc);
 	free(buf);
-	all->j += ft_strlen(result);
+	all->j += ft_strlen(result) + 1;
 	return (result);
 }
 
@@ -79,6 +78,7 @@ void	ft_parsing_dollar(t_all *all, t_list *parser, const char *str)
 		result = ft_strjoin((
 			(t_parser *)parser->content)->arg[all->ln], tmp->value);
 	}
+	all->j--;
 	free(((t_parser *)parser->content)->arg[all->ln]);
 	((t_parser *)parser->content)->arg[all->ln] = result;
 	all->j--;
