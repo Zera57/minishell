@@ -6,7 +6,7 @@
 /*   By: hapryl <hapryl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/22 17:28:42 by larlena           #+#    #+#             */
-/*   Updated: 2021/05/18 11:11:51 by hapryl           ###   ########.fr       */
+/*   Updated: 2021/05/18 12:26:40 by hapryl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,6 @@ static char	*ft_dollar_err(t_all *all, char *buf)
 	char	*result;
 	char	*errc;
 
-	// ft_putstr_fd( "error: ", 1);
-	// ft_putnbr_fd(err, 1);
-	// ft_putstr_fd("\n", 1);
 	errc = ft_itoa(all->err);
 	result = ft_strjoin(errc, &buf[1]);
 	free(errc);
@@ -75,7 +72,10 @@ void	ft_parsing_dollar(t_all *all, t_list *parser, const char *str)
 	{
 		tmp = ft_dic_get_value(all->env, buf);
 		if (ft_check_value(all, parser, tmp, buf))
+		{
+			all->j--;
 			return ;
+		}
 		result = ft_strjoin((
 			(t_parser *)parser->content)->arg[all->ln], tmp->value);
 	}
