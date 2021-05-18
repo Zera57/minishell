@@ -6,7 +6,7 @@
 /*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/20 11:19:03 by larlena           #+#    #+#             */
-/*   Updated: 2021/05/17 17:10:16 by larlena          ###   ########.fr       */
+/*   Updated: 2021/05/18 14:23:54 by larlena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,15 +98,15 @@ void	ft_command_execution(t_all *all)
 	pid_t	*pid;
 
 	pid = ft_calloc(sizeof(pid_t), ft_lstsize(all->parser) + 1);
-	if (!all->syntax_error)
-	{
+//	if (!all->syntax_error)
+//	{
 		if (ft_lstsize(all->parser) == 1)
 			ft_one_command_execution(all, pid);
 		else
 			ft_multi_command_exectuion(all, pid);
-	}
-	else
-		ft_error("ASSZATshell", "syntax error", "");
+//	}
+//	else
+//		ft_error("ASSZATshell", "syntax error", "");
 	ft_clear_parser(all->parser);
 	free(pid);
 	all->parser = NULL;
