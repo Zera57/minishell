@@ -6,7 +6,7 @@
 /*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/22 17:28:42 by larlena           #+#    #+#             */
-/*   Updated: 2021/05/17 18:13:05 by larlena          ###   ########.fr       */
+/*   Updated: 2021/05/18 14:09:04 by larlena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,4 +81,5 @@ void	ft_parsing_dollar(t_all *all, t_list *parser, const char *str)
 	all->j--;
 	free(((t_parser *)parser->content)->arg[all->ln]);
 	((t_parser *)parser->content)->arg[all->ln] = result;
+	all->j--;
 }

@@ -6,7 +6,7 @@
 /*   By: hapryl <hapryl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 11:59:49 by hapryl            #+#    #+#             */
-/*   Updated: 2021/05/17 13:44:39 by hapryl           ###   ########.fr       */
+/*   Updated: 2021/05/18 12:14:04 by hapryl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	f(int a)
 	a++;
 	write(1, "\n(っ＾▿＾)۶🍸🌟🍺٩(˘◡˘ ): ", ft_strlen("\n(っ＾▿＾)۶🍸🌟🍺٩(˘◡˘ ): "));
 	ft_bzero(all.str, 2056);
+	all.err = 130;
 }
 
 void	f2(int a)
@@ -24,6 +25,7 @@ void	f2(int a)
 	a++;
 	if (all.parser != NULL)
 		write(1, "Quit: 3\n", ft_strlen("Quit: 3\n"));
+	all.err = 131;
 }
 
 int main(int argc, char **argv, char **env)

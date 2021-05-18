@@ -6,7 +6,7 @@
 /*   By: hapryl <hapryl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 16:26:50 by larlena           #+#    #+#             */
-/*   Updated: 2021/05/17 13:49:42 by hapryl           ###   ########.fr       */
+/*   Updated: 2021/05/18 11:19:57 by hapryl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,6 @@ void	ft_parsing_single_quotes(t_all *all, t_list *parser, const char *str)
 	if (str[all->j] == '\0')
 	{
 		ft_error("minishell", "sintax error", "single quotes must be closed");
-		all->err = 1;
+		all->err = 258;
 	}
 }
