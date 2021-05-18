@@ -6,7 +6,7 @@
 /*   By: hapryl <hapryl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 11:42:09 by hapryl            #+#    #+#             */
-/*   Updated: 2021/05/17 17:17:59 by hapryl           ###   ########.fr       */
+/*   Updated: 2021/05/18 11:33:11 by hapryl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,8 @@ void	ft_export_add(t_all *all, t_parser *parser)
 	while (parser->arg[++i])
 	{
 		str = ft_split(parser->arg[i], '=');
+		if (str[1] == NULL && ft_strchr(parser->arg[i], '='))
+			str[1] = ft_strdup("");
 		if (validate_name(str[0]))
 		{
 			dic = ft_dic_get_value(all->env, str[0]);
@@ -101,5 +103,8 @@ void	ft_export(t_all *all)
 	ft_get_env(all);
 	sort_by_name(all, ft_dic_lenght(all->env));
 	while (all->envc[i])
+	{
+		ft_putstr_fd("declare -x ", 1);
 		ft_putendl_fd(all->envc[i++], 1);
+	}
 }
