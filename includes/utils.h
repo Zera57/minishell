@@ -6,7 +6,7 @@
 /*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 18:13:58 by hapryl            #+#    #+#             */
-/*   Updated: 2021/05/19 11:09:34 by larlena          ###   ########.fr       */
+/*   Updated: 2021/05/19 13:41:05 by larlena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ t_dictionary	*ft_dic_delete(t_dictionary *start, char *key);
 
 // PARSER UTILS
 
+pid_t			protected_fork(void);
 size_t			ft_arrlen(char **str);
 void			ft_rewrite(char **src, char c);
 void			ft_add_slash(char **src);
@@ -33,6 +34,7 @@ void			ft_skip_space(const char *str, int *i);
 void			ft_clear_parser(t_list *parser);
 char			**ft_rewrite_arr(char **arg, size_t size);
 char			**ft_add_emty_line(char **src);
+t_list			*ft_search_previous(t_list *begin, t_list *present);
 int				ft_isspecial_symbols(char c);
 void			ft_create_new_list_parser(t_list **parser);
 void			ft_initialization_struct_parser(t_all *all, t_list **parser);

@@ -6,21 +6,11 @@
 /*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/20 11:19:03 by larlena           #+#    #+#             */
-/*   Updated: 2021/05/19 10:23:36 by larlena          ###   ########.fr       */
+/*   Updated: 2021/05/19 11:23:27 by larlena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
-
-static pid_t	protected_fork(void)
-{
-	pid_t	buf;
-
-	buf = fork();
-	if (buf == -1)
-		exit(0);
-	return (buf);
-}
 
 void 	ft_one_command_execution(t_all *all, pid_t *pid)
 {

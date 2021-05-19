@@ -6,7 +6,7 @@
 /*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/19 10:25:33 by larlena           #+#    #+#             */
-/*   Updated: 2021/05/19 10:25:51 by larlena          ###   ########.fr       */
+/*   Updated: 2021/05/19 13:40:56 by larlena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,4 +43,23 @@ char	**ft_add_emty_line(char **src)
 	dst = ft_rewrite_arr(src, arrsize);
 	dst[arrsize] = ft_strdup("");
 	return (dst);
+}
+
+pid_t	protected_fork(void)
+{
+	pid_t	buf;
+
+	buf = fork();
+	if (buf == -1)
+		exit(0);
+	return (buf);
+}
+
+t_list	*ft_search_previous(t_list *begin, t_list *present)
+{
+	if (begin == present)
+		return (begin);
+	while (begin->next != present)
+		begin = begin->next;
+	return (begin);
 }

@@ -6,12 +6,11 @@
 /*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/07 23:37:52 by larlena           #+#    #+#             */
-/*   Updated: 2021/04/22 15:35:04 by larlena          ###   ########.fr       */
+/*   Updated: 2021/05/19 11:27:44 by larlena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "../includes/minishell.h"
 
 void	*ft_calloc(size_t count, size_t size)
 {

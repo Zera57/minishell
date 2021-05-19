@@ -6,7 +6,7 @@
 /*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 17:30:02 by larlena           #+#    #+#             */
-/*   Updated: 2021/05/19 10:25:30 by larlena          ###   ########.fr       */
+/*   Updated: 2021/05/19 13:42:22 by larlena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ void	ft_fd_replacement(t_list *begin, t_list *previous, t_list *present)
 {
 	if (begin == present)
 	{
-		ft_fd_replacement_first_elem(previous, present);
+		ft_fd_replacement_first_elem(present);
 	}
 	else if (present->next != NULL)
 	{
@@ -120,15 +120,6 @@ void	ft_fd_replacement(t_list *begin, t_list *previous, t_list *present)
 	{
 		ft_fd_replacement_last_elem(previous, present);
 	}
-}
-
-t_list	*ft_search_previous(t_list *begin, t_list *present)
-{
-	if (begin == present)
-		return (begin);
-	while (begin->next != present)
-		begin = begin->next;
-	return (begin);
 }
 
 int	ft_search_commands(t_all *all, t_list *parser)
