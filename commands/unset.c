@@ -6,11 +6,33 @@
 /*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 12:25:05 by hapryl            #+#    #+#             */
-/*   Updated: 2021/05/19 15:06:27 by larlena          ###   ########.fr       */
+/*   Updated: 2021/05/19 17:28:34 by larlena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+
+int	validate_name(char *str)
+{
+	int	i;
+
+	i = 0;
+	if (!ft_isalpha(str[0]) && str[0] != '_')
+	{
+		all.err = 1;
+		return (ft_error("export", "not an identifier", str));
+	}
+	while (str[i])
+	{
+		if (!ft_isalnum(str[i]) && str[i] != '_')
+		{
+			all.err = 1;
+			return (ft_error("not an identifier", str));
+		}
+		i++;
+	}
+	return (1);
+}
 
 void	ft_unset(t_all *all, t_parser *parser)
 {

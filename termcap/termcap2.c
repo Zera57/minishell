@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   termcap2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hapryl <hapryl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 16:48:36 by hapryl            #+#    #+#             */
-/*   Updated: 2021/05/19 11:03:46 by larlena          ###   ########.fr       */
+/*   Updated: 2021/05/19 16:53:20 by hapryl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,22 @@ int	ft_type(t_all *all)
 	return (0);
 }
 
+int		ft_analize_string(t_all *all)
+{
+	write(1, "(っ＾▿＾)۶🍸🌟🍺٩(˘◡˘ ): ", ft_strlen("(っ＾▿＾)۶🍸🌟🍺٩(˘◡˘ ): "));
+	tputs(save_cursor, 1, ft_putchar);
+	ft_analize_buf(all);
+	while (ft_strcmp(all->buff, "\n") && ft_strcmp(all->buff, "\4"))
+		ft_analize_buf(all);
+	return (0);
+}
+
 void	termcap_on(void)
 {
 	struct termios	term;
-	char			*term_name = "xterm-256color";
+	char			*term_name;
 
+	term_name = "xterm-256color";
 	tcgetattr(0, &term);
 	term.c_lflag &= ~(ECHO);
 	term.c_lflag &= ~(ICANON);
