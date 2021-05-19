@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hapryl <hapryl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/06 20:14:26 by hapryl            #+#    #+#             */
-/*   Updated: 2021/05/19 10:43:36 by larlena          ###   ########.fr       */
+/*   Updated: 2021/05/19 14:22:25 by hapryl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	ft_echo(t_all *all, t_parser *parser)
 		flag = 1;
 	while (parser->arg[++i])
 	{
-		if (i != 1)
+		if (i != ft_getflag(parser) + 1)
 			ft_putchar_fd(' ', 1);
 		ft_putstr_fd(parser->arg[i], 1);
 	}
