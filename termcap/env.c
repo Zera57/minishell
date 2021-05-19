@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hapryl <hapryl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/06 15:02:48 by hapryl            #+#    #+#             */
-/*   Updated: 2021/05/19 10:40:43 by larlena          ###   ########.fr       */
+/*   Updated: 2021/05/19 13:44:24 by hapryl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ char	*get_envline(char *str1, char *str2)
 	int		lenght;
 
 	i = 0;
-	lenght = ft_strlen(str1) + ft_strlen(str2) + 4;
+	lenght = ft_strlen(str1) + ft_strlen(str2) + 2;
 	str = ft_malloc(lenght);
 	while (i < lenght && i < (int)ft_strlen(str1))
 	{
@@ -56,13 +56,11 @@ char	*get_envline(char *str1, char *str2)
 		return (str);
 	}
 	str[i++] = '=';
-	str[i++] = '"';
 	j = 0;
 	while (i < lenght && j < (int)ft_strlen(str2))
 	{
 		str[i++] = str2[j++];
 	}
-	str[i++] = '"';
 	str[i] = 0;
 	return (str);
 }
