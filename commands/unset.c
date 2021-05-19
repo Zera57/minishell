@@ -6,7 +6,7 @@
 /*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 12:25:05 by hapryl            #+#    #+#             */
-/*   Updated: 2021/05/19 17:28:34 by larlena          ###   ########.fr       */
+/*   Updated: 2021/05/19 17:29:49 by larlena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	validate_name(char *str)
 	if (!ft_isalpha(str[0]) && str[0] != '_')
 	{
 		all.err = 1;
-		return (ft_error("export", "not an identifier", str));
+		return (ft_error("not an identifier", str));
 	}
 	while (str[i])
 	{
