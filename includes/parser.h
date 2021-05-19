@@ -6,7 +6,7 @@
 /*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/06 17:01:48 by larlena           #+#    #+#             */
-/*   Updated: 2021/05/19 11:07:37 by larlena          ###   ########.fr       */
+/*   Updated: 2021/05/19 15:09:08 by larlena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,9 @@
 
 # define FD_W 1
 # define FD_R 0
+# define FD_ERR 2
+
+int		ft_check_syntax_error(const char *str);
 
 int		ft_redirects(t_all *all, t_parser *parser);
 int		ft_semicolon(t_all *all, t_list **parser, const char *str);
@@ -45,7 +48,6 @@ void	ft_fd_red_replacement_back(t_parser *parser);
 void	ft_fd_red_replacement(t_parser *parser);
 t_list	*ft_search_previous(t_list *begin, t_list *present);
 
-void	ft_check_to_syntax_error(const char *str, int *syntax_error);
-int		ft_return_error(char *command, char *text, char *arg);
+int		ft_return_error(char *text, char *arg);
 
 #endif

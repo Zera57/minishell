@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hapryl <hapryl@student.42.fr>              +#+  +:+       +#+        */
+/*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 11:59:49 by hapryl            #+#    #+#             */
-/*   Updated: 2021/05/18 12:14:04 by hapryl           ###   ########.fr       */
+/*   Updated: 2021/05/19 15:05:17 by larlena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int main(int argc, char **argv, char **env)
 	
 	if (argc != 1)
 	{
-		ft_error("minishell", argv[1], "No such file or directory");
+		ft_error(argv[1], "No such file or directory");
 		exit(127);
 	}
 	signal(SIGINT, &f);

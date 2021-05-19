@@ -6,43 +6,11 @@
 /*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/06 16:44:47 by larlena           #+#    #+#             */
-/*   Updated: 2021/05/19 10:28:00 by larlena          ###   ########.fr       */
+/*   Updated: 2021/05/19 15:35:22 by larlena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
-
-int	ft_return_error(char *command, char *text, char *arg)
-{
-	ft_error(command, text, arg);
-	return (1);
-}
-
-int	ft_check_to_syntax_error_semicolon(const char *str)
-{
-	size_t	i;
-	size_t	flag;
-
-	i = 0;
-	flag = 0;
-	while (str[i])
-	{
-		if (ft_isspecial_symbols(str[i]))
-		{
-			if (str[i] == '>' && str[i + 1] == '>')
-				i++;
-			if (flag)
-				return (ft_return_error("ASSZATshell", "syntax shell", ""));
-			flag = i;
-		}
-		else if (str[i] != ' ')
-			flag = 0;
-		i++;
-	}
-	if (ft_isspecial_symbols(str[flag]) && str[flag] != ';')
-		return (ft_return_error("ASSZATshell", "syntax shell", ""));
-	return (0);
-}
 
 int	ft_parsing_special_symbol(t_all *all, t_list **parser, const char *str)
 {
@@ -71,7 +39,7 @@ int	ft_parsing_special_symbol(t_all *all, t_list **parser, const char *str)
 int	ft_parser(t_all *all, t_list **parser, const char *str)
 {
 	all->j = -1;
-	if (!ft_check_to_syntax_error_semicolon(str))
+	if (!ft_check_syntax_error(str))
 	{
 		ft_initialization_struct_parser(all, parser);
 		while (str[++all->j])

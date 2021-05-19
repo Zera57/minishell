@@ -6,7 +6,7 @@
 /*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/06 17:28:15 by larlena           #+#    #+#             */
-/*   Updated: 2021/05/19 10:53:41 by larlena          ###   ########.fr       */
+/*   Updated: 2021/05/19 16:52:38 by larlena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,25 +74,4 @@ char	**ft_rewrite_arr(char **arg, size_t size)
 		dst[i] = arg[i];
 	free(arg);
 	return (dst);
-}
-
-void	ft_skip_space(const char *str, int *i)
-{
-	while (str[*i + 1] == ' ')
-		(*i)++;
-}
-
-int	ft_isspecial_symbols(char c)
-{
-	return (c == '|' || c == '<' || c == '>' || c == ';');
-}
-
-void	ft_check_to_syntax_error(const char *str, int *syntax_error)
-{
-	int		i;
-
-	i = 0;
-	ft_skip_space(str, &i);
-	if (ft_isspecial_symbols(str[i + 1]) || !str[i + 1])
-		*syntax_error += 1;
 }

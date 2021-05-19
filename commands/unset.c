@@ -6,7 +6,7 @@
 /*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 12:25:05 by hapryl            #+#    #+#             */
-/*   Updated: 2021/05/19 10:51:33 by larlena          ###   ########.fr       */
+/*   Updated: 2021/05/19 15:06:27 by larlena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	ft_unset(t_all *all, t_parser *parser)
 		if (!validate_name(parser->arg[i]))
 		{
 			all->err = 1;
-			ft_error("minishell unset:", "not a valid identifier:", parser->arg[i]);
+			ft_error("not a valid identifier:", parser->arg[i]);
 		}
 		else
 			all->env = ft_dic_delete(all->env, parser->arg[i]);

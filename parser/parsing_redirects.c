@@ -6,7 +6,7 @@
 /*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 17:41:33 by hapryl            #+#    #+#             */
-/*   Updated: 2021/05/19 10:52:21 by larlena          ###   ########.fr       */
+/*   Updated: 2021/05/19 15:07:31 by larlena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char	*get_next_word(t_all *all)
 		all->j++;
 	if (all->j == i)
 	{
-		ft_error("minishel", "parse error near `\n'", "");
+		ft_error("parse error near `\n'", "");
 		all->err = 258;
 	}
 	str = ft_malloc(all->j - i + 1);
@@ -81,7 +81,6 @@ int	ft_reverse_redirect(t_all *all, t_parser *parser)
 
 int	ft_redirects(t_all *all, t_parser *parser)
 {
-	ft_check_to_syntax_error(&all->str[all->j + 1], &all->syntax_error);
 	if (all->str[all->j] == '>' && all->str[all->j + 1] == '>')
 		ft_double_redirect(all, parser);
 	else if (all->str[all->j] == '>')

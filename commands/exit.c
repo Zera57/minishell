@@ -6,7 +6,7 @@
 /*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 14:23:10 by hapryl            #+#    #+#             */
-/*   Updated: 2021/05/19 10:49:54 by larlena          ###   ########.fr       */
+/*   Updated: 2021/05/19 15:06:12 by larlena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	ft_exit(t_all *all, t_parser *parser)
 	{
 		if (!ft_isdigit(parser->arg[1][i++]))
 		{
-			ft_error("minishell: exit:", "numeric argument required", "");
+			ft_error("numeric argument required", "");
 			exit(255);
 		}
 	}
@@ -34,7 +34,7 @@ void	ft_exit(t_all *all, t_parser *parser)
 		i++;
 	if (i > 2)
 	{
-		ft_error("minishell: exit:", "too many arguments", "");
+		ft_error("too many arguments", "");
 		return ;
 	}
 	all->err = ft_atoi(parser->arg[1]);

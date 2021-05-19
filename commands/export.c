@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hapryl <hapryl@student.42.fr>              +#+  +:+       +#+        */
+/*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 11:42:09 by hapryl            #+#    #+#             */
-/*   Updated: 2021/05/19 14:13:25 by hapryl           ###   ########.fr       */
+/*   Updated: 2021/05/19 15:06:21 by larlena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,14 +49,14 @@ int	validate_name(char *str)
 	if (!ft_isalpha(str[0]) && str[0] != '_')
 	{
 		all.err = 1;
-		return (ft_error("export", "not an identifier", str));
+		return (ft_error("not an identifier", str));
 	}
 	while (str[i])
 	{
 		if (!ft_isalnum(str[i]) && str[i] != '_')
 		{
 			all.err = 1;
-			return (ft_error("export", "not an identifier", str));
+			return (ft_error("not an identifier", str));
 		}
 		i++;
 	}

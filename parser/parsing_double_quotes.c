@@ -6,7 +6,7 @@
 /*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 13:18:46 by larlena           #+#    #+#             */
-/*   Updated: 2021/05/19 10:34:44 by larlena          ###   ########.fr       */
+/*   Updated: 2021/05/19 15:07:27 by larlena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	ft_parsing_double_quotes(t_all *all, t_list *parser, const char *str)
 	if (str[all->j] == '\0')
 	{
 		all->syntax_error += 1;
-		ft_error("ASSZATshell", "sintax error", "double quotes must be closed");
+		ft_error("sintax error", "double quotes must be closed");
 		all->err = 258;
 	}
 }

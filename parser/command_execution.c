@@ -6,7 +6,7 @@
 /*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/20 11:19:03 by larlena           #+#    #+#             */
-/*   Updated: 2021/05/19 11:23:27 by larlena          ###   ########.fr       */
+/*   Updated: 2021/05/19 16:43:38 by larlena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void 	ft_one_command_execution(t_all *all, pid_t *pid)
 			waitpid(*pid, &all->err, 0);
 			all->err = WEXITSTATUS(all->err);
 			if (all->err == 127)
-				ft_error("ASSZATshell", (((t_parser *)all
+				ft_error((((t_parser *)all
 							->parser->content)->arg[0]), "command not found");
 		}
 	}
@@ -51,8 +51,7 @@ void	ft_wait_pids(t_all *all, pid_t *pid, t_list *present)
 	close(((t_parser *)present->content)->pipefd[FD_R]);
 	all->err = WEXITSTATUS(all->err);
 	if (all->err == 127)
-		ft_error("ASSZATshell",
-			((t_parser *)present->content)->arg[0], "command not found");
+		ft_error(((t_parser *)present->content)->arg[0], "command not found");
 	if (present->next)
 		all->err = 0;
 }
@@ -86,15 +85,10 @@ void	ft_command_execution(t_all *all)
 	pid_t	*pid;
 
 	pid = ft_calloc(sizeof(pid_t), ft_lstsize(all->parser) + 1);
-	if (!all->syntax_error)
-	{
-		if (ft_lstsize(all->parser) == 1)
-			ft_one_command_execution(all, pid);
-		else
-			ft_multi_command_exectuion(all, pid);
-	}
+	if (ft_lstsize(all->parser) == 1)
+		ft_one_command_execution(all, pid);
 	else
-		ft_error("ASSZATshell", "syntax error", "");
+		ft_multi_command_exectuion(all, pid);
 	ft_clear_parser(all->parser);
 	free(pid);
 	all->parser = NULL;
