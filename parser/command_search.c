@@ -6,7 +6,7 @@
 /*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 17:30:02 by larlena           #+#    #+#             */
-/*   Updated: 2021/05/19 13:42:22 by larlena          ###   ########.fr       */
+/*   Updated: 2021/05/19 18:37:46 by larlena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,12 @@ static char	**ft_get_path(t_all *all, char *command)
 	{
 		buf = ft_dic_get_value(all->env, "PATH");
 		if (!buf)
-			return (NULL);
-		dst = ft_split(buf->value, ':');
-		ft_add_slash(dst);
+			dst = ft_calloc(sizeof(char *), 1);
+		else
+		{
+			dst = ft_split(buf->value, ':');
+			ft_add_slash(dst);
+		}
 		dst = ft_add_emty_line(dst);
 	}
 	return (dst);
