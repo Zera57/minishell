@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_redirects.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hapryl <hapryl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 17:41:33 by hapryl            #+#    #+#             */
-/*   Updated: 2021/05/19 15:07:31 by larlena          ###   ########.fr       */
+/*   Updated: 2021/05/19 20:30:38 by hapryl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ int	ft_redirect(t_all *all, t_parser *parser)
 
 	path = get_next_word(all);
 	parser->redfd[FD_W] = open(path, O_RDWR | O_CREAT | O_TRUNC, 0777);
+	free(path);
 	if (parser->redfd[FD_W] < 0)
 	{
 		printf("Error");
@@ -57,6 +58,7 @@ int	ft_double_redirect(t_all *all, t_parser *parser)
 	all->j++;
 	path = get_next_word(all);
 	parser->redfd[FD_W] = open(path, O_RDWR | O_CREAT | O_APPEND, 0777);
+	free(path);
 	if (parser->redfd[FD_W] < 0)
 	{
 		printf("Error");
@@ -71,6 +73,7 @@ int	ft_reverse_redirect(t_all *all, t_parser *parser)
 
 	path = get_next_word(all);
 	parser->redfd[FD_R] = open(path, O_RDWR | O_CREAT | O_TRUNC, 0777);
+	free(path);
 	if (parser->redfd[FD_R] < 0)
 	{
 		printf("Error");
