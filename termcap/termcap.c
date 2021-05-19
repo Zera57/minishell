@@ -6,7 +6,7 @@
 /*   By: hapryl <hapryl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 16:55:52 by hapryl            #+#    #+#             */
-/*   Updated: 2021/05/19 16:52:34 by hapryl           ###   ########.fr       */
+/*   Updated: 2021/05/19 19:43:37 by hapryl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,12 +65,11 @@ int		ft_enter(t_all *all)
 	termcap_off();
 	ft_parser(all, &all->parser, all->str);
 	termcap_on();
-	ft_bzero(all->str, 2056);
 	all->i = 0;
 	return (0);
 }
 
-void	ft_analize_buf(t_all *all)
+int		ft_analize_buf(t_all *all)
 {
 	int l;
 
@@ -88,4 +87,5 @@ void	ft_analize_buf(t_all *all)
 		;
 	else if (ft_isascii(all->buff[0]))
 		ft_type(all);
+	return (l);
 }

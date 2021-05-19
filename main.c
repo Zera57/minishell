@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hapryl <hapryl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 11:59:49 by hapryl            #+#    #+#             */
-/*   Updated: 2021/05/19 17:29:09 by larlena          ###   ########.fr       */
+/*   Updated: 2021/05/19 19:47:28 by hapryl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,9 @@
 void	f(int a)
 {
 	a++;
-	write(1, "\n(っ＾▿＾)۶🍸🌟🍺٩(˘◡˘ ): ", ft_strlen("\n(っ＾▿＾)۶🍸🌟🍺٩(˘◡˘ ): "));
+	write(1, "\n", 1);
+	if (all.parser == NULL)
+		write(1, "(っ＾▿＾)۶🍸🌟🍺٩(˘◡˘ ): ", ft_strlen("(っ＾▿＾)۶🍸🌟🍺٩(˘◡˘ ): "));
 	ft_bzero(all.str, 2056);
 	all.err = 130;
 }
@@ -51,8 +53,13 @@ int	main(int argc, char **argv, char **env)
 	free(dic->value);
 	dic->value = temp;
 	termcap_on();
-	while (ft_strcmp(all.buff, "\4"))
+	while (1)
+	{
 		ft_analize_string(&all);
+		if (!ft_strcmp(all.buff, "\4") && (all.str[0] == 4 || all.str[0] == 0))
+			break;
+		ft_bzero(all.str, 2056);
+	}
 	ft_putendl_fd("exit", 1);
-	return (0);
+	return (all.err);
 }
