@@ -6,7 +6,7 @@
 /*   By: hapryl <hapryl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 11:42:09 by hapryl            #+#    #+#             */
-/*   Updated: 2021/05/18 11:33:11 by hapryl           ###   ########.fr       */
+/*   Updated: 2021/05/19 14:13:25 by hapryl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,28 @@ int	validate_name(char *str)
 	return (1);
 }
 
+static char	**ft_get_export(char *str)
+{
+	char	**result;
+	char	*temp;
+
+	temp = ft_strchr(str, '=');
+	if (temp == NULL)
+	{
+		result = (char**)ft_malloc(2 * sizeof(char*));
+		result[0] = ft_strdup(str);
+		result[1] = NULL;
+		return (result);
+	}
+	result = (char**)ft_malloc(3 * sizeof(char*));
+	*temp = 0;
+	temp++;
+	result[0] = ft_strdup(str);
+	result[1] = ft_strdup(temp);
+	result[2] = NULL;
+	return (result);
+}
+
 void	ft_export_add(t_all *all, t_parser *parser)
 {
 	int				i;
@@ -72,7 +94,7 @@ void	ft_export_add(t_all *all, t_parser *parser)
 	i = 0;
 	while (parser->arg[++i])
 	{
-		str = ft_split(parser->arg[i], '=');
+		str = ft_get_export(parser->arg[i]);
 		if (str[1] == NULL && ft_strchr(parser->arg[i], '='))
 			str[1] = ft_strdup("");
 		if (validate_name(str[0]))
