@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hapryl <hapryl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 11:59:49 by hapryl            #+#    #+#             */
-/*   Updated: 2021/05/19 20:50:26 by larlena          ###   ########.fr       */
+/*   Updated: 2021/05/19 20:57:41 by hapryl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,8 @@ int	main(int argc, char **argv, char **env)
 	while (1)
 	{
 		ft_analize_string(&g_all);
-		if (!ft_strcmp(g_all.buff, "\4") && (g_all.str[0] == 4 || g_all.str[0] == 0))
+		if (!ft_strcmp(g_all.buff, "\4") && (g_all.str[0] == 4
+				|| g_all.str[0] == 0))
 			break ;
 		ft_bzero(g_all.str, 2056);
 	}
