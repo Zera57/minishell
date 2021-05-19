@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hapryl <hapryl@student.42.fr>              +#+  +:+       +#+        */
+/*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 11:59:49 by hapryl            #+#    #+#             */
-/*   Updated: 2021/05/19 19:47:28 by hapryl           ###   ########.fr       */
+/*   Updated: 2021/05/19 20:50:26 by larlena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,25 +16,40 @@ void	f(int a)
 {
 	a++;
 	write(1, "\n", 1);
-	if (all.parser == NULL)
+	if (g_all.parser == NULL)
 		write(1, "(っ＾▿＾)۶🍸🌟🍺٩(˘◡˘ ): ", ft_strlen("(っ＾▿＾)۶🍸🌟🍺٩(˘◡˘ ): "));
-	ft_bzero(all.str, 2056);
-	all.err = 130;
+	ft_bzero(g_all.str, 2056);
+	g_all.err = 130;
 }
 
 void	f2(int a)
 {
 	a++;
-	if (all.parser != NULL)
+	if (g_all.parser != NULL)
 		write(1, "Quit: 3\n", ft_strlen("Quit: 3\n"));
-	all.err = 131;
+	g_all.err = 131;
+}
+
+void	all_init(void)
+{
+	char			*temp;
+	t_dictionary	*dic;
+
+	g_all.history = ft_dllstnew(ft_strdup(""));
+	g_all.i = 0;
+	g_all.env = NULL;
+	g_all.envc = NULL;
+	dic = ft_dic_get_value(g_all.env, "SHLVL");
+	if (dic)
+	{
+		temp = ft_itoa(ft_atoi(dic->value) + 1);
+		free(dic->value);
+		dic->value = temp;
+	}
 }
 
 int	main(int argc, char **argv, char **env)
 {
-	t_dictionary	*dic;
-	char			*temp;
-
 	if (argc != 1)
 	{
 		ft_error(argv[1], "No such file or directory");
@@ -43,23 +58,16 @@ int	main(int argc, char **argv, char **env)
 	signal(SIGINT, &f);
 	signal(SIGQUIT, &f2);
 	argc = (int)argv[1][1];
-	all.history = ft_dllstnew(ft_strdup(""));
-	all.i = 0;
-	all.env = NULL;
-	all.envc = NULL;
-	ft_set_env(&all, env);
-	dic = ft_dic_get_value(all.env, "SHLVL");
-	temp = ft_itoa(ft_atoi(dic->value) + 1);
-	free(dic->value);
-	dic->value = temp;
+	all_init();
+	ft_set_env(&g_all, env);
 	termcap_on();
 	while (1)
 	{
-		ft_analize_string(&all);
-		if (!ft_strcmp(all.buff, "\4") && (all.str[0] == 4 || all.str[0] == 0))
-			break;
-		ft_bzero(all.str, 2056);
+		ft_analize_string(&g_all);
+		if (!ft_strcmp(g_all.buff, "\4") && (g_all.str[0] == 4 || g_all.str[0] == 0))
+			break ;
+		ft_bzero(g_all.str, 2056);
 	}
 	ft_putendl_fd("exit", 1);
-	return (all.err);
+	return (g_all.err);
 }

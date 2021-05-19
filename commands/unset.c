@@ -6,7 +6,7 @@
 /*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 12:25:05 by hapryl            #+#    #+#             */
-/*   Updated: 2021/05/19 17:29:49 by larlena          ###   ########.fr       */
+/*   Updated: 2021/05/19 20:49:30 by larlena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,14 @@ int	validate_name(char *str)
 	i = 0;
 	if (!ft_isalpha(str[0]) && str[0] != '_')
 	{
-		all.err = 1;
+		g_all.err = 1;
 		return (ft_error("not an identifier", str));
 	}
 	while (str[i])
 	{
 		if (!ft_isalnum(str[i]) && str[i] != '_')
 		{
-			all.err = 1;
+			g_all.err = 1;
 			return (ft_error("not an identifier", str));
 		}
 		i++;

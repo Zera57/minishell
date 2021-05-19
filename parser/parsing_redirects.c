@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_redirects.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hapryl <hapryl@student.42.fr>              +#+  +:+       +#+        */
+/*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 17:41:33 by hapryl            #+#    #+#             */
-/*   Updated: 2021/05/19 20:30:38 by hapryl           ###   ########.fr       */
+/*   Updated: 2021/05/19 20:35:35 by larlena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int	ft_reverse_redirect(t_all *all, t_parser *parser)
 	char	*path;
 
 	path = get_next_word(all);
-	parser->redfd[FD_R] = open(path, O_RDWR | O_CREAT | O_TRUNC, 0777);
+	parser->redfd[FD_R] = open(path, O_RDONLY);
 	free(path);
 	if (parser->redfd[FD_R] < 0)
 	{

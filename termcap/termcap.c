@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   termcap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hapryl <hapryl@student.42.fr>              +#+  +:+       +#+        */
+/*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 16:55:52 by hapryl            #+#    #+#             */
-/*   Updated: 2021/05/19 19:43:37 by hapryl           ###   ########.fr       */
+/*   Updated: 2021/05/19 20:43:33 by larlena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-int		ft_arrow_up(t_all *all)
+int	ft_arrow_up(t_all *all)
 {
 	if (all->history != NULL && all->history->previous != NULL)
 	{
@@ -27,7 +27,7 @@ int		ft_arrow_up(t_all *all)
 	return (0);
 }
 
-int		ft_arrow_down(t_all *all)
+int	ft_arrow_down(t_all *all)
 {
 	if (all->history != NULL && all->history->next != NULL)
 	{
@@ -42,7 +42,7 @@ int		ft_arrow_down(t_all *all)
 	return (0);
 }
 
-int		ft_backspace(t_all *all)
+int	ft_backspace(t_all *all)
 {
 	if (all->i > 0)
 	{
@@ -53,7 +53,7 @@ int		ft_backspace(t_all *all)
 	return (0);
 }
 
-int		ft_enter(t_all *all)
+int	ft_enter(t_all *all)
 {
 	all->history = ft_dllstbegining(all->history);
 	free(all->history->str);
@@ -69,9 +69,9 @@ int		ft_enter(t_all *all)
 	return (0);
 }
 
-int		ft_analize_buf(t_all *all)
+int	ft_analize_buf(t_all *all)
 {
-	int l;
+	int	l;
 
 	l = read(0, all->buff, 10);
 	all->buff[l] = 0;
@@ -79,7 +79,8 @@ int		ft_analize_buf(t_all *all)
 		ft_arrow_up(all);
 	else if (!ft_strcmp(all->buff, "\e[B"))
 		ft_arrow_down(all);
-	else if (!ft_strcmp(all->buff, key_backspace) || !ft_strcmp(all->buff, "\177"))
+	else if (!ft_strcmp(all->buff, key_backspace)
+		|| !ft_strcmp(all->buff, "\177"))
 		ft_backspace(all);
 	else if (!ft_strcmp(all->buff, key_enter) || !ft_strcmp(all->buff, "\n"))
 		ft_enter(all);

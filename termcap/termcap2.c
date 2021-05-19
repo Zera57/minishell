@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   termcap2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hapryl <hapryl@student.42.fr>              +#+  +:+       +#+        */
+/*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 16:48:36 by hapryl            #+#    #+#             */
-/*   Updated: 2021/05/19 19:45:24 by hapryl           ###   ########.fr       */
+/*   Updated: 2021/05/19 20:43:49 by larlena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	ft_type(t_all *all)
 	return (0);
 }
 
-int		ft_analize_string(t_all *all)
+int	ft_analize_string(t_all *all)
 {
 	write(1, "(っ＾▿＾)۶🍸🌟🍺٩(˘◡˘ ): ", ft_strlen("(っ＾▿＾)۶🍸🌟🍺٩(˘◡˘ ): "));
 	tputs(save_cursor, 1, ft_putchar);

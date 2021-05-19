@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hapryl <hapryl@student.42.fr>              +#+  +:+       +#+        */
+/*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 20:01:53 by larlena           #+#    #+#             */
-/*   Updated: 2021/05/17 14:06:46 by hapryl           ###   ########.fr       */
+/*   Updated: 2021/05/19 19:39:03 by larlena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ typedef struct s_parser
 	char				**arg;
 	int					pipefd[2];
 	int					redfd[2];
+	int					buf[2];
 }						t_parser;
 
 typedef struct s_all

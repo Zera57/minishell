@@ -6,7 +6,7 @@
 /*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/06 17:01:48 by larlena           #+#    #+#             */
-/*   Updated: 2021/05/19 15:09:08 by larlena          ###   ########.fr       */
+/*   Updated: 2021/05/19 20:44:54 by larlena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,5 +49,8 @@ void	ft_fd_red_replacement(t_parser *parser);
 t_list	*ft_search_previous(t_list *begin, t_list *present);
 
 int		ft_return_error(char *text, char *arg);
+int		ft_executin_command(t_all *all, t_list *parser,
+			char *path, char *command);
+char	**ft_add_present_dir(void);
 
 #endif

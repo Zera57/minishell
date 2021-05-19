@@ -6,7 +6,7 @@
 /*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 17:30:02 by larlena           #+#    #+#             */
-/*   Updated: 2021/05/19 18:37:46 by larlena          ###   ########.fr       */
+/*   Updated: 2021/05/19 20:40:25 by larlena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,18 +41,6 @@ int	ft_search_builtin_commands(t_all *all, t_list *parser, char *command)
 	return (0);
 }
 
-char	**ft_add_present_dir(void)
-{
-	char	**dst;
-	char	tmp[1024];
-
-	getcwd(tmp, 1024);
-	dst = ft_calloc(sizeof(char *), 2);
-	*dst = ft_strdup(tmp);
-	ft_add_slash(dst);
-	return (dst);
-}
-
 static char	**ft_get_path(t_all *all, char *command)
 {
 	t_dictionary	*buf;
@@ -73,22 +61,6 @@ static char	**ft_get_path(t_all *all, char *command)
 		dst = ft_add_emty_line(dst);
 	}
 	return (dst);
-}
-
-static int	ft_executin_command(t_all *all, t_list *parser,
-								char *path, char *command)
-{
-	int		fd;
-	char	*tmp;
-
-	tmp = ft_strjoin(path, command);
-	fd = open(tmp, O_RDONLY);
-	if (fd == -1)
-		return (-1);
-	close(fd);
-	execve(tmp, ((t_parser *)parser->content)->arg, ft_get_env(all));
-	free(tmp);
-	return (0);
 }
 
 void	ft_search_fork_commands(t_all *all, t_list *parser, char *command)

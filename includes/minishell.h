@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hapryl <hapryl@student.42.fr>              +#+  +:+       +#+        */
+/*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 18:13:49 by hapryl            #+#    #+#             */
-/*   Updated: 2021/05/19 18:44:18 by hapryl           ###   ########.fr       */
+/*   Updated: 2021/05/19 20:44:14 by larlena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,7 @@
 # include "parser.h"
 # include "utils.h"
 
-extern int	result;
-t_all		all;
+t_all		g_all;
 
 int			ft_analize_string(t_all *all);
 int			ft_analize_buf(t_all *all);
