@@ -6,7 +6,7 @@
 /*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/06 16:44:47 by larlena           #+#    #+#             */
-/*   Updated: 2021/05/18 18:42:37 by larlena          ###   ########.fr       */
+/*   Updated: 2021/05/19 10:28:00 by larlena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	ft_check_to_syntax_error_semicolon(const char *str)
 
 	i = 0;
 	flag = 0;
-	while(str[i])
+	while (str[i])
 	{
 		if (ft_isspecial_symbols(str[i]))
 		{
@@ -63,7 +63,8 @@ int	ft_parsing_special_symbol(t_all *all, t_list **parser, const char *str)
 	else if (str[all->j] == '$')
 		ft_parsing_dollar(all, ft_lstlast(*parser), str);
 	else
-		ft_rewrite(&((t_parser *)ft_lstlast(*parser)->content)->arg[all->ln], str[all->j]);
+		ft_rewrite(&((t_parser *)
+				ft_lstlast(*parser)->content)->arg[all->ln], str[all->j]);
 	return (0);
 }
 

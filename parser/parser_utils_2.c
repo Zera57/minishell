@@ -1,24 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
+/*   parser_utils_2.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/08 19:52:39 by larlena           #+#    #+#             */
-/*   Updated: 2021/05/19 10:37:01 by larlena          ###   ########.fr       */
+/*   Created: 2021/05/19 10:25:33 by larlena           #+#    #+#             */
+/*   Updated: 2021/05/19 10:25:51 by larlena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../includes/minishell.h"
 
-int	ft_putchar(int c)
+void	ft_add_slash(char **src)
 {
-	write(1, &c, 1);
-	return (0);
+	size_t	i;
+
+	i = 0;
+	while (src[i])
+	{
+		ft_rewrite(&src[i], '/');
+		i++;
+	}
 }
 
-void	ft_putchar_fd(char c, int fd)
+size_t	ft_arrlen(char **str)
 {
-	write(fd, &c, 1);
+	size_t	i;
+
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
+}
+
+char	**ft_add_emty_line(char **src)
+{
+	char	**dst;
+	size_t	arrsize;
+
+	arrsize = ft_arrlen(src);
+	dst = ft_rewrite_arr(src, arrsize);
+	dst[arrsize] = ft_strdup("");
+	return (dst);
 }

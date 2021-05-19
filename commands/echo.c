@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hapryl <hapryl@student.42.fr>              +#+  +:+       +#+        */
+/*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/06 20:14:26 by hapryl            #+#    #+#             */
-/*   Updated: 2021/05/18 12:08:25 by hapryl           ###   ########.fr       */
+/*   Updated: 2021/05/19 10:43:36 by larlena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int	ft_checkflag(char *flag)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (flag[i++] != '-')
@@ -39,10 +39,10 @@ static int	ft_getflag(t_parser *parser)
 	return (0);
 }
 
-void		ft_echo(t_all *all, t_parser *parser)
+void	ft_echo(t_all *all, t_parser *parser)
 {
 	int	i;
-	int flag;
+	int	flag;
 
 	i = ft_getflag(parser);
 	flag = 0;

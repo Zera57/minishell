@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   command_search.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hapryl <hapryl@student.42.fr>              +#+  +:+       +#+        */
+/*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 17:30:02 by larlena           #+#    #+#             */
-/*   Updated: 2021/05/17 13:50:56 by hapryl           ###   ########.fr       */
+/*   Updated: 2021/05/19 10:25:30 by larlena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,39 +39,6 @@ int	ft_search_builtin_commands(t_all *all, t_list *parser, char *command)
 	else
 		return (-1);
 	return (0);
-}
-
-void		ft_add_slash(char **src)
-{
-	size_t	i;
-
-	i = 0;
-	while (src[i])
-	{
-		ft_rewrite(&src[i], '/');
-		i++;
-	}
-}
-
-size_t		ft_arrlen(char **str)
-{
-	size_t	i;
-
-	i = 0;
-	while (str[i])
-		i++;
-	return (i);
-}
-
-char	**ft_add_emty_line(char **src)
-{
-	char	**dst;
-	size_t	arrsize;
-
-	arrsize = ft_arrlen(src);
-	dst = ft_rewrite_arr(src, arrsize);
-	dst[arrsize] = ft_strdup("");
-	return (dst);
 }
 
 char	**ft_add_present_dir(void)
@@ -143,32 +110,15 @@ void	ft_fd_replacement(t_list *begin, t_list *previous, t_list *present)
 {
 	if (begin == present)
 	{
-		if (((t_parser *)present->content)->redfd[FD_R])
-			dup2(((t_parser *)present->content)->redfd[FD_R], FD_R);
-		if (((t_parser *)present->content)->redfd[FD_W])
-			dup2(((t_parser *)present->content)->redfd[FD_W], FD_W);
-		else
-			dup2(((t_parser *)present->content)->pipefd[FD_W], FD_W);
+		ft_fd_replacement_first_elem(previous, present);
 	}
 	else if (present->next != NULL)
 	{
-		if (((t_parser *)present->content)->redfd[FD_R])
-			dup2(((t_parser *)present->content)->redfd[FD_R], FD_R);
-		else
-			dup2(((t_parser *)previous->content)->pipefd[FD_R], FD_R);
-		if (((t_parser *)present->content)->redfd[FD_W])
-			dup2(((t_parser *)present->content)->redfd[FD_W], FD_W);
-		else
-			dup2(((t_parser *)present->content)->pipefd[FD_W], FD_W);
+		ft_fd_replacement_middle_elem(previous, present);
 	}
 	else
 	{
-		if (((t_parser *)present->content)->redfd[FD_W])
-			dup2(((t_parser *)present->content)->redfd[FD_W], FD_W);
-		if (((t_parser *)present->content)->redfd[FD_R])
-			dup2(((t_parser *)present->content)->redfd[FD_R], FD_R);
-		else
-			dup2(((t_parser *)previous->content)->pipefd[FD_R], FD_R);
+		ft_fd_replacement_last_elem(previous, present);
 	}
 }
 
@@ -183,7 +133,8 @@ t_list	*ft_search_previous(t_list *begin, t_list *present)
 
 int	ft_search_commands(t_all *all, t_list *parser)
 {
-	ft_fd_replacement(all->parser,  ft_search_previous(all->parser, parser), parser);
+	ft_fd_replacement(all->parser,
+		ft_search_previous(all->parser, parser), parser);
 	if (!ft_search_builtin_commands(all, parser,
 			((t_parser *)parser->content)->arg[0]))
 		exit(all->err);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_redirects.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hapryl <hapryl@student.42.fr>              +#+  +:+       +#+        */
+/*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 17:41:33 by hapryl            #+#    #+#             */
-/*   Updated: 2021/05/17 17:06:48 by hapryl           ###   ########.fr       */
+/*   Updated: 2021/05/19 10:52:21 by larlena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ int	ft_reverse_redirect(t_all *all, t_parser *parser)
 
 int	ft_redirects(t_all *all, t_parser *parser)
 {
-	ft_check_to_syntax_error(&all->str[all->j + 1], &all->syntax_error); 
+	ft_check_to_syntax_error(&all->str[all->j + 1], &all->syntax_error);
 	if (all->str[all->j] == '>' && all->str[all->j + 1] == '>')
 		ft_double_redirect(all, parser);
 	else if (all->str[all->j] == '>')

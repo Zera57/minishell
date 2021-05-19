@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hapryl <hapryl@student.42.fr>              +#+  +:+       +#+        */
+/*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/06 15:02:48 by hapryl            #+#    #+#             */
-/*   Updated: 2021/05/18 11:30:16 by hapryl           ###   ########.fr       */
+/*   Updated: 2021/05/19 10:40:43 by larlena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	ft_set_env(t_all *all, char **env)
 	int		i;
 
 	i = 0;
-	while(env[i])
+	while (env[i])
 	{
 		temp = ft_split(env[i], '=');
 		if (all->env == NULL)

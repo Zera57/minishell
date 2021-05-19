@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dictionary.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hapryl <hapryl@student.42.fr>              +#+  +:+       +#+        */
+/*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/06 14:51:02 by hapryl            #+#    #+#             */
-/*   Updated: 2021/04/23 12:16:44 by hapryl           ###   ########.fr       */
+/*   Updated: 2021/05/19 10:38:50 by larlena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 t_dictionary	*ft_dicnew(char *key, char *value)
 {
 	t_dictionary	*lst;
+
 	lst = ft_malloc(sizeof(t_dictionary));
 	lst->key = key;
 	lst->value = value;
@@ -22,9 +23,9 @@ t_dictionary	*ft_dicnew(char *key, char *value)
 	return (lst);
 }
 
-int				ft_dic_lenght(t_dictionary *lst)
+int	ft_dic_lenght(t_dictionary *lst)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (lst)
@@ -35,7 +36,7 @@ int				ft_dic_lenght(t_dictionary *lst)
 	return (i);
 }
 
-void			ft_dicadd_back(t_dictionary *lst, t_dictionary *new)
+void	ft_dicadd_back(t_dictionary *lst, t_dictionary *new)
 {
 	if (!lst)
 		return ;

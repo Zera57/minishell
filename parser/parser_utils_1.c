@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser_utils.c                                     :+:      :+:    :+:   */
+/*   parser_utils_1.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/06 17:28:15 by larlena           #+#    #+#             */
-/*   Updated: 2021/05/17 18:43:07 by larlena          ###   ########.fr       */
+/*   Updated: 2021/05/19 10:53:41 by larlena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,10 @@ void	ft_clear_parser(t_list *parser)
 void	ft_create_new_list_parser(t_list **parser)
 {
 	ft_lstadd_back(parser, ft_lstnew(ft_malloc(sizeof(t_parser))));
-	((t_parser *)ft_lstlast(*parser)->content)->arg = ft_calloc(sizeof(char *), 2);
-	((t_parser *)ft_lstlast(*parser)->content)->arg[0] = ft_calloc(sizeof(char), 1);
+	((t_parser *)ft_lstlast(*parser)->content)->arg
+		= ft_calloc(sizeof(char *), 2);
+	((t_parser *)ft_lstlast(*parser)->content)->arg[0]
+		= ft_calloc(sizeof(char), 1);
 	((t_parser *)ft_lstlast(*parser)->content)->redfd[FD_R] = 0;
 	((t_parser *)ft_lstlast(*parser)->content)->redfd[FD_W] = 0;
 }
@@ -88,7 +90,7 @@ int	ft_isspecial_symbols(char c)
 void	ft_check_to_syntax_error(const char *str, int *syntax_error)
 {
 	int		i;
-	
+
 	i = 0;
 	ft_skip_space(str, &i);
 	if (ft_isspecial_symbols(str[i + 1]) || !str[i + 1])

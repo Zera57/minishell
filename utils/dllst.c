@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dllst.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hapryl <hapryl@student.42.fr>              +#+  +:+       +#+        */
+/*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 18:25:00 by hapryl            #+#    #+#             */
-/*   Updated: 2021/04/23 12:16:44 by hapryl           ###   ########.fr       */
+/*   Updated: 2021/05/19 10:39:10 by larlena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 t_dllist	*ft_dllstnew(char *str)
 {
 	t_dllist	*lst;
+
 	lst = ft_malloc(sizeof(t_dllist));
 	lst->str = str;
 	lst->previous = NULL;
@@ -22,7 +23,7 @@ t_dllist	*ft_dllstnew(char *str)
 	return (lst);
 }
 
-void		ft_dllstadd_back(t_dllist *lst, char *str)
+void	ft_dllstadd_back(t_dllist *lst, char *str)
 {
 	if (!lst)
 		return ;
@@ -32,7 +33,7 @@ void		ft_dllstadd_back(t_dllist *lst, char *str)
 	lst->previous->next = lst;
 }
 
-void		ft_dllstadd_front(t_dllist *lst, char *str)
+void	ft_dllstadd_front(t_dllist *lst, char *str)
 {
 	if (!lst)
 		return ;

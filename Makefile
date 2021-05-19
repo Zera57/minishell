@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: hapryl <hapryl@student.42.fr>              +#+  +:+       +#+         #
+#    By: larlena <larlena@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/23 14:27:23 by hapryl            #+#    #+#              #
-#    Updated: 2021/05/06 13:53:43 by hapryl           ###   ########.fr        #
+#    Updated: 2021/05/19 10:56:12 by larlena          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,6 @@ FUNC =		commands/cd \
 			parser/command_execution \
 			parser/command_search \
 			parser/ft_parsing_ss \
-			parser/parser_utils \
 			parser/parser \
 			parser/parsing_double_quotes \
 			parser/parsing_redirects \
@@ -34,6 +33,9 @@ FUNC =		commands/cd \
 			parser/parsing_single_quotes \
 			parser/parsing_space \
 			parser/pipe \
+			parser/fd_replacement \
+			parser/parser_utils_1 \
+			parser/parser_utils_2 \
 			termcap/env \
 			termcap/termcap \
 			termcap/termcap2 \
