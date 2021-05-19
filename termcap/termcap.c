@@ -6,7 +6,7 @@
 /*   By: hapryl <hapryl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 16:55:52 by hapryl            #+#    #+#             */
-/*   Updated: 2021/05/15 16:14:48 by hapryl           ###   ########.fr       */
+/*   Updated: 2021/05/19 16:52:34 by hapryl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,31 +67,25 @@ int		ft_enter(t_all *all)
 	termcap_on();
 	ft_bzero(all->str, 2056);
 	all->i = 0;
-	write(1, "(っ＾▿＾)۶🍸🌟🍺٩(˘◡˘ ): ", ft_strlen("(っ＾▿＾)۶🍸🌟🍺٩(˘◡˘ ): "));
 	return (0);
 }
 
-int		ft_analize_string(t_all *all)
+void	ft_analize_buf(t_all *all)
 {
-	int	l;
+	int l;
 
-	tputs(save_cursor, 1, ft_putchar);
-	do
-	{
-		l = read(0, all->buff, 10);
-		all->buff[l] = 0;
-		if (!ft_strcmp(all->buff, "\e[A"))
-			ft_arrow_up(all);
-		else if (!ft_strcmp(all->buff, "\e[B"))
-			ft_arrow_down(all);
-		else if (!ft_strcmp(all->buff, key_backspace) || !ft_strcmp(all->buff, "\177"))
-			ft_backspace(all);
-		else if (!ft_strcmp(all->buff, key_enter) || !ft_strcmp(all->buff, "\n"))
-			ft_enter(all);
-		else if (all->buff[0] == '\e' || all->buff[0] == '\t')
-			;
-		else if (ft_isascii(all->buff[0]))
-			ft_type(all);
-	} while (ft_strcmp(all->buff, "\n") && ft_strcmp(all->buff, "\4"));
-	return (0);
+	l = read(0, all->buff, 10);
+	all->buff[l] = 0;
+	if (!ft_strcmp(all->buff, "\e[A"))
+		ft_arrow_up(all);
+	else if (!ft_strcmp(all->buff, "\e[B"))
+		ft_arrow_down(all);
+	else if (!ft_strcmp(all->buff, key_backspace) || !ft_strcmp(all->buff, "\177"))
+		ft_backspace(all);
+	else if (!ft_strcmp(all->buff, key_enter) || !ft_strcmp(all->buff, "\n"))
+		ft_enter(all);
+	else if (all->buff[0] == '\e' || all->buff[0] == '\t')
+		;
+	else if (ft_isascii(all->buff[0]))
+		ft_type(all);
 }
