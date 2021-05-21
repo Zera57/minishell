@@ -6,7 +6,7 @@
 /*   By: hapryl <hapryl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 11:42:09 by hapryl            #+#    #+#             */
-/*   Updated: 2021/05/21 18:03:16 by hapryl           ###   ########.fr       */
+/*   Updated: 2021/05/21 18:42:23 by hapryl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,8 @@ void	ft_export_set(t_all *all, char **str)
 	char			*temp;
 	t_dictionary	*dic;
 
+	if (!all->env)
+		all->env = ft_dicnew(ft_strdup(str[0]), ft_strdup(str[1]));
 	dic = ft_dic_get_value(all->env, str[0]);
 	if (dic == NULL)
 		ft_dicadd_back(all->env, ft_dicnew(str[0], str[1]));
