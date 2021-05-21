@@ -6,7 +6,7 @@
 /*   By: hapryl <hapryl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 11:59:49 by hapryl            #+#    #+#             */
-/*   Updated: 2021/05/19 20:57:41 by hapryl           ###   ########.fr       */
+/*   Updated: 2021/05/21 18:48:54 by hapryl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	f2(int a)
 	g_all.err = 131;
 }
 
-void	all_init(void)
+void	all_init(char **env)
 {
 	char			*temp;
 	t_dictionary	*dic;
@@ -39,6 +39,7 @@ void	all_init(void)
 	g_all.i = 0;
 	g_all.env = NULL;
 	g_all.envc = NULL;
+	ft_set_env(&g_all, env);
 	dic = ft_dic_get_value(g_all.env, "SHLVL");
 	if (dic)
 	{
@@ -58,8 +59,7 @@ int	main(int argc, char **argv, char **env)
 	signal(SIGINT, &f);
 	signal(SIGQUIT, &f2);
 	argc = (int)argv[1][1];
-	all_init();
-	ft_set_env(&g_all, env);
+	all_init(env);
 	termcap_on();
 	while (1)
 	{
