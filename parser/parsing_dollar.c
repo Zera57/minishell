@@ -6,7 +6,7 @@
 /*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/22 17:28:42 by larlena           #+#    #+#             */
-/*   Updated: 2021/05/19 10:29:18 by larlena          ###   ########.fr       */
+/*   Updated: 2021/05/21 19:44:04 by larlena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,13 @@ static char	*ft_get_value_name(const char *str)
 	char	*dst;
 
 	i = 0;
-	while (str[i] != ' ' && str[i] && !ft_isspecial_symbols(str[i])
-		&& str[i] != '\\' && str[i] != '"' && str[i] != '$')
+	if (ft_isdigit(str[i]) || str[i] == '?')
 		i++;
+	else
+	{
+		while (ft_isalpha(str[i]) || str[i] == '_')
+			i++;
+	}
 	dst = calloc(sizeof(char), i + 1);
 	ft_memcpy(dst, str, i);
 	return (dst);

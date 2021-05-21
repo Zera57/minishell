@@ -3,16 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hapryl <hapryl@student.42.fr>              +#+  +:+       +#+        */
+/*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 11:59:49 by hapryl            #+#    #+#             */
-/*   Updated: 2021/05/21 18:48:54 by hapryl           ###   ########.fr       */
+/*   Updated: 2021/05/21 19:25:36 by larlena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/minishell.h"
 
 void	f(int a)
+{
+	a++;
+}
+
+void	f1(int a)
 {
 	a++;
 	write(1, "\n", 1);
@@ -56,7 +61,7 @@ int	main(int argc, char **argv, char **env)
 		ft_error(argv[1], "No such file or directory");
 		exit(127);
 	}
-	signal(SIGINT, &f);
+	signal(SIGINT, &f1);
 	signal(SIGQUIT, &f2);
 	argc = (int)argv[1][1];
 	all_init(env);

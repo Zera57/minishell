@@ -6,7 +6,7 @@
 /*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 18:13:49 by hapryl            #+#    #+#             */
-/*   Updated: 2021/05/19 20:44:14 by larlena          ###   ########.fr       */
+/*   Updated: 2021/05/21 20:18:16 by larlena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,9 @@ int			ft_error(char *text, char *arg);
 int			ft_parser(t_all *all, t_list **parser, const char *str);
 void		termcap_on(void);
 void		termcap_off(void);
+void		f(int a);
+void		f1(int a);
+void		f2(int a);
+
 
 #endif

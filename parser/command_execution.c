@@ -6,7 +6,7 @@
 /*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/20 11:19:03 by larlena           #+#    #+#             */
-/*   Updated: 2021/05/19 19:47:41 by larlena          ###   ########.fr       */
+/*   Updated: 2021/05/21 20:19:21 by larlena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,13 @@ void 	ft_one_command_execution(t_all *all, pid_t *pid)
 	if (ft_search_builtin_commands(all, all->parser,
 			((t_parser *)all->parser->content)->arg[0]))
 	{
+		signal(SIGINT, &f);
+		signal(SIGQUIT, &f);
 		*pid = protected_fork();
 		if (*pid == 0)
 		{
+			signal(SIGINT, &f1);
+			signal(SIGQUIT, &f2);
 			ft_search_fork_commands(all, all->parser,
 				((t_parser *)all->parser->content)->arg[0]);
 			exit (127);
@@ -33,6 +37,8 @@ void 	ft_one_command_execution(t_all *all, pid_t *pid)
 				ft_error((((t_parser *)all
 							->parser->content)->arg[0]), "command not found");
 		}
+		signal(SIGINT, &f1);
+		signal(SIGQUIT, &f2);
 	}
 	ft_fd_red_replacement_back(all->parser->content);
 }
@@ -41,8 +47,12 @@ void	ft_create_pids(t_all *all, pid_t *pid, t_list *present)
 {
 	*pid = protected_fork();
 	if (*pid == 0)
+	{
+		signal(SIGINT, &f1);
+		signal(SIGQUIT, &f2);
 		ft_search_commands(all, present);
-	close(((t_parser *)present->content)->pipefd[FD_W]);
+		close(((t_parser *)present->content)->pipefd[FD_W]);
+	}
 }
 
 void	ft_wait_pids(t_all *all, pid_t *pid, t_list *present)
@@ -64,6 +74,8 @@ void	ft_multi_command_exectuion(t_all *all, pid_t *pid)
 	i = 0;
 	buf = all->parser;
 	ft_struct_pipe(all->parser);
+	signal(SIGINT, &f);
+	signal(SIGQUIT, &f);
 	while (buf)
 	{
 		ft_create_pids(all, &pid[i], buf);
@@ -78,6 +90,8 @@ void	ft_multi_command_exectuion(t_all *all, pid_t *pid)
 		buf = buf->next;
 		i++;
 	}
+	signal(SIGINT, &f1);
+	signal(SIGQUIT, &f2);
 }
 
 void	ft_command_execution(t_all *all)
