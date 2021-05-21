@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hapryl <hapryl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 11:42:09 by hapryl            #+#    #+#             */
-/*   Updated: 2021/05/19 17:27:21 by larlena          ###   ########.fr       */
+/*   Updated: 2021/05/21 18:03:16 by hapryl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ char	**sort_by_name(t_all *all, int numitems)
 	return (all->envc);
 }
 
-static char	**ft_get_export(char *str)
+static char	**ft_get_export(t_all *all, char *str)
 {
 	char	**result;
 	char	*temp;
@@ -54,6 +54,12 @@ static char	**ft_get_export(char *str)
 		result[1] = NULL;
 		return (result);
 	}
+	all->export_plus = 0;
+	if (*(temp - 1) == '+')
+	{
+		all->export_plus = 1;
+		*(temp - 1) = 0;
+	}
 	result = (char **)ft_malloc(3 * sizeof(char *));
 	*temp = 0;
 	temp++;
@@ -65,6 +71,7 @@ static char	**ft_get_export(char *str)
 
 void	ft_export_set(t_all *all, char **str)
 {
+	char			*temp;
 	t_dictionary	*dic;
 
 	dic = ft_dic_get_value(all->env, str[0]);
@@ -75,9 +82,16 @@ void	ft_export_set(t_all *all, char **str)
 		free(str[0]);
 		if (str[1] != NULL)
 		{
-			if (dic->value != NULL)
-				free(dic->value);
-			dic->value = str[1];
+			temp = dic->value;
+			if (all->export_plus == 1)
+			{
+				dic->value = ft_strjoin(dic->value, str[1]);
+				free(str[1]);
+			}
+			else
+				dic->value = str[1];
+			if (temp != NULL)
+				free(temp);
 		}
 	}
 }
@@ -90,7 +104,7 @@ void	ft_export_add(t_all *all, t_parser *parser)
 	i = 0;
 	while (parser->arg[++i])
 	{
-		str = ft_get_export(parser->arg[i]);
+		str = ft_get_export(all, parser->arg[i]);
 		if (validate_name(str[0]))
 		{
 			ft_export_set(all, str);
