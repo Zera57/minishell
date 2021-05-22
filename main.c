@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
+/*   By: zera <zera@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 11:59:49 by hapryl            #+#    #+#             */
-/*   Updated: 2021/05/21 19:25:36 by larlena          ###   ########.fr       */
+/*   Updated: 2021/05/22 14:31:50 by zera             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,5 +75,6 @@ int	main(int argc, char **argv, char **env)
 		ft_bzero(g_all.str, 2056);
 	}
 	ft_putendl_fd("exit", 1);
+	termcap_off();
 	return (g_all.err);
 }
