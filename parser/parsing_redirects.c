@@ -6,7 +6,7 @@
 /*   By: zera <zera@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 17:41:33 by hapryl            #+#    #+#             */
-/*   Updated: 2021/05/22 14:42:58 by zera             ###   ########.fr       */
+/*   Updated: 2021/05/22 14:48:31 by zera             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int	ft_reverse_redirect(t_all *all, t_parser *parser)
 
 	path = get_next_word(all);
 	parser->redfd[FD_R] = open(path, O_RDONLY);
-	if (parser->redfd[FD_R] < 0)
+	if (all->err != 258 && parser->redfd[FD_R] < 0)
 	{
 		ft_error(path, "No such file or directory");
 		all->err = 1;
