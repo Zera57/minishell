@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   termcap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
+/*   By: zera <zera@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 16:55:52 by hapryl            #+#    #+#             */
-/*   Updated: 2021/05/19 20:43:33 by larlena          ###   ########.fr       */
+/*   Updated: 2021/05/22 14:35:30 by zera             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ int	ft_analize_buf(t_all *all)
 		ft_enter(all);
 	else if (all->buff[0] == '\e' || all->buff[0] == '\t')
 		;
-	else if (ft_isascii(all->buff[0]))
+	else if (ft_isprint(all->buff[0]))
 		ft_type(all);
 	return (l);
 }
