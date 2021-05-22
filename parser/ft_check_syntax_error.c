@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_check_syntax_error.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
+/*   By: zera <zera@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/19 14:32:39 by larlena           #+#    #+#             */
-/*   Updated: 2021/05/19 20:39:12 by larlena          ###   ########.fr       */
+/*   Updated: 2021/05/22 14:30:41 by zera             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,13 +56,11 @@ int	ft_check_syntax_error_special_symbol(const char *str)
 	size_t	flag;
 
 	i = 0;
-	flag = 0;
+	flag = 1;
 	while (str[i])
 	{
 		if (ft_isspecial_symbols(str[i]))
 		{
-			if (str[i] == '>' && str[i + 1] == '>')
-				i++;
 			if (flag)
 				return (ft_return_error("syntax shell"
 						, "special symbol error"));
