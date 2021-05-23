@@ -6,7 +6,7 @@
 /*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 17:30:02 by larlena           #+#    #+#             */
-/*   Updated: 2021/05/21 21:01:47 by larlena          ###   ########.fr       */
+/*   Updated: 2021/05/23 17:45:15 by larlena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,8 @@ int	ft_search_commands(t_all *all, t_list *parser)
 {
 	ft_fd_replacement(all->parser,
 		ft_search_previous(all->parser, parser), parser);
-	if (!(((t_parser *)parser->content)->redfd[FD_R] < 0) && !(((t_parser *)parser->content)->redfd[FD_W] < 0))
+	if (!(((t_parser *)parser->content)->redfd[FD_R] < 0)
+		&& !(((t_parser *)parser->content)->redfd[FD_W] < 0))
 	{
 		if (!ft_search_builtin_commands(all, parser,
 				((t_parser *)parser->content)->arg[0]))

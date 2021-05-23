@@ -6,7 +6,7 @@
 /*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/20 11:19:03 by larlena           #+#    #+#             */
-/*   Updated: 2021/05/23 15:53:04 by larlena          ###   ########.fr       */
+/*   Updated: 2021/05/23 17:54:48 by larlena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,54 +18,12 @@ void 	ft_one_command_execution(t_all *all, pid_t *pid)
 	if (ft_search_builtin_commands(all, all->parser,
 			((t_parser *)all->parser->content)->arg[0]))
 	{
-		signal(SIGINT, &f);
-		if (!(((t_parser *)all->parser->content)->redfd[FD_R] < 0) && !(((t_parser *)all->parser->content)->redfd[FD_W] < 0))
-		{
-			*pid = protected_fork();
-			if (*pid == 0)
-			{
-				signal(SIGINT, &f1);
-				ft_search_fork_commands(all, all->parser,
-					((t_parser *)all->parser->content)->arg[0]);
-				exit (127);
-			}
-			else
-			{
-				if (!ft_strcmp(((t_parser *)all->parser->content)->arg[0], "minishell"))
-					signal(SIGQUIT, &f);
-				waitpid(*pid, &all->err, 0);
-				all->err = WEXITSTATUS(all->err);
-				if (all->err == 127)
-					ft_error((((t_parser *)all
-								->parser->content)->arg[0]), "command not found");
-			}
-		}
+		ft_create_pid(all, pid, all->parser);
+		ft_wait_pid(all, pid, all->parser);
 		signal(SIGINT, &f1);
 		signal(SIGQUIT, &f2);
 	}
 	ft_fd_red_replacement_back(all->parser->content);
-}
-
-void	ft_create_pids(t_all *all, pid_t *pid, t_list *present)
-{
-	*pid = protected_fork();
-	if (*pid == 0)
-	{
-		signal(SIGINT, &f1);
-		ft_search_commands(all, present);
-	}
-	close(((t_parser *)present->content)->pipefd[FD_W]);
-}
-
-void	ft_wait_pids(t_all *all, pid_t *pid, t_list *present)
-{
-	waitpid(*pid, &all->err, 0);
-	close(((t_parser *)present->content)->pipefd[FD_R]);
-	all->err = WEXITSTATUS(all->err);
-	if (all->err == 127)
-		ft_error(((t_parser *)present->content)->arg[0], "command not found");
-	if (present->next)
-		all->err = 0;
 }
 
 void	ft_multi_command_exectuion(t_all *all, pid_t *pid)
@@ -100,7 +58,11 @@ void	ft_command_execution(t_all *all)
 
 	pid = ft_calloc(sizeof(pid_t), ft_lstsize(all->parser) + 1);
 	if (ft_lstsize(all->parser) == 1)
-		ft_one_command_execution(all, pid);
+	{
+		if (!(((t_parser *)all->parser->content)->redfd[FD_R] < 0)
+			&& !(((t_parser *)all->parser->content)->redfd[FD_W] < 0))
+			ft_one_command_execution(all, pid);
+	}
 	else
 		ft_multi_command_exectuion(all, pid);
 	ft_clear_parser(all->parser);

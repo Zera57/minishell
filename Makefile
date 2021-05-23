@@ -6,7 +6,7 @@
 #    By: larlena <larlena@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/23 14:27:23 by hapryl            #+#    #+#              #
-#    Updated: 2021/05/19 16:57:42 by larlena          ###   ########.fr        #
+#    Updated: 2021/05/23 17:44:30 by larlena          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,6 +37,7 @@ FUNC =		commands/cd \
 			parser/parser_utils_1 \
 			parser/parser_utils_2 \
 			parser/parser_utils_3 \
+			parser/parser_utils_4 \
 			parser/ft_check_syntax_error \
 			termcap/env \
 			termcap/termcap \
