@@ -6,7 +6,7 @@
 /*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/20 11:19:03 by larlena           #+#    #+#             */
-/*   Updated: 2021/05/21 21:01:25 by larlena          ###   ########.fr       */
+/*   Updated: 2021/05/23 15:53:04 by larlena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,8 @@ void	ft_create_pids(t_all *all, pid_t *pid, t_list *present)
 	{
 		signal(SIGINT, &f1);
 		ft_search_commands(all, present);
-		close(((t_parser *)present->content)->pipefd[FD_W]);
 	}
+	close(((t_parser *)present->content)->pipefd[FD_W]);
 }
 
 void	ft_wait_pids(t_all *all, pid_t *pid, t_list *present)
