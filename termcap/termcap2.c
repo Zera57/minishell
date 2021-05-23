@@ -6,7 +6,7 @@
 /*   By: hapryl <hapryl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 16:48:36 by hapryl            #+#    #+#             */
-/*   Updated: 2021/05/23 18:14:58 by hapryl           ###   ########.fr       */
+/*   Updated: 2021/05/23 18:17:01 by hapryl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,11 @@ int	ft_analize_string(t_all *all)
 	write(1, "(っ＾▿＾)۶🍸🌟🍺٩(˘◡˘ ): ", ft_strlen("(っ＾▿＾)۶🍸🌟🍺٩(˘◡˘ ): "));
 	tputs(save_cursor, 1, ft_putchar);
 	ft_analize_buf(all);
-	while (ft_strcmp(all->buff, "\n") && !(!ft_strcmp(g_all.buff, "\4") &&
-		(g_all.str[0] == 4	|| g_all.str[0] == 0)))
+	while (ft_strcmp(all->buff, "\n") && !(!ft_strcmp(g_all.buff, "\4")
+			&& (g_all.str[0] == 4 || g_all.str[0] == 0)))
 		ft_analize_buf(all);
 	if (!ft_strcmp(g_all.buff, "\4") && (g_all.str[0] == 4
-		|| g_all.str[0] == 0))
+			|| g_all.str[0] == 0))
 	{
 		ft_putendl_fd("exit", 1);
 		termcap_off();
