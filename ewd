@@ -1,0 +1,14 @@
+Libft
+Makefile
+a.out.dSYM
+commands
+error
+ewd
+includes
+main.c
+main.o
+minishell
+parser
+termcap
+ttt
+utils

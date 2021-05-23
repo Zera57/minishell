@@ -6,7 +6,7 @@
 /*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 18:13:58 by hapryl            #+#    #+#             */
-/*   Updated: 2021/05/19 16:57:11 by larlena          ###   ########.fr       */
+/*   Updated: 2021/05/23 17:44:55 by larlena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,6 @@ t_list			*ft_search_previous(t_list *begin, t_list *present);
 int				ft_isspecial_symbols(char c);
 void			ft_create_new_list_parser(t_list **parser);
 void			ft_initialization_struct_parser(t_all *all, t_list **parser);
+void			check_exit_status(int status);
 
 #endif

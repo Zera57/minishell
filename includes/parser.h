@@ -6,7 +6,7 @@
 /*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/06 17:01:48 by larlena           #+#    #+#             */
-/*   Updated: 2021/05/19 20:44:54 by larlena          ###   ########.fr       */
+/*   Updated: 2021/05/23 17:53:39 by larlena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,5 +52,10 @@ int		ft_return_error(char *text, char *arg);
 int		ft_executin_command(t_all *all, t_list *parser,
 			char *path, char *command);
 char	**ft_add_present_dir(void);
+
+void	ft_create_pid(t_all *all, pid_t *pid, t_list *present);
+void	ft_create_pids(t_all *all, pid_t *pid, t_list *present);
+void	ft_wait_pid(t_all *all, pid_t *pid, t_list *present);
+void	ft_wait_pids(t_all *all, pid_t *pid, t_list *present);
 
 #endif

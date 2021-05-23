@@ -6,7 +6,7 @@
 /*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/22 17:28:42 by larlena           #+#    #+#             */
-/*   Updated: 2021/05/21 19:44:04 by larlena          ###   ########.fr       */
+/*   Updated: 2021/05/23 17:29:01 by larlena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,16 +54,17 @@ static int	ft_check_value(t_all *all, t_list *parser,
 	return (0);
 }
 
-static char	*ft_dollar_err(t_all *all, char *buf)
+char 	*ft_dollar_err(t_all *all, t_list *parser, char *buf)
 {
+	char	*tmp;
 	char	*result;
-	char	*errc;
 
-	errc = ft_itoa(all->err);
-	result = ft_strjoin(errc, &buf[1]);
-	free(errc);
+	tmp = ft_itoa(all->err);
+	result = ft_strjoin((
+				(t_parser *)parser->content)->arg[all->ln], tmp);
+	all->j++;
+	free(tmp);
 	free(buf);
-	all->j += ft_strlen(result) + 1;
 	return (result);
 }
 
@@ -76,7 +77,7 @@ void	ft_parsing_dollar(t_all *all, t_list *parser, const char *str)
 	all->j++;
 	buf = ft_get_value_name(&str[all->j]);
 	if (buf[0] == '?')
-		result = ft_dollar_err(all, buf);
+		result = ft_dollar_err(all, parser, buf);
 	else
 	{
 		tmp = ft_dic_get_value(all->env, buf);
