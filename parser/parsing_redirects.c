@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_redirects.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zera <zera@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: hapryl <hapryl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 17:41:33 by hapryl            #+#    #+#             */
-/*   Updated: 2021/05/22 14:48:31 by zera             ###   ########.fr       */
+/*   Updated: 2021/05/23 17:58:35 by hapryl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ char	*get_next_word(t_all *all)
 		&& all->str[all->j] != '>' && all->str[all->j] != '<'
 		&& all->str[all->j] != ' ' && all->str[all->j] != 0)
 		all->j++;
+	all->err = 0;
 	if (all->j == i)
 	{
 		ft_error("parse error near '\\n'", "");
