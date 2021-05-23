@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zera <zera@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: hapryl <hapryl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 11:59:49 by hapryl            #+#    #+#             */
-/*   Updated: 2021/05/22 14:31:50 by zera             ###   ########.fr       */
+/*   Updated: 2021/05/23 18:12:21 by hapryl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,9 +69,6 @@ int	main(int argc, char **argv, char **env)
 	while (1)
 	{
 		ft_analize_string(&g_all);
-		if (!ft_strcmp(g_all.buff, "\4") && (g_all.str[0] == 4
-				|| g_all.str[0] == 0))
-			break ;
 		ft_bzero(g_all.str, 2056);
 	}
 	ft_putendl_fd("exit", 1);
