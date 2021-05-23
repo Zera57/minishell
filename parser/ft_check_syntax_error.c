@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_check_syntax_error.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zera <zera@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: hapryl <hapryl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/19 14:32:39 by larlena           #+#    #+#             */
-/*   Updated: 2021/05/22 14:30:41 by zera             ###   ########.fr       */
+/*   Updated: 2021/05/23 15:31:07 by hapryl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int	ft_check_syntax_error_special_symbol(const char *str)
 	flag = 1;
 	while (str[i])
 	{
-		if (ft_isspecial_symbols(str[i]))
+		if (str[i] == '|' || str[i] == ';')
 		{
 			if (flag)
 				return (ft_return_error("syntax shell"

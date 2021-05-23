@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_utils_3.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zera <zera@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: hapryl <hapryl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/19 16:51:25 by larlena           #+#    #+#             */
-/*   Updated: 2021/05/22 14:29:45 by zera             ###   ########.fr       */
+/*   Updated: 2021/05/23 15:30:11 by hapryl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	ft_skip_space(const char *str, int *i)
 
 int	ft_isspecial_symbols(char c)
 {
-	return (c == '|' || c == ';');
+	return (c == '|' || c == '<' || c == '>' || c == ';');
 }
 
 char	**ft_add_present_dir(void)
