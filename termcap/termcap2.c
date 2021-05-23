@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   termcap2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hapryl <hapryl@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 16:48:36 by hapryl            #+#    #+#             */
-/*   Updated: 2021/05/19 20:43:49 by larlena          ###   ########.fr       */
+/*   Updated: 2021/05/23 13:14:35 by hapryl           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,6 @@ int	ft_analize_string(t_all *all)
 	ft_analize_buf(all);
 	while (ft_strcmp(all->buff, "\n") && ft_strcmp(all->buff, "\4"))
 		ft_analize_buf(all);
-	if (!ft_strcmp(all->buff, "\4"))
-		write(1, "\n", 1);
 	return (0);
 }
 
