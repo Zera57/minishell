@@ -6,7 +6,7 @@
 /*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 17:30:02 by larlena           #+#    #+#             */
-/*   Updated: 2021/05/23 17:45:15 by larlena          ###   ########.fr       */
+/*   Updated: 2021/05/29 15:04:22 by larlena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ void	ft_search_fork_commands(t_all *all, t_list *parser, char *command)
 		free(path[i]);
 	}
 	free(path);
+	exit(127);
 }
 
 void	ft_fd_replacement(t_list *begin, t_list *previous, t_list *present)

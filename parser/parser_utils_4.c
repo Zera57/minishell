@@ -6,7 +6,7 @@
 /*   By: larlena <larlena@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/23 17:43:21 by larlena           #+#    #+#             */
-/*   Updated: 2021/05/23 17:57:10 by larlena          ###   ########.fr       */
+/*   Updated: 2021/05/29 15:02:36 by larlena          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	ft_wait_pid(t_all *all, pid_t *pid, t_list *present)
 {
 	if (*pid)
 	{
-		if (!ft_strcmp(((t_parser *)present->content)->arg[0], "minishell"))
+		if (!ft_strcmp(((t_parser *)present->content)->arg[0], "./minishell"))
 			signal(SIGQUIT, &f);
 		waitpid(*pid, &all->err, 0);
 		check_exit_status(all->err);
