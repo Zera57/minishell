@@ -3,16 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: larlena <larlena@student.42.fr>            +#+  +:+       +#+         #
+#    By: zera <zera@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/23 14:27:23 by hapryl            #+#    #+#              #
-#    Updated: 2021/05/23 17:44:30 by larlena          ###   ########.fr        #
+#    Updated: 2021/06/05 11:56:08 by zera             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 CC = gcc
-CFLAGS = -g -Wall -Wextra -Werror -O2
+CFLAGS = -Werror -Wall -Wextra -g 
 INCLUDES = -I./includes/*.h -I$(LFT_DIR)
 FOLDER_SRCS = ./
 FUNC =		commands/cd \

@@ -21,7 +21,7 @@ HEAD = libft.h
 all: $(NAME) $(OFILE) 
 
 $(NAME):
-	gcc -Wall -Wextra -Werror -c $(FUNCTION) $(BONUS) -I libft.h
+	gcc -Wall -Wextra -Werror -c $(FUNCTION) $(BONUS) -I .
 	ar rc $(NAME) $(OFILE)
 	ranlib $(NAME)
 

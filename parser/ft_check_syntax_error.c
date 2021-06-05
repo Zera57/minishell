@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_check_syntax_error.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hapryl <hapryl@student.42.fr>              +#+  +:+       +#+        */
+/*   By: zera <zera@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/19 14:32:39 by larlena           #+#    #+#             */
-/*   Updated: 2021/05/23 15:31:07 by hapryl           ###   ########.fr       */
+/*   Updated: 2021/06/05 12:07:11 by zera             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ int	ft_check_syntax_error_shielding(const char *str, size_t	*i)
 
 int	ft_check_syntax_error_double_quotes(const char *str, size_t	*i)
 {
+	write(1, "sperm", 5);
 	while (str[++(*i)] && str[*i] != '\"')
 	{
 		if (str[*i] == '\\')
@@ -81,6 +82,7 @@ int	ft_check_syntax_error(const char *str)
 	int		error;
 
 	i = 0;
+	error = 0;
 	while (str[i])
 	{
 		if (str[i] == '"')
