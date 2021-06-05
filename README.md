@@ -1,6 +1,6 @@
 # Minishell
 
-Оболочка для терминала. Это групповой проект совместно с [Азат Гибадуллин](https://github.com/azatgibadullin1999)
+Оболочка для терминала. Это групповой проект совместно с [Azat Gibadullin](https://github.com/azatgibadullin1999)
 
 Поддержка:
 * Стандартных комманд
